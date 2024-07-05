@@ -54,8 +54,8 @@ const MemberProfile = ({currentUser, id}) => {
     <div className='flex items-start gap-10 px-[30px] py-[1rem]'>
         <div className='w-full'>
             <div className='shadow-md rounded-[6px] flex items-center gap-7 p-[20px] mb-10 w-full'>
-                <img src={currentUser?.user?.profileImage?.file ? currentUser?.user?.profileImage?.file : './images/user.svg'} className='w-[45%] rounded-[6px]' alt="" />
-                <img src={currentUser?.user?.passQrcode} className='w-[45%] rounded-[6px]' alt="" />
+                <img src={currentUser?.user?.profileImage?.file ? currentUser?.user?.profileImage?.file : './images/user.svg'} className='w-[45%] rounded-[6px]' alt="Member Image" />
+                <img src={currentUser?.user?.passQrcode} className='w-[45%] rounded-[6px]' alt="Passcode Image" />
             </div>
             <MemberCard currentUser={currentUser} id={id}/>
             <GuardianCard currentUser={currentUser} id={id}/>
@@ -65,8 +65,8 @@ const MemberProfile = ({currentUser, id}) => {
                     <img src="./images/edit.svg" alt="" className='cursor-pointer' />
                 </div>
                 <div className='flex items-center gap-7'>
-                    <img src="./images/guardian.svg" className='w-[45%] rounded-[6px]' alt="" />
-                    <img src="./images/signature.svg" className='w-[45%] rounded-[6px]' alt="" />
+                    <img src={currentUser?.user?.relationImage?.file} className='w-[45%] rounded-[6px]' alt="Relation image" />
+                    <img src={currentUser?.user?.signature?.file} className='w-[45%] rounded-[6px]' alt="Image of signature" />
                 </div>
             </div>
         </div>

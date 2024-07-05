@@ -4,6 +4,7 @@ import TopNav from '../../components/top-nav/TopNav'
 import { CiFilter } from 'react-icons/ci'
 import { GoChevronDown } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
+import { TbCurrencyNaira } from 'react-icons/tb'
 
 const Orders = ({baseUrl}) => {
 
@@ -22,6 +23,7 @@ const Orders = ({baseUrl}) => {
             }
         })
         const data = await res.json()
+        setAllOrders(data.data.orders)
         console.log(data.data);
     }
 
@@ -74,38 +76,26 @@ const Orders = ({baseUrl}) => {
                     <div>
                         <p>Nwaigwe Zainab Ayomide <span className='text-[#333]'>- Assignee</span> </p>
                     </div>
-                    <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
-                        <p className='font-[600] text-black'>#0008926TY</p>
-                        <p className='text-[#333]'>#2000</p>
-                        <p>Timi Gowon - Member</p>
-                        <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px]'>Delivered</p>
-                        <p>21 October 2024, 10:00AM</p>
-                        <button className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px]' onClick={() => navigate('/order/0008926TY')} >View</button>
-                    </div>
-                    <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
-                        <p className='font-[600] text-black'>#0008926TY</p>
-                        <p className='text-[#333]'>#2000</p>
-                        <p>Timi Gowon - Admin</p>
-                        <p className='text-[#9A7225] bg-[#9A72251A] px-3 rounded-full py-[2px]'>Not delivered</p>
-                        <p>21 October 2024, 10:00AM</p>
-                        <button className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px]' onClick={() => navigate('/order/0008926AB')} >View</button>
-                    </div>
-                    <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
-                        <p className='font-[600] text-black'>#0008926TY</p>
-                        <p className='text-[#333]'>#2000</p>
-                        <p>Timi Gowon - Member</p>
-                        <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px]'>Delivered</p>
-                        <p>21 October 2024, 10:00AM</p>
-                        <button className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px]' onClick={() => navigate('/order/0008926FG')} >View</button>
-                    </div>
-                    <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
-                        <p className='font-[600] text-black'>#0008926TY</p>
-                        <p className='text-[#333]'>#2000</p>
-                        <p>Timi Gowon - Member</p>
-                        <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px]'>Delivered</p>
-                        <p>21 October 2024, 10:00AM</p>
-                        <button className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px]'>View</button>
-                    </div>
+                    {
+                        allOrders?.map((order, index) => {
+                            const formattedDate = new Date(order?.createdAt).toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });
+                            const formattedTime = new Date(order?.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+                            return(
+                                <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
+                                    <p className='font-[600] text-black'>#0008926TY</p>
+                                    <p className='text-[#333] flex items-center'><TbCurrencyNaira className="text-[16px]"/>{order.totalAmount}</p>
+                                    <p>{order?.attendant?.fullName} - {order?.attendant?.role}</p>
+                                    <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px] capitalize'>{order.status}</p>
+                                    <p>{formattedDate}, {formattedTime}</p>
+                                    <button className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px]' onClick={() => navigate(`/order/${order._id}`)} >View</button>
+                                </div>
+                            )
+                        })
+                    }
+                    {/* {
+                        msg && <p className='text-[#9A2525] text-center'>{msg}</p>
+                    } */}
                 </div>
             </div>
         </div>

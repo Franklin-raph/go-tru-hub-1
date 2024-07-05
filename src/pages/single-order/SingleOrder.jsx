@@ -1,14 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideNav from '../../components/side-nav/SideNav'
 import TopNav from '../../components/top-nav/TopNav'
 import { CiFilter } from 'react-icons/ci'
 import { GoChevronDown } from 'react-icons/go'
 import { useNavigate, useParams } from 'react-router-dom'
+import { TbCurrencyNaira } from 'react-icons/tb'
 
-const SingleOrder = () => {
+const SingleOrder = ({baseUrl}) => {
 
     const navigate = useNavigate()
     const { id } = useParams()
+    const user = JSON.parse(localStorage.getItem('user'))
+    const [order, setOrder] = useState()
+    const [subtotal, setSubTotal] = useState()
+
+    async function getOrderInfo(){
+        const response = await fetch(`${baseUrl}/trade/admin/orders/${id}`,{
+            headers:{
+                Authorization:`Bearer ${user.data.access_token}`
+            }
+        })
+        const data = await response.json()
+        setOrder(data.data)
+        setSubTotal(data?.data?.items?.reduce((accumulator, item) => accumulator + item.product.price, 0))
+        console.log(data.data, subtotal)
+    }
+
+    useEffect(() => {
+        getOrderInfo()
+    },[])
 
   return (
     <div>
@@ -26,8 +46,8 @@ const SingleOrder = () => {
                 </div>
                 <div class="relative overflow-x-auto mx-5 p-8 flex flex-col justify-center items-center gap-3">
                     <div className='flex items-center justify-center flex-col'>
-                        <p className='text-[#4F4F4F] font-[600] text-[24px]'>Timi Gowon</p>
-                        <p className='text-[#757575] mb-2'>Member - JSS1 B</p>
+                        <p className='text-[#4F4F4F] font-[600] text-[24px]'>{order?.user?.fullName}</p>
+                        <p className='text-[#757575] mb-2 capitalize'>{order?.user?.role} - {order?.user?.subUnit?.name}</p>
                         <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px] font-[500]'>Delivered</p>
                     </div>
                     <div className='w-[400px] mt-5 border-b pb-5'>
@@ -36,8 +56,8 @@ const SingleOrder = () => {
                                 <p className='text-[#828282]'>Received by</p>
                             </div>
                             <div className='flex items-center justify-between'>
-                                <p className='text-[#19201D]'>Nwaigwe Zainab Ayomide</p>
-                                <p className='text-[#25751E]'>Assignee</p>
+                                <p className='text-[#19201D]'>{order?.user?.fullName}</p>
+                                <p className='text-[#25751E] capitalize'>{order?.user?.role}</p>
                             </div>
                         </div>
                         <div className='mt-7'>
@@ -45,8 +65,8 @@ const SingleOrder = () => {
                                 <p className='text-[#828282]'>Delivered by</p>
                             </div>
                             <div className='flex items-center justify-between'>
-                                <p className='text-[#19201D]'>Olajumoke Ali</p>
-                                <p className='text-[#25751E]'>Admin</p>
+                                <p className='text-[#19201D]'>{order?.attendant?.fullName}</p>
+                                <p className='text-[#25751E] capitalize'>{order?.attendant?.role}</p>
                             </div>
                         </div>
                     </div>
@@ -58,17 +78,26 @@ const SingleOrder = () => {
                             </div>
                             <p>Price</p>
                         </div>
-                        <div className='border-b pb-3 mb-3'>
-                            <div className='flex items-center justify-between'>
-                                <div className='flex items-center gap-11'>
-                                    <p>1.</p>
-                                    <p>Sandals</p>
-                                </div>
-                                <p>#1,000</p>
-                            </div>
-                            <p className='text-[#828282] ml-[3.2rem]'>Size: 40, Colour: black, Unit: 3</p>
-                        </div>
-                        <div className='border-b pb-3'>
+                        {
+                            
+                            order?.items?.map((item, index) => {
+                                return (
+                                    <div className='border-b pb-3 mb-3'>
+                                        <div className='flex items-center justify-between'>
+                                            <div className='flex items-center gap-11'>
+                                                <p>{index + 1}</p>
+                                                <p>{item?.product?.productName}</p>
+                                            </div>
+                                            <p className='flex items-center gap-[1px]'><TbCurrencyNaira className="text-[20px]"/>{item?.product?.price}</p>
+                                        </div>
+                                        <p className='text-[#828282] ml-[3.2rem]'>{item?.product?.category?.name}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                        
+
+                        {/* <div className='border-b pb-3'>
                             <div className='flex items-center justify-between'>
                                 <div className='flex items-center gap-11'>
                                     <p>2.</p>
@@ -77,19 +106,19 @@ const SingleOrder = () => {
                                 <p>#500</p>
                             </div>
                             <p className='text-[#828282] ml-[3.2rem]'>Unit: 3</p>
-                        </div>
+                        </div> */}
                         <div className='mt-5 flex gap-3 flex-col'>
                             <div className='flex items-center justify-between'>
                                 <p className='text-[#828282]'>Subtotal</p>
-                                <p>#120,000</p>
+                                <p className='flex items-center gap-[1px]'><TbCurrencyNaira className="text-[20px]"/>{Number(subtotal).toFixed(2)}</p>
                             </div>
                             <div className='flex items-center justify-between'>
                                 <p className='text-[#828282]'>Tax</p>
-                                <p>#500</p>
+                                <p className='flex items-center gap-[1px]'><TbCurrencyNaira className="text-[20px]"/>0</p>
                             </div>
                             <div className='flex items-center justify-between'>
                                 <p className='text-[#828282]'>Total</p>
-                                <p className='font-[600]'>#120,5000</p>
+                                <p className='flex items-center gap-[1px]'><TbCurrencyNaira className="text-[20px]"/>{Number(subtotal).toFixed(2)}</p>
                             </div>
                         </div>
                     </div>

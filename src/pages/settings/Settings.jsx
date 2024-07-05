@@ -150,12 +150,18 @@ const Settings = ({baseUrl}) => {
                                     </div>
                                 </div>
                                 <div className="w-full" style={{marginBottom:"30px"}}>
-                                    <button
-                                        type="submit"
-                                        className="bg-[#19201D] w-full text-white py-3 px-4 rounded"
-                                        >
-                                        Update password
-                                    </button>
+                                    {
+                                        isLoading ?
+                                        <img src="./images/loader.gif" className='w-[30px] mx-auto' alt="" />
+                                        :
+                                        <button
+                                            type="submit"
+                                            className="bg-[#19201D] w-full text-white py-3 px-4 rounded"
+                                            >
+                                            Update password
+                                        </button>
+
+                                    }
                                 </div>
                             </div>
                         </form>

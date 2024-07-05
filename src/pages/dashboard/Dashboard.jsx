@@ -166,12 +166,15 @@ const Dashboard = ({ baseUrl }) => {
                             <p>{item?.user?.fullName}</p>
                           </div>
                           <div>
-                            <p className={item?.actionType === "sign-out" ? 'text-[#9A2525] py-1 px-2 rounded-[3px] bg-[#9A252566] inline':'text-[#418B47] py-1 px-2 rounded-[3px] bg-[#5FB56766] inline'}>{item?.actionType}</p>
+                            <p className={item?.actionType === "sign-out" ? 'text-[#255e9a] py-1 px-2 rounded-[3px] bg-[#25589a66] inline':'text-[#418B47] py-1 px-2 rounded-[3px] bg-[#5FB56766] inline'}>{item?.actionType}</p>
                           </div>
                           <div className='text-[#25751E] underline'>{item?.coordinate[0]}, {item?.coordinate[1]}</div>
                           <div className="text-[#4F4F4F]">{formattedTime}</div>
                         </div>
-                        <p className="text-[#19201D] underline text-end cursor-pointer" onClick={() => navigate('/pass')}>See More</p>
+                        <div className="flex item-center justify-between">
+                          <p></p>
+                          <p className="text-[#19201D] underline text-end cursor-pointer" onClick={() => navigate('/pass')}>See More</p>
+                        </div>
                       </div>
                     )
                   })

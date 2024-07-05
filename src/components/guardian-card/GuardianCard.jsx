@@ -13,7 +13,7 @@ const GuardianCard = ({id, currentUser}) => {
     <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl">
       <div className="p-8">
         <div className="flex items-center justify-center">
-          <img className="h-[120] w-[120px] rounded-full object-cover" src="./images/member.svg" alt="Profile" />
+        <img  className="h-[120px] w-[120px] rounded-full object-cover" src={currentUser?.user?.guardians?.profileImage?.file} alt="Guardian image" />
         </div>
         <div className="mt-6 text-center">
           <div className="flex justify-between">
@@ -27,15 +27,15 @@ const GuardianCard = ({id, currentUser}) => {
           <div className="mt-6">
             <div className="flex justify-between items-center">
               <span className="text-gray-600">Full name</span>
-              <span className="font-medium">Mirinda Chika Yakubu</span>
+              <span className="font-medium">{currentUser?.user?.guardians?.fullName}</span>
             </div>
             <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Email</span>
-              <span className="font-medium">mcy@gmail.com</span>
+              <span className="font-medium">{currentUser?.user?.guardians?.email}</span>
             </div>
             <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Role</span>
-              <span className="font-medium">Guardian</span>
+              <span className="font-medium">{currentUser?.guardians?.role}</span>
             </div>
           </div>
         </div>
