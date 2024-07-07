@@ -40,7 +40,7 @@ const SingleOrder = ({baseUrl}) => {
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/orders')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">T{id}</p>
+                            <p className="text-[28px] text-primary-color font-[600]">Order Info</p>
                         </div>
                     </div>
                 </div>
@@ -48,9 +48,9 @@ const SingleOrder = ({baseUrl}) => {
                     <div className='flex items-center justify-center flex-col'>
                         <p className='text-[#4F4F4F] font-[600] text-[24px]'>{order?.user?.fullName}</p>
                         <p className='text-[#757575] mb-2 capitalize'>{order?.user?.role} - {order?.user?.subUnit?.name}</p>
-                        <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px] font-[500]'>Delivered</p>
+                        <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px] font-[500] capitalize'>{order?.status}</p>
                     </div>
-                    <div className='w-[400px] mt-5 border-b pb-5'>
+                    {/* <div className='w-[400px] mt-5 border-b pb-5'>
                         <div>
                             <div>
                                 <p className='text-[#828282]'>Received by</p>
@@ -69,7 +69,7 @@ const SingleOrder = ({baseUrl}) => {
                                 <p className='text-[#25751E] capitalize'>{order?.attendant?.role}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='w-[400px] mt-5 pb-5'>
                         <div className='flex items-center justify-between text-[#828282] mb-2'>
                             <div className='flex items-center gap-6'>

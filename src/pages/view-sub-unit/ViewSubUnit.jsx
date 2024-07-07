@@ -170,9 +170,9 @@ const ViewSubUnit = ({baseUrl}) => {
                         <p className="text-[28px] text-primary-color font-[600]">About {unitName}</p>
                     </div>
                     <div className='flex items-center gap-5'>
-                        <button className='font-[600] text-[#25751E] text-[14px]' onClick={() => navigate(`/co-ordinator/${id}`)} >Coordinator</button>
+                        {/* <button className='font-[600] text-[#25751E] text-[14px]' onClick={() => navigate(`/co-ordinator/${id}`)} >Coordinator</button> */}
                         <button className="border border-[#2D3934] text-[#19201D] font-[600] px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/sub-unit-assignment-create/${id}`)} >Add assignment</button>
-                        <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/add-sub-unit/${id}`)} >Timetable</button>
+                        <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/time-table/${id}`)} >Timetable</button>
                     </div>
                     {/* <div className='flex items-center gap-5'>
                         <FaRegEdit className="text-gray-500 font-[600] text-[20px] cursor-pointer" onClick={() => setEditUnit(true)}/>
@@ -205,51 +205,51 @@ const ViewSubUnit = ({baseUrl}) => {
                     </div>
                     <div className="flex flex-col sm:flex-row w-1/2">
                         <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
-                        <div className="flex flex-col items-center">
-                            <div className="text-lg font-bold">Members</div>
-                            <div className="text-3xl font-bold my-2">32</div>
-                            <div className="w-full flex justify-between text-sm">
                             <div className="flex flex-col items-center">
-                                <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Early</div>
-                                <div>70%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Late</div>
-                                <div>20%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Absent</div>
-                                <div>10%</div>
-                            </div>
+                                <div className="text-lg font-bold">Members</div>
+                                <div className="text-3xl font-bold my-2">32</div>
+                                <div className="w-full flex justify-between text-sm">
+                                    <div className="flex flex-col items-center">
+                                        <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
+                                        <div>Early</div>
+                                        <div>70%</div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
+                                        <div>Late</div>
+                                        <div>20%</div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
+                                        <div>Absent</div>
+                                        <div>10%</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
-                        <div className="flex flex-col items-center">
-                            <div className="text-lg font-bold">Assignees</div>
-                            <div className="text-3xl font-bold my-2">32</div>
-                            <div className="w-full flex justify-between text-sm">
+                        {/* <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
                             <div className="flex flex-col items-center">
-                                <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Early</div>
-                                <div>70%</div>
+                                <div className="text-lg font-bold">Assignees</div>
+                                <div className="text-3xl font-bold my-2">32</div>
+                                <div className="w-full flex justify-between text-sm">
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Early</div>
+                                    <div>70%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Late</div>
+                                    <div>20%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Absent</div>
+                                    <div>10%</div>
+                                </div>
+                                </div>
                             </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Late</div>
-                                <div>20%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Absent</div>
-                                <div>10%</div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        </div> */}
                     </div>
                     </div>
 

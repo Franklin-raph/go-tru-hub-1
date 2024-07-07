@@ -62,6 +62,8 @@ import CoOrdinator from './pages/co-ordinator/CoOrdinator'
 import Inventory from './pages/inventory/Inventory'
 import NewProduct from './pages/new-product/NewProduct'
 import NewProductInfo from './pages/new-product-info/NewProductInfo'
+import TimeTable from './pages/timetable/TimeTable'
+import AddSchedule from './pages/add-schedule/AddSchedule'
 
 function App() {
 
@@ -130,6 +132,8 @@ function App() {
             <Route path='/inventory' element={<Inventory baseUrl={baseUrl}/>} />
             <Route path='/new-product' element={<NewProduct baseUrl={baseUrl}/>} />
             <Route path='/product-info/:id' element={<NewProductInfo baseUrl={baseUrl}/>} />
+            <Route path='/time-table/:id' element={<TimeTable baseUrl={baseUrl}/>} />
+            <Route path='/create-schedule/:id' element={<AddSchedule baseUrl={baseUrl}/>}/>
 
             <Route path='*' element={<div>404</div>} />
         </Routes>

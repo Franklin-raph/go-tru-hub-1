@@ -149,7 +149,7 @@ const Location = ({baseUrl}) => {
                         <div>
                             <p className='mb-6 font-[700] text-[20px] text-[#1D1D1D]'>Input Location Co-Ordinates</p>
                            
-                            <div className='mb-5'>
+                                <div className='mb-5'>
                                     <p className='text-[#19201D]'>Start Coordinates</p>
                                     <div className='flex items-center gap-3'>
                                     <input

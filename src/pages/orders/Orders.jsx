@@ -51,7 +51,7 @@ const Orders = ({baseUrl}) => {
                             <p className='px-5 border-l'>Filter</p>
                             <GoChevronDown />
                         </div>
-                        <button className='text-white text-[14px] bg-[#2D3934] w-full rounded-[4px] px-[15px] py-[6px] text-center mx-auto'>Assign Pick Up</button>
+                        {/* <button className='text-white text-[14px] bg-[#2D3934] w-full rounded-[4px] px-[15px] py-[6px] text-center mx-auto'>Assign Pick Up</button> */}
                         <div className='absolute top-[40px] z-10'>
                             {
                                     filterDropDown &&
@@ -83,7 +83,7 @@ const Orders = ({baseUrl}) => {
 
                             return(
                                 <div className='bg-[#F7F7F7] flex  items-center justify-between px-5 py-3 rounded-[8px] text-[12px] text-[#4F4F4F]'>
-                                    <p className='font-[600] text-black'>#0008926TY</p>
+                                    <p className='font-[600] text-black'>#{index + 1}</p>
                                     <p className='text-[#333] flex items-center'><TbCurrencyNaira className="text-[16px]"/>{order.totalAmount}</p>
                                     <p>{order?.attendant?.fullName} - {order?.attendant?.role}</p>
                                     <p className='text-[#25751E] bg-[#25751E1A] px-3 rounded-full py-[2px] capitalize'>{order.status}</p>

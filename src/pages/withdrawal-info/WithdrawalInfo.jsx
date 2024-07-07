@@ -35,6 +35,7 @@ const WithdrawalInfo = ({baseUrl}) => {
         setAccountName(data.data.user.accountName)
         setAccountNumber(data.data.user.accountNum)
         setBankName(data.data.user.bankName)
+        setSelectedStatus(data.data.status)
         console.log(data.data)
     }
 
@@ -119,7 +120,7 @@ const WithdrawalInfo = ({baseUrl}) => {
                         <div className='relative'>
                             <p>Update Status</p>
                             <div className='border border-[#25751E] rounded-[6px] py-3 px-5 bg-[#25751E26] text-[#6F7975] flex items-center justify-between'>
-                                <p>{selectedStatus}</p>
+                                <p className='capitalize'>{selectedStatus}</p>
                                 <GoChevronDown className='cursor-pointer' onClick={() => setStatusDropDown(!statusDropDown)} />
                             </div>
                             {

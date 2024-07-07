@@ -278,51 +278,51 @@ const SingleUnit = ({baseUrl}) => {
                     </div>
                     <div className="flex flex-col sm:flex-row w-1/2">
                         <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
-                        <div className="flex flex-col items-center">
-                            <div className="text-lg font-bold">Members</div>
-                            <div className="text-3xl font-bold my-2">{attendanceSummary?.totalStudents}</div>
-                            <div className="w-full flex justify-between text-sm">
                             <div className="flex flex-col items-center">
-                                <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Early</div>
-                                <div>{attendanceSummary?.earlyPercentage?.toFixed(0,4)}%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Late</div>
-                                <div>{attendanceSummary?.latePercentage?.toFixed(0,4)}%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Absent</div>
-                                <div>{attendanceSummary?.absentPercentage?.toFixed(0,4)}%</div>
-                            </div>
+                                <div className="text-lg font-bold">Members</div>
+                                <div className="text-3xl font-bold my-2">{attendanceSummary?.totalStudents}</div>
+                                <div className="w-full flex justify-between text-sm">
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Early</div>
+                                    <div>{attendanceSummary?.earlyPercentage?.toFixed(0,4)}%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Late</div>
+                                    <div>{attendanceSummary?.latePercentage?.toFixed(0,4)}%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Absent</div>
+                                    <div>{attendanceSummary?.absentPercentage?.toFixed(0,4)}%</div>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
-                        <div className="flex flex-col items-center">
-                            <div className="text-lg font-bold">Assignees</div>
-                            <div className="text-3xl font-bold my-2">32</div>
-                            <div className="w-full flex justify-between text-sm">
+                        {/* <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
                             <div className="flex flex-col items-center">
-                                <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Early</div>
-                                <div>70%</div>
+                                <div className="text-lg font-bold">Assignees</div>
+                                <div className="text-3xl font-bold my-2">32</div>
+                                <div className="w-full flex justify-between text-sm">
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-green-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Early</div>
+                                    <div>70%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Late</div>
+                                    <div>20%</div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
+                                    <div>Absent</div>
+                                    <div>10%</div>
+                                </div>
+                                </div>
                             </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-yellow-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Late</div>
-                                <div>20%</div>
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="bg-red-500 h-2 w-2 rounded-full mb-1"></div>
-                                <div>Absent</div>
-                                <div>10%</div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        </div> */}
                     </div>
                     </div>
 
@@ -348,7 +348,6 @@ const SingleUnit = ({baseUrl}) => {
                             <tbody>
                                 {
                                     allSubUnits && allSubUnits?.map((item, index) => {
-
                                         return (
                                             <tr className='relative'>
                                                 <td className='py-3'>{index + 1}</td>
@@ -356,7 +355,11 @@ const SingleUnit = ({baseUrl}) => {
                                                 <td>{item?.totalAssignments}</td>
                                                 {/* <td></td> */}
                                                 <td>{item?.totalStudents}</td>
-                                                <td> <BsThreeDotsVertical  className="cursor-pointer" onClick={() => setSubUnitId(item._id)}/> </td>
+                                                <td> <BsThreeDotsVertical  className="cursor-pointer" onClick={() => 
+                                                    {
+                                                        setSubUnitId(item.id)
+                                                        console.log(item.id);
+                                                    }}/> </td>
 
                                                 {subUnitId === item.id &&
                                                     <div className='z-[1] absolute right-[110px] w-[200px] top-0 py-3 bg-white border rounded-[10px]'>
@@ -364,7 +367,7 @@ const SingleUnit = ({baseUrl}) => {
                                                             <MdOutlineClose className='text-lg cursor-pointer mt-[-5px]' onClick={() => setSubUnitId('')} />
                                                         </div>
                                                         <div className='flex flex-col'>
-                                                            <div onClick={() => navigate(`/view-sub-unit/${item._id}`)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
+                                                            <div onClick={() => navigate(`/view-sub-unit/${item.id}`)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
                                                                 <LuListTodo />
                                                                 <p>View sub-unit</p>
                                                             </div>
@@ -372,7 +375,7 @@ const SingleUnit = ({baseUrl}) => {
                                                                 <LuListTodo />
                                                                 <p>Edit time-table</p>
                                                             </div>
-                                                            <div onClick={() => setDeleteSubUnit(item._id)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
+                                                            <div onClick={() => setDeleteSubUnit(item.id)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
                                                                 <LuListTodo />
                                                                 <p>Delete sub-unit</p>
                                                             </div>
