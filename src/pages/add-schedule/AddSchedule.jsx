@@ -18,7 +18,7 @@ const AddSchedule = ({baseUrl}) => {
     const [course, setCourse] = useState()
     const [startTime, setStartTime] = useState()
     const [endTime, setEndTime] = useState()
-    const [coordinators, setCoordinators] = useState()
+    const [coordinators, setCoordinators] = useState([])
     const { id } = useParams()
     const [allAssignments, setAllAssignments] = useState([])
     const [locations, setLocations] = useState({
@@ -88,8 +88,8 @@ const AddSchedule = ({baseUrl}) => {
         setAllStaffs(data.data.users)
       }
 
-      async function getAllAssignments(){
-        const res = await fetch(`${baseUrl}/course`,{
+      async function getAllCourses(){
+        const res = await fetch(`${baseUrl}/sub-unit/course/paid/${id}`,{
             method:"GET",
             headers:{
                 'Authorization':`Bearer ${user.data.access_token}`
@@ -109,13 +109,87 @@ const AddSchedule = ({baseUrl}) => {
         }
     }
 
+    // const [selectedIds, setSelectedIds] = useState([]);
+
+    // const [coordinators, setCoordinators] = useState([]);
+
+    const handleCheckboxChange = (id, name) => {
+        setCoordinators((prevCoordinators) => {
+          if (prevCoordinators.some(coordinator => coordinator.id === id)) {
+            return prevCoordinators.filter(coordinator => coordinator.id !== id);
+          } else {
+            return [...prevCoordinators, { id, name }];
+          }
+        });
+    };
+
+    // const handleCheckboxChange = (coordinator) => {
+    //     console.log(coordinator.fullName);
+    //     setSelectedIds((prevSelectedIds) =>
+    //       prevSelectedIds.includes(coordinator._id)
+    //         ? prevSelectedIds.filter((item) => item !== coordinator._id)
+    //         : [...prevSelectedIds, coordinator._id]
+    //     );
+    // };
+
       useEffect(() => {
         getAllStaffs()
-        getAllAssignments()
+        getAllCourses()
       },[])
 
       async function createSchedule(){
-        console.log({locations, course:course?._id, day, startTime, endTime});
+        const ids = [];
+        for (let i = 0; i < coordinators.length; i++) {
+          ids.push(coordinators[i].id);
+        }
+
+        console.log({
+            course: course?.course?._id,
+            day,
+            startTime: parseInt(startTime?.replace(":", "")),
+            endTime:  parseInt(endTime?.replace(":", "")),
+            coordinators:ids,
+            location: locations.location,
+            endlocation: locations.endLocation
+        });
+        if(!course ||!day ||!startTime ||!endTime){
+            setMsg("Please fill in the fields!");
+            setAlertType('error');
+            return;
+        }else{
+            setLoading(true)
+            const res = await fetch(`${baseUrl}/schedule`,{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json',
+                    Authorization:`Bearer ${user.data.access_token}`
+                },
+                body:JSON.stringify({
+                    course: course?._id,
+                    day,
+                    startTime: parseInt(startTime.replace(":", "")),
+                    endTime:  parseInt(endTime.replace(":", "")),
+                    coordinators:ids,
+                    location: locations.location,
+                    endlocation: locations.endLocation
+                })
+            })
+            const data = await res.json()
+            if(res) setLoading(false)
+            console.log(data);
+            if(!res.ok){
+                setMsg(data.message);
+                setAlertType('error');
+                return;
+            }
+            if(res.ok){
+                setMsg("Schedule created successfully");
+                setAlertType('success');
+                // navigate(`/time-table/${id}`)
+                return;
+            }
+        }
+
       }
 
   return (
@@ -141,8 +215,8 @@ const AddSchedule = ({baseUrl}) => {
                         <div className='w-full relative'>
                             <label className='block text-left mb-2'>Select assignment</label>
                             <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
-                                <input type="text" value={course?.name} onChange={e => setCourse(e.target.value)} className='capitalize outline-none w-full rounded-[4px]'/>
-                                <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown('assignment')} />
+                                <input type="text" value={course?.course?.name} onChange={e => setCourse(e.target.value)} className='capitalize outline-none w-full rounded-[4px]'/>
+                                <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === "assignment" ? false : "assignment")} />
                             </div>
                             {
                                 dropDown === "assignment" &&
@@ -153,7 +227,7 @@ const AddSchedule = ({baseUrl}) => {
                                                 <p className='cursor-pointer hover:bg-gray-300 p-2 capitalize' onClick={() => {
                                                     setDropDown(false)
                                                     setCourse(assignment)
-                                                }}>{assignment.name}</p>
+                                                }}>{assignment?.course.name}</p>
                                             )
                                         })
                                     }
@@ -162,21 +236,40 @@ const AddSchedule = ({baseUrl}) => {
                         </div>
                         <div className='w-full relative'>
                             <label className='block text-left mb-2'>Select assignee(s)</label>
-                            <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
-                                <input type="text" value={coordinators} onChange={e => setCoordinators(e.target.value)} className='capitalize outline-none w-full rounded-[4px]'/>
-                                <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown('assignee')} />
+                            <div className='flex items-center justify-between border rounded-[6px] py-3 px-2 w-full'>
+                                {/* <input type="text" value={
+                                            coordinators.coordinator? coordinators.coordinator?.join(', ') : 'What position(s) are you applying for?'
+                                        } className='capitalize outline-none w-full rounded-[4px]'/> */}
+                                <ul className="flex items-center gap-1 pl-[2px]">
+                                    {coordinators?.map((coordinator, index) => (
+                                        <li key={coordinator.id} className="inline text-[12px]">
+                                            {coordinator.name}{index < coordinators.length - 1 && ', '}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === "assignee" ? false : "assignee")} />
                             </div>
                             {
                                 dropDown === "assignee" &&
-                                <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[350px] overflow-y-scroll'>
+                                <div className=' p-[8px] absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[350px] overflow-y-scroll'>
                                     {
                                         allStaffs.map(staff => {
                                             return (
-                                                <p className='cursor-pointer hover:bg-gray-300 p-2 capitalize' onClick={() => {
-                                                    setDropDown(false)
-                                                    // setBankDropDown(!bankDropDown)
-                                                    // setBankCode(bank.code)
-                                                }}>{staff.fullName}</p>
+                                                <div className='flex items-center gap-1 my-2'>
+                                                    <input
+                                                        type="checkbox"
+                                                        id={staff._id}
+                                                        className="mr-2"
+                                                        checked={coordinators.some(coordinator => coordinator.id === staff._id)}
+                                                        onChange={() => handleCheckboxChange(staff._id, staff.fullName)}
+                                                    />
+                                                    <p>{staff.fullName}</p>
+                                                </div>
+                                                // <p className='cursor-pointer hover:bg-gray-300 p-2 capitalize' onClick={() => {
+                                                //     setDropDown(false)
+                                                //     // setBankDropDown(!bankDropDown)
+                                                //     // setBankCode(bank.code)
+                                                // }}>{staff.fullName}</p>
                                             )
                                         })
                                     }

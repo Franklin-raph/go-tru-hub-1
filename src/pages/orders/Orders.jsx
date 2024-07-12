@@ -73,9 +73,9 @@ const Orders = ({baseUrl}) => {
                     </div>
                 </div>
                 <div class="relative overflow-x-auto mx-5 p-8 flex flex-col gap-3">
-                    <div>
+                    {/* <div>
                         <p>Nwaigwe Zainab Ayomide <span className='text-[#333]'>- Assignee</span> </p>
-                    </div>
+                    </div> */}
                     {
                         allOrders?.map((order, index) => {
                             const formattedDate = new Date(order?.createdAt).toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });

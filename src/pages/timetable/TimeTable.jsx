@@ -1,110 +1,159 @@
-import React, { useEffect, useState } from 'react'
-import SideNav from '../../components/side-nav/SideNav'
-import TopNav from '../../components/top-nav/TopNav'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import SideNav from '../../components/side-nav/SideNav';
+import TopNav from '../../components/top-nav/TopNav';
+import { useNavigate, useParams } from 'react-router-dom';
+import { RxDotsVertical } from "react-icons/rx";
+import { HiMiniQrCode } from "react-icons/hi2";
+import { HiOutlineTrash } from "react-icons/hi2";
+import { IoCloseOutline } from 'react-icons/io5';
+import BtnLoader from '../../components/btn-loader/BtnLoader';
 
-const TimeTable = ({baseUrl}) => {
 
-    const navigate = useNavigate()
-    const user = JSON.parse(localStorage.getItem('user'))
-    const [allSchedules, setAllSchedules] = useState([])
-    const [msg, setMsg] = useState('')
-    const [alertType, setAlertType] = useState()
-    const { id } = useParams()
+const TimeTable = ({ baseUrl }) => {
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [allSchedules, setAllSchedules] = useState([]);
+    const [msg, setMsg] = useState('');
+    const [alertType, setAlertType] = useState();
+    const { id } = useParams();
+    const [editSchedule, setEditSchedule] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [deleteSchedule, setDeleteSchedule] = useState()
 
-    async function getAllSessions(){
-        const res = await fetch(`${baseUrl}/schedule/${id}`,{
-            method:"GET",
-            headers:{
-                'Authorization':`Bearer ${user.data.access_token}`
+    async function getAllSessions() {
+        console.log(`${baseUrl}/schedule/${id}`);
+        const res = await fetch(`${baseUrl}/schedule/${id}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${user.data.access_token}`
             }
-        })
-        const data = await res.json()
+        });
+        const data = await res.json();
         console.log(data.data);
-        if(!res.ok){
+        if (!res.ok) {
             setMsg(data.message);
             setAlertType('error');
             return;
         }
-        if(res.ok){
+        if (res.ok) {
             setAllSchedules(data.data);
             setAlertType('success');
             return;
         }
     }
 
-    useEffect(() => {
-        getAllSessions()
-    },[])
+    const groupByDay = (data) => {
+        return data.reduce((acc, curr) => {
+            if (!acc[curr.day]) {
+                acc[curr.day] = [];
+            }
+            acc[curr.day].push(curr);
+            return acc;
+        }, {});
+    };
 
-  return (
-    <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
-            <div className="bg-[#F7F7F7]">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
-                    <div className="flex items-center gap-2">
-                        <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Time Table</p>
-                    </div>
-                    <div className='flex items-center gap-5'>
-                        <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-schedule/${id}`)}>Schedule assignment</button>
-                    </div>
-                </div>
-                <div className='px-[30px]'>
-                    <div className='flex items-center justify-between pb-3'>
-                        <p className='text-[#19201D] text-[18px] font-[600]'>Time Table</p>
-                        <p className='text-[#828282] text-[18px] font-[600]'>Total Assignments - {allSchedules?.length}</p>
-                    </div>
-                    {
-                        allSchedules.length < 1 &&
-                        <div className="flex items-center gap-5 justify-center text-center px-[3rem]">
-                            <p>Create new sessions before updating members' units to ensure session data is accurately collated using units and their members.</p>
+    const groupedData = groupByDay(allSchedules);
+
+    useEffect(() => {
+        getAllSessions();
+    }, []);
+
+    async function shceduleInfo() {
+        // Implement schedule info logic here
+    }
+
+    async function deleleteScheduleFn(schedule) {
+
+    }
+
+    return (
+        <div>
+            <SideNav />
+            <div className="w-[78%] ml-auto pb-5">
+                <TopNav />
+                <div className="">
+                    <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                        <div className="flex items-center gap-2">
+                            <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
+                            <p className="text-[28px] text-primary-color font-[600]">Time Table</p>
                         </div>
-                    }
-                    <div class="relative overflow-x-auto mx-5 mt-10 p-8">
-                        <table class="w-full text-sm text-left rtl:text-left">
-                            <thead class="text-[14px] border-b">
-                                <tr>
-                                    <th scope="col" class="py-3 th1 font-[700]">Day</th>
-                                    <th scope="col" class="py-3 font-[700]">Course</th>
-                                    <th scope="col" class="py-3 font-[700]">Start Time</th>
-                                    <th scope="col" class="py-3 font-[700]">End Time</th>
-                                    <th scope="col" class="py-3 font-[700]">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    allSchedules && allSchedules.map((schedule) => (
-                                        <tr className='text-[#19201D]'>
-                                            <td className='py-3 capitalize'>{schedule.day}</td>
-                                            <td>{schedule?.course?.course?.name}</td>
-                                            <td>{schedule?.startTime}</td>
-                                            <td>{schedule?.endTime}</td>
-                                            <td>
-                                                <button onClick={() => navigate(`/session-info/${schedule._id}`)} className='bg-[#19201D] py-2 px-4 rounded-[4px] text-white text-[14px]'>View</button>
-                                            </td>
-                                        </tr>
-                                    )).reverse()
-                                }
-                            </tbody>
-                        </table>
+                        <div className='flex items-center gap-5'>
+                            <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-schedule/${id}`)}>Schedule assignment</button>
+                        </div>
                     </div>
-                    {
-                        allSchedules && allSchedules.map((schedule) => (
-                            <div className='flex items-center justify-between p-3 shadow rounded-[8px] my-4 bg-white'>
-                                <p>{schedule.name}</p>
-                                {/* <button onClick={() => navigate(`/create-semester/${session._id}`)} className='bg-[#19201D] py-2 px-4 rounded-[4px] text-white text-[14px]'>Create Semester</button> */}
-                                
+                    <div className='px-[30px]'>
+                        <div className='flex items-center justify-between pb-3'>
+                            <p className='text-[#19201D] text-[18px] font-[600] mb-5'>Time Table</p>
+                            <p className='text-[#828282] text-[18px] font-[600]'>Total Assignments - {allSchedules?.length}</p>
+                        </div>
+                        {
+                            allSchedules.length < 1 &&
+                            <div className="flex items-center gap-5 justify-center text-center px-[3rem]">
+                                <p>Create new sessions before updating members' units to ensure session data is accurately collated using units and their members.</p>
                             </div>
-                        )).reverse()
-                    }
+                        }
+                        <div className="mx-auto bg-white rounded-xl space-y-4">
+                            {Object.keys(groupedData).map((day) => (
+                                <div key={day} className='border-b pb-2'>
+                                    <h3 className="text-lg font-semibold">{day.charAt(0).toUpperCase() + day.slice(1)}</h3>
+                                    <ul className="gap-6 mt-2 flex">
+                                        {groupedData[day].map((course) => (
+                                            <div key={course._id} className='flex items-center gap-1 relative'>
+                                                <li className="mt-1">
+                                                    {course.code.toUpperCase()}
+                                                </li>
+                                                <RxDotsVertical className='cursor-pointer' onClick={() => setEditSchedule(course)} />
+                                                {
+                                                    editSchedule && editSchedule._id === course._id &&
+                                                    <div className='bg-white w-[180px] px-3 py-1 rounded absolute z-[99] border'>
+                                                        <p className='text-end text-[20px] cursor-pointer' onClick={() => setEditSchedule(null)}>&times;</p>
+                                                        <div onClick={() => navigate(`/class-schedule-info/${editSchedule._id}`)} className='flex items-center cursor-pointer gap-1'>
+                                                            <HiMiniQrCode />
+                                                            <p>Barcode</p>
+                                                        </div>
+                                                        <div className='flex items-center cursor-pointer gap-1 mt-2' onClick={() => setDeleteSchedule(editSchedule)}>
+                                                            <HiOutlineTrash />
+                                                            <p>Delete Entry</p>
+                                                        </div>
+                                                        <div className='flex items-center cursor-pointer gap-1 mt-2' onClick={() => navigate(`/attendance-summary/${editSchedule._id}`)}>
+                                                            <HiOutlineTrash />
+                                                            <p>View Attendance</p>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        ))}
+                                    </ul>
+                                    {
+                                        deleteSchedule &&
+                                        <div>
+                                            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setDeleteSchedule(false)}></div>
+                                            <div className="bg-white w-[450px] fixed top-[50%] left-[50%] pt-[20px] px-[2rem] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
+                                                <div className="flex items-center justify-between border-b pb-[5px]">
+                                                    <p className="text-[px]">Delete Unit</p>
+                                                    <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setDeleteSchedule(false)}/>
+                                                </div>
+                                                <div className='mt-5'>
+                                                    Are you sure, you want to delete this schedule?
+                                                    {/* {deleteSchedule?._id} */}
+                                                </div>
+                                                {
+                                                    loading ? 
+                                                    <BtnLoader bgColor="#191f1c"/>
+                                                    :
+                                                    <button onClick={() => deleleteScheduleFn(deleteSchedule)} className='text-white bg-primary-color w-full rounded-[4px] mt-[2.5rem] px-[35px] py-[16px] text-center mx-auto'>Yes, Delete</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default TimeTable
+export default TimeTable;

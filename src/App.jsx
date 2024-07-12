@@ -64,6 +64,9 @@ import NewProduct from './pages/new-product/NewProduct'
 import NewProductInfo from './pages/new-product-info/NewProductInfo'
 import TimeTable from './pages/timetable/TimeTable'
 import AddSchedule from './pages/add-schedule/AddSchedule'
+import SingleSemesterResultInfo from './pages/single-semester-result-info/SingleSemesterResultInfo'
+import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy'
+import BarCodeView from './pages/bar-code-view/BarCodeView'
 
 function App() {
 
@@ -78,6 +81,7 @@ function App() {
             <Route path='/contact-us' element={<Contact />}/>
             <Route path='/login' element={<Login baseUrl={baseUrl}/>} />
             <Route path='/register' element={<Register />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
             <Route path='/register-organization' element={<RegisterOrgs baseUrl={baseUrl}/>}  />
             <Route path='/register-personal-biz' element={<RegisterPersonalBiz baseUrl={baseUrl}/>}/>
             <Route path='/regiser-government-biz' element={<RegisterGovernmentBiz baseUrl={baseUrl}/>} />
@@ -122,7 +126,7 @@ function App() {
             <Route path='/assignments' element={<Assignments baseUrl={baseUrl}/>} />
             <Route path='/create-assignment' element={<CreateAssignment baseUrl={baseUrl}/>} />
             <Route path='/orgz-profile' element={<OrgzProfile baseUrl={baseUrl}/>} />
-            <Route path='/summary' element={<Summary baseUrl={baseUrl}/>} />
+            <Route path='/attendance-summary/:id' element={<Summary baseUrl={baseUrl}/>} />
             <Route path='/grading' element={<Grading baseUrl={baseUrl}/>} />
             <Route path='/co-ordinator/:id' element={<CoOrdinator baseUrl={baseUrl}/>} />
             <Route path='/view-assignment-summary' element={<UnitAssignmentSummary baseUrl={baseUrl}/>} />
@@ -134,6 +138,9 @@ function App() {
             <Route path='/product-info/:id' element={<NewProductInfo baseUrl={baseUrl}/>} />
             <Route path='/time-table/:id' element={<TimeTable baseUrl={baseUrl}/>} />
             <Route path='/create-schedule/:id' element={<AddSchedule baseUrl={baseUrl}/>}/>
+            <Route path='/class-schedule-info/:id' element={<BarCodeView baseUrl={baseUrl}/>}/>
+            <Route path='/single-semester-result-info/:session/:semester' element={<SingleSemesterResultInfo baseUrl={baseUrl}/>}/>
+            
 
             <Route path='*' element={<div>404</div>} />
         </Routes>

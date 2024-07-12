@@ -109,10 +109,10 @@ const WithdrawalInfo = ({baseUrl}) => {
                             <p>Current maximum balance</p>
                             <p className='border border-[#25751E] rounded-[6px] py-3 px-5 bg-[#25751E26] text-[#6F7975]'>NGN 2,000,000,000</p>
                         </div>
-                        <div>
+                        {/* <div>
                             <p>Amount in excess of maximum balance</p>
                             <input type="text" placeholder='NGN 2,000' className='border border-[#25751E] rounded-[6px] outline-none py-3 px-5 bg-[#25751E26] w-full'/>
-                        </div>
+                        </div> */}
                         <div>
                             <p>Amount requested by user</p>
                             <input value={amount} type="text" placeholder='NGN 2,000' className='border border-[#25751E] rounded-[6px] outline-none py-3 px-5 bg-[#25751E26] w-full'/>

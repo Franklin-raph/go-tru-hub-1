@@ -56,7 +56,7 @@ const Wallet = ({baseUrl}) => {
                 <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/wallet-restriction')}>Wallet Restriction</button>
               </div>
           </div>
-          <div className="flex items-center gap-5 px-5">
+          {/* <div className="flex items-center gap-5 px-5">
             <div className="cursor-pointer gradient-bg p-4 rounded-lg shadow-lg text-white w-full">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
@@ -89,7 +89,7 @@ const Wallet = ({baseUrl}) => {
                 <p className="text-lg font-bold">₦100000</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div class="relative overflow-x-auto mx-5 mt-10 shadow-lg border p-8 rounded-[10px]">
             <div className='mb-4'>
               <p className='tect-[#19201D]'>Withdrawal requests</p>
