@@ -35,7 +35,8 @@ const GuardianCard = ({id, currentUser}) => {
             </div>
             <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Role</span>
-              <span className="font-medium">{currentUser?.guardians?.role}</span>
+              <span className="font-medium">{currentUser?.guardians?.role || "Guardian"}</span>
+              {/* <span className="font-medium">{currentUser?.guardians?.role}</span> */}
             </div>
           </div>
         </div>

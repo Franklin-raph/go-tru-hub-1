@@ -70,7 +70,7 @@ const MemberProfile = ({currentUser, id}) => {
                 </div>
             </div>
         </div>
-        <div className='w-[50%]'>
+        {/* <div className='w-[50%]'>
             <div className='shadow-md rounded-[6px] p-[20px] w-full'>
                 <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Wallet</p>
                 <div className='w-full'>
@@ -135,7 +135,7 @@ const MemberProfile = ({currentUser, id}) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
   )
 }

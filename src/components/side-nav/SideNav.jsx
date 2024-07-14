@@ -98,7 +98,7 @@ const SideNav = () => {
             <div className="flex items-center justify-between w-full cursor-pointer" onClick={() => setMonitorDropDown(!monitorDropDown)}>
               <div className="flex items-center">
                   <LuScanLine className="mr-[15.67px]"/>
-                  <p className={ location.pathname.includes("unit") || location.pathname.includes('/assignments') || location.pathname.includes('/grading') || location.pathname.includes('view-assignment-summary') ? `flex items-center justify-between text-[#25751E]` :`flex items-center justify-between`}>Monitor</p>
+                  <p className={ location.pathname.includes("unit") || location.pathname.includes('/assignments') || location.pathname.includes('/grading') || location.pathname.includes('view-assignment-summary') || location.pathname.includes('time-table') || location.pathname.includes('attendance-summary')  ? `flex items-center justify-between text-[#25751E]` :`flex items-center justify-between`}>Monitor</p>
               </div>
               <IoChevronDownOutline color="d7d7d7"/>
             </div>
@@ -110,7 +110,7 @@ const SideNav = () => {
                 </div>
                 <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/units')} >
                   <img src="./images/orders.svg"/>
-                  <p className={ location.pathname.includes("unit") || location.pathname.includes('view-assignment-summary') ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Units</p>
+                  <p className={ location.pathname.includes("unit") || location.pathname.includes('view-assignment-summary') || location.pathname.includes('time-table') || location.pathname.includes('attendance-summary') ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Units</p>
                 </div>
                 <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/assignments')}>
                   <IoBookSharp />

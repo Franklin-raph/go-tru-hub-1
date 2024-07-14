@@ -54,7 +54,7 @@ const BarCodeView = ({baseUrl}) => {
         <SideNav />
         <div className="w-[78%] ml-auto pb-5">
             <TopNav />
-            <div className="bg-[#F7F7F7]">
+            <div className="bg-[#F7F7F7] pb-20">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
@@ -66,7 +66,7 @@ const BarCodeView = ({baseUrl}) => {
                 </div>
                 {
                     classScheduleInfo &&
-                    <div className="flex flex-col gap-5 justify-center items-center bg-white w-[500px] mx-auto">
+                    <div className="flex flex-col gap-5 justify-center items-center bg-white w-[500px] mx-auto rounded-lg pb-7">
                         <div className="flex items-center">
                             <img src={classScheduleInfo.qrcode} alt="" className="w-[200px] h-[200px]" />
                         </div>

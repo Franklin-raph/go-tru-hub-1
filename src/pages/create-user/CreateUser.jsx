@@ -64,6 +64,8 @@ const CreateUser = ({baseUrl}) => {
     const [subUnit, setSubUnit] = useState('')
     const [subUnitText, setSubUnitText] = useState('')
 
+    const [guardian, setGuardian] = useState()
+
     const [asignGuardian, setAsignGuardian] = useState(false)
 
     const userTypeArray = [
@@ -91,8 +93,10 @@ const CreateUser = ({baseUrl}) => {
     const listOfGuardians = [ 'Celestine Ojiakor', 'Baron White', 'Kasiemobe Egu', 'Jane Doe' ]
     const linkToMemberArray = ['Brother', 'Sister', 'Father', 'Mother', 'Uncle', 'Teacher']
     const [allStudent, setAllStudent] = useState([])
+    const [allGuardians, setAllGuardians] = useState([])
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
+    const [guardianDropDown, setGuardianDropDown] = useState(false)
 
     useEffect(() => {
         if(!user){
@@ -101,6 +105,7 @@ const CreateUser = ({baseUrl}) => {
         }
         getAllUnits()
         getAllStudents()
+        getAllGuardians()
     },[])
 
     const [appPermissions, setAppPermissions] = useState([]);
@@ -123,6 +128,18 @@ const CreateUser = ({baseUrl}) => {
         const data = await response.json()
         console.log("All students => ",data);
         setAllStudent(data.data.users)
+    }
+
+    async function getAllGuardians(){
+        const response = await fetch(`${baseUrl}/users/get-users/guardian`, {
+            method: 'GET',
+            headers: {
+                Authorization:`Bearer ${user.data.access_token}`
+            }
+        })
+        const data = await response.json()
+        console.log("All guardians => ",data.data.users);
+        setAllGuardians(data?.data?.users)
     }
 
     async function getAllUnits(){
@@ -316,7 +333,7 @@ const CreateUser = ({baseUrl}) => {
     }
 
     async function handleStudentCreate(){
-        console.log({ fullName, profileImage, role:userType, piviotUnit, subUnit, email, regNum });
+        console.log({ fullName, profileImage, role:userType, piviotUnit, subUnit, email, regNum, guardian });
         if(!fullName || !regNum || !profileImage || !userType){
             setMsg("All fields are required");
             setAlertType('error')
@@ -330,7 +347,7 @@ const CreateUser = ({baseUrl}) => {
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${user.data.access_token}`
                 },
-                body:JSON.stringify({ fullName, profileImage, role:userType, piviotUnit, subUnit, regNum })
+                body:JSON.stringify({ fullName, profileImage, role:userType, piviotUnit, subUnit, regNum, guardians:guardian._id })
             })
             const data = await res.json()
             if(res) setIsLoading(false)
@@ -460,11 +477,11 @@ const CreateUser = ({baseUrl}) => {
                         }
                     </div>
                     
-                    {userType === 'student' &&
+                    {/* { userType === 'student' &&
                         <>
                             {
                                 asignGuardian &&
-                                <div className='mt-7 flex items-center gap-5 w-full'>
+                                <div className='mt-7 flex items-center gap-5 w-full bg-red-500'>
                                     <div className='w-full relative'>
                                         <label className='block text-left mb-2 text-text-color'>Guardian Full Name <span className='text-red-500'>*</span></label>
                                         <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
@@ -494,7 +511,7 @@ const CreateUser = ({baseUrl}) => {
                                 </div>
                             }
                         </>
-                    }
+                    } */}
 
                     <div className='mt-7 flex items-center gap-5 w-full'>
                         <div className='relative w-full'>
@@ -652,6 +669,7 @@ const CreateUser = ({baseUrl}) => {
                             </div>
                         </div>
                     }
+
                     {
                         userType === 'staff' &&
                             <div className="mt-7">
@@ -672,6 +690,35 @@ const CreateUser = ({baseUrl}) => {
                                         ))
                                     }
                                 </div>
+                            </div>
+                    }
+
+                    {
+                        userType === 'student' &&
+                            <div className='relative w-full mt-7'>
+                                <label className='block text-text-color text-left mb-2'>Select Guardian <span className='text-red-500'>*</span></label>
+                                <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
+                                    <input type="text" value={guardian?.fullName} placeholder='Select user type' className='absolut outline-none rounded-[4px] bg-transparent text-[14px]'/>
+                                    {/* <p className='text-[14px]'>{piviotUnitText}</p> */}
+                                    <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setGuardianDropDown(!guardianDropDown)}/>
+                                </div>
+                                {guardianDropDown &&
+                                    <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
+                                        {
+                                            allGuardians.map(guard => (
+                                                <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
+                                                    setGuardianDropDown(false)
+                                                    setGuardian(guard)
+                                                    // setPiviotUnitText(unit.name)
+                                                    // setPiviotUnit(unit._id)
+                                                    // getSubUnit(unit._id)
+                                                }}>
+                                                    <p className='text-[#1D1D1D] capitalize text-[12px]'>{guard.fullName}</p>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                }
                             </div>
                     }
 
@@ -820,6 +867,7 @@ const CreateUser = ({baseUrl}) => {
                 </div>
             </div>
         </div>
+        
         {
             fileUploadLoader &&
             <div style={{position:'fixed', width:'100%', left:'0', top:'0', zIndex:'99', display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', background:"rgba(18, 18, 18, 0.8)" }}>

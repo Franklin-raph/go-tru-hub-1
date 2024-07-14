@@ -175,6 +175,13 @@ const Settings = ({baseUrl}) => {
                     </div>
                     <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
                         <div className='flex items-center gap-3'>
+                            <img src="./images/edit.svg" alt="" className='w-[15px]' />
+                            <p className='text-[#19201D]'>My Account</p>
+                        </div>
+                        <p className='text-[gray] mt-4 cursor-pointer inline-block' onClick={() => setDeleteOrgsModal(true)}>Update my organization</p>
+                    </div>
+                    <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
+                        <div className='flex items-center gap-3'>
                             <img src="./images/chat.svg" alt="" className='w-[15px]' />
                             <p className='text-[#19201D]'>Support</p>
                         </div>

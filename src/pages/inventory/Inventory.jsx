@@ -80,7 +80,7 @@ const Inventory = ({baseUrl}) => {
               <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                   <div>
                       <div className="flex items-center gap-2">
-                          <img src="./images/arrow-left.svg" alt="" onClick={() => navigate(`/view-sub-unit/${id}`)} className='cursor-pointer' />
+                          <img src="./images/arrow-left.svg" alt="" onClick={() => navigate(`/`)} className='cursor-pointer' />
                           <p className="text-[28px] text-primary-color font-[600]">Inventory</p>
                       </div>
                       <p className='text-[#4F4F4F]'>Manage stock available in your inventory</p>

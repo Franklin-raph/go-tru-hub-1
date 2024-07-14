@@ -371,7 +371,7 @@ const SingleUnit = ({baseUrl}) => {
                                                                 <LuListTodo />
                                                                 <p>View sub-unit</p>
                                                             </div>
-                                                            <div className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
+                                                            <div className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]' onClick={() => navigate(`/edit-schedule/${item.id}/${id}`)}>
                                                                 <LuListTodo />
                                                                 <p>Edit time-table</p>
                                                             </div>

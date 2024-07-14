@@ -137,7 +137,7 @@ const Result = ({baseUrl}) => {
         <SideNav />
         <div className="w-[78%] ml-auto pb-5">
             <TopNav />
-            <div className="bg-[#F7F7F7]">
+            <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
@@ -156,7 +156,7 @@ const Result = ({baseUrl}) => {
                         </div>
                         {
                             dropDown === 'sessions' &&
-                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[950px] overflow-y-scroll'>
+                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[250px] overflow-y-scroll'>
                                 {
                                     allSessions?.map(session => {
                                         return (
@@ -179,7 +179,7 @@ const Result = ({baseUrl}) => {
                         </div>
                         {
                             dropDown === 'terms' &&
-                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[950px] overflow-y-scroll'>
+                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[250px] overflow-y-scroll'>
                                 {
                                     allTerms?.map(term => {
                                         return (
@@ -201,7 +201,7 @@ const Result = ({baseUrl}) => {
                         </div>
                         {
                             dropDown === 'unit' &&
-                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[950px] overflow-y-scroll'>
+                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[250px] overflow-y-scroll'>
                                 {
                                     allUnits?.map(unit => {
                                         return (
@@ -224,7 +224,7 @@ const Result = ({baseUrl}) => {
                         </div>
                         {
                             dropDown === 'sub-unit' &&
-                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[950px] overflow-y-scroll'>
+                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[250px] overflow-y-scroll'>
                                 {
                                     allSubUnits?.map(subUnit => {
                                         return (

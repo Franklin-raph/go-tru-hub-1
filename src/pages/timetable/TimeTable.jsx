@@ -7,6 +7,9 @@ import { HiMiniQrCode } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { IoCloseOutline } from 'react-icons/io5';
 import BtnLoader from '../../components/btn-loader/BtnLoader';
+import { LuEye } from 'react-icons/lu';
+import Alert from '../../components/alert/Alert';
+import { BiEdit } from 'react-icons/bi';
 
 
 const TimeTable = ({ baseUrl }) => {
@@ -20,7 +23,7 @@ const TimeTable = ({ baseUrl }) => {
     const [loading, setLoading] = useState(false);
     const [deleteSchedule, setDeleteSchedule] = useState()
 
-    async function getAllSessions() {
+    async function getAllSchedules() {
         console.log(`${baseUrl}/schedule/${id}`);
         const res = await fetch(`${baseUrl}/schedule/${id}`, {
             method: "GET",
@@ -55,7 +58,7 @@ const TimeTable = ({ baseUrl }) => {
     const groupedData = groupByDay(allSchedules);
 
     useEffect(() => {
-        getAllSessions();
+        getAllSchedules();
     }, []);
 
     async function shceduleInfo() {
@@ -63,7 +66,25 @@ const TimeTable = ({ baseUrl }) => {
     }
 
     async function deleleteScheduleFn(schedule) {
-
+        setLoading(true);
+        const res = await fetch(`${baseUrl}/schedule/single/${schedule._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.data.access_token}`
+            }
+        });
+        // const data = await res.json();
+        if (res.ok) {
+            setAllSchedules(allSchedules.filter((item) => item._id!== schedule._id));
+            setMsg("Schedule Deleted Successfully");
+            setDeleteSchedule(null);
+            setAlertType('success');
+            setLoading(false);
+            return;
+        }
+        setMsg("An error occured");
+        setAlertType('error');
+        setLoading(false);
     }
 
     return (
@@ -89,7 +110,7 @@ const TimeTable = ({ baseUrl }) => {
                         {
                             allSchedules.length < 1 &&
                             <div className="flex items-center gap-5 justify-center text-center px-[3rem]">
-                                <p>Create new sessions before updating members' units to ensure session data is accurately collated using units and their members.</p>
+                                <p>No Schedules to display.</p>
                             </div>
                         }
                         <div className="mx-auto bg-white rounded-xl space-y-4">
@@ -105,7 +126,7 @@ const TimeTable = ({ baseUrl }) => {
                                                 <RxDotsVertical className='cursor-pointer' onClick={() => setEditSchedule(course)} />
                                                 {
                                                     editSchedule && editSchedule._id === course._id &&
-                                                    <div className='bg-white w-[180px] px-3 py-1 rounded absolute z-[99] border'>
+                                                    <div className='bg-white w-[200px] text-[14px] pb-3 px-3 py-1 rounded absolute z-[99] border'>
                                                         <p className='text-end text-[20px] cursor-pointer' onClick={() => setEditSchedule(null)}>&times;</p>
                                                         <div onClick={() => navigate(`/class-schedule-info/${editSchedule._id}`)} className='flex items-center cursor-pointer gap-1'>
                                                             <HiMiniQrCode />
@@ -116,8 +137,12 @@ const TimeTable = ({ baseUrl }) => {
                                                             <p>Delete Entry</p>
                                                         </div>
                                                         <div className='flex items-center cursor-pointer gap-1 mt-2' onClick={() => navigate(`/attendance-summary/${editSchedule._id}`)}>
-                                                            <HiOutlineTrash />
+                                                            <LuEye />
                                                             <p>View Attendance</p>
+                                                        </div>
+                                                        <div className='flex items-center cursor-pointer gap-1 mt-2' onClick={() => navigate(`/edit-schedule/${id}/${editSchedule._id}`)}>
+                                                            <BiEdit />
+                                                            <p>Edit Schedule</p>
                                                         </div>
                                                     </div>
                                                 }
@@ -130,7 +155,7 @@ const TimeTable = ({ baseUrl }) => {
                                             <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setDeleteSchedule(false)}></div>
                                             <div className="bg-white w-[450px] fixed top-[50%] left-[50%] pt-[20px] px-[2rem] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
                                                 <div className="flex items-center justify-between border-b pb-[5px]">
-                                                    <p className="text-[px]">Delete Unit</p>
+                                                    <p className="text-[px]">Delete Schedule</p>
                                                     <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setDeleteSchedule(false)}/>
                                                 </div>
                                                 <div className='mt-5'>
@@ -152,6 +177,9 @@ const TimeTable = ({ baseUrl }) => {
                     </div>
                 </div>
             </div>
+            {
+                msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
+            }
         </div>
     );
 };

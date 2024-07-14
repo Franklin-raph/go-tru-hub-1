@@ -123,74 +123,65 @@ const AddSchedule = ({baseUrl}) => {
         });
     };
 
-    // const handleCheckboxChange = (coordinator) => {
-    //     console.log(coordinator.fullName);
-    //     setSelectedIds((prevSelectedIds) =>
-    //       prevSelectedIds.includes(coordinator._id)
-    //         ? prevSelectedIds.filter((item) => item !== coordinator._id)
-    //         : [...prevSelectedIds, coordinator._id]
-    //     );
-    // };
+    useEffect(() => {
+    getAllStaffs()
+    getAllCourses()
+    },[])
 
-      useEffect(() => {
-        getAllStaffs()
-        getAllCourses()
-      },[])
+    async function createSchedule(){
+    const ids = [];
+    for (let i = 0; i < coordinators.length; i++) {
+        ids.push(coordinators[i].id);
+    }
 
-      async function createSchedule(){
-        const ids = [];
-        for (let i = 0; i < coordinators.length; i++) {
-          ids.push(coordinators[i].id);
-        }
-
-        console.log({
-            course: course?.course?._id,
-            day,
-            startTime: parseInt(startTime?.replace(":", "")),
-            endTime:  parseInt(endTime?.replace(":", "")),
-            coordinators:ids,
-            location: locations.location,
-            endlocation: locations.endLocation
-        });
-        if(!course ||!day ||!startTime ||!endTime){
-            setMsg("Please fill in the fields!");
+    console.log({
+        course: course?.course?._id,
+        day,
+        startTime: parseInt(startTime?.replace(":", "")),
+        endTime:  parseInt(endTime?.replace(":", "")),
+        coordinators:ids,
+        location: locations.location,
+        endlocation: locations.endLocation
+    });
+    if(!course ||!day ||!startTime ||!endTime){
+        setMsg("Please fill in the fields!");
+        setAlertType('error');
+        return;
+    }else{
+        setLoading(true)
+        const res = await fetch(`${baseUrl}/schedule`,{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${user.data.access_token}`
+            },
+            body:JSON.stringify({
+                course: course?._id,
+                day,
+                startTime: parseInt(startTime.replace(":", "")),
+                endTime:  parseInt(endTime.replace(":", "")),
+                coordinators:ids,
+                location: locations.location,
+                endlocation: locations.endLocation
+            })
+        })
+        const data = await res.json()
+        if(res) setLoading(false)
+        console.log(data);
+        if(!res.ok){
+            setMsg(data.message);
             setAlertType('error');
             return;
-        }else{
-            setLoading(true)
-            const res = await fetch(`${baseUrl}/schedule`,{
-                method:"POST",
-                headers:{
-                    'Content-Type':'application/json',
-                    Authorization:`Bearer ${user.data.access_token}`
-                },
-                body:JSON.stringify({
-                    course: course?._id,
-                    day,
-                    startTime: parseInt(startTime.replace(":", "")),
-                    endTime:  parseInt(endTime.replace(":", "")),
-                    coordinators:ids,
-                    location: locations.location,
-                    endlocation: locations.endLocation
-                })
-            })
-            const data = await res.json()
-            if(res) setLoading(false)
-            console.log(data);
-            if(!res.ok){
-                setMsg(data.message);
-                setAlertType('error');
-                return;
-            }
-            if(res.ok){
-                setMsg("Schedule created successfully");
-                setAlertType('success');
-                // navigate(`/time-table/${id}`)
-                return;
-            }
         }
+        if(res.ok){
+            setMsg("Schedule created successfully");
+            setAlertType('success');
+            // navigate(`/time-table/${id}`)
+            return;
+        }
+    }
 
-      }
+    }
 
   return (
     <div>
@@ -378,7 +369,7 @@ const AddSchedule = ({baseUrl}) => {
             </div>
         </div>
         {
-        msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
+            msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
         }
     </div>
   )

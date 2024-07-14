@@ -253,7 +253,7 @@ const ViewSubUnit = ({baseUrl}) => {
                     </div>
                     </div>
 
-                    <div class="relative overflow-x-auto mx-5 mt-10">
+                    {/* <div class="relative overflow-x-auto mx-5 mt-10">
                         <div className='flex items-center justify-between mb-2'>
                             <div className='flex items-center gap-2 text-[18px]'>
                                 <LuListTodo />
@@ -312,7 +312,7 @@ const ViewSubUnit = ({baseUrl}) => {
                                 }
                             </tbody>
                         </table>
-                    </div>
+                    </div> */}
 
                 {/* <div className='px-[30px]'>
                     <p className='text-[#19201D] text-[18px] font-[600] mb-3'>All Sub-units</p>
