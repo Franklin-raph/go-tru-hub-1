@@ -69,6 +69,7 @@ import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy'
 import BarCodeView from './pages/bar-code-view/BarCodeView'
 import AttendanceSummary from './pages/attendance-summary/AttendanceSummary'
 import EditTimeTable from './pages/edit-time-table/EditTimeTable'
+import UpdateOrgs from './pages/update-orgs/UpdateOrgs'
 
 function App() {
 
@@ -144,6 +145,7 @@ function App() {
             <Route path='/edit-schedule/:subUnitId/:scheduleId' element={<EditTimeTable baseUrl={baseUrl}/>}/>
             <Route path='/class-schedule-info/:id' element={<BarCodeView baseUrl={baseUrl}/>}/>
             <Route path='/single-semester-result-info/:session/:semester' element={<SingleSemesterResultInfo baseUrl={baseUrl}/>}/>
+            <Route path='/update-orgs' element={<UpdateOrgs baseUrl={baseUrl}/>} />
             
 
             <Route path='*' element={<div>404</div>} />

@@ -6,6 +6,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoCloseOutline } from 'react-icons/io5';
 import BtnLoader from '../../components/btn-loader/BtnLoader';
 import Alert from '../../components/alert/Alert';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = ({baseUrl}) => {
 
@@ -20,6 +21,8 @@ const Settings = ({baseUrl}) => {
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
+
+    const navigate = useNavigate()
 
     async function updatePassword(e){
         e.preventDefault()
@@ -178,7 +181,7 @@ const Settings = ({baseUrl}) => {
                             <img src="./images/edit.svg" alt="" className='w-[15px]' />
                             <p className='text-[#19201D]'>My Account</p>
                         </div>
-                        <p className='text-[gray] mt-4 cursor-pointer inline-block' onClick={() => setDeleteOrgsModal(true)}>Update my organization</p>
+                        <p className='text-[gray] mt-4 cursor-pointer inline-block' onClick={() => navigate('/update-orgs')}>Update my organization</p>
                     </div>
                     <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
                         <div className='flex items-center gap-3'>
