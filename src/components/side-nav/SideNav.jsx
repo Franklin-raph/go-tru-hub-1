@@ -98,7 +98,7 @@ const SideNav = () => {
             <div className="flex items-center justify-between w-full cursor-pointer" onClick={() => setMonitorDropDown(!monitorDropDown)}>
               <div className="flex items-center">
                   <LuScanLine className="mr-[15.67px]"/>
-                  <p className={ location.pathname.includes("unit") || location.pathname.includes('/assignments') || location.pathname.includes('/grading') || location.pathname.includes('view-assignment-summary') || location.pathname.includes('time-table') || location.pathname.includes('attendance-summary')  ? `flex items-center justify-between text-[#25751E]` :`flex items-center justify-between`}>Monitor</p>
+                  <p className={ location.pathname.includes("unit") || location.pathname.includes('/assignments') || location.pathname.includes('/grading') || location.pathname.includes('summary') || location.pathname.includes('time-table') ? `flex items-center justify-between text-[#25751E]` :`flex items-center justify-between`}>Monitor</p>
               </div>
               <IoChevronDownOutline color="d7d7d7"/>
             </div>
@@ -145,7 +145,7 @@ const SideNav = () => {
                 <p className="">Notification</p>
             </div>
           </Link>
-          <Link to='/settings' className={ location.pathname === '/settings' ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
+          <Link to='/settings' className={ location.pathname === '/settings' || location.pathname === "/update-orgs" ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
             <div className="flex items-center">
               <img src="./images/setting.svg" className='mr-[15.67px]' alt="" />
               <p className="">Account</p>
