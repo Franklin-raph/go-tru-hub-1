@@ -8,8 +8,8 @@ import Alert from '../../components/alert/Alert'
 import { GoTrash } from "react-icons/go";
 import { FaRegEdit } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { BiCloset } from 'react-icons/bi'
+import { BsEye, BsThreeDotsVertical } from "react-icons/bs";
+import { BiCloset, BiTrash } from 'react-icons/bi'
 import { MdOutlineClose } from 'react-icons/md'
 
 
@@ -368,15 +368,15 @@ const SingleUnit = ({baseUrl}) => {
                                                         </div>
                                                         <div className='flex flex-col'>
                                                             <div onClick={() => navigate(`/view-sub-unit/${item.id}`)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
-                                                                <LuListTodo />
+                                                                <BsEye />
                                                                 <p>View sub-unit</p>
                                                             </div>
-                                                            <div className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]' onClick={() => navigate(`/edit-schedule/${item.id}/${id}`)}>
+                                                            {/* <div className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]' onClick={() => navigate(`/edit-schedule/${item.id}/${id}`)}>
                                                                 <LuListTodo />
                                                                 <p>Edit time-table</p>
-                                                            </div>
+                                                            </div> */}
                                                             <div onClick={() => setDeleteSubUnit(item.id)} className='flex items-center gap-2 cursor-pointer px-4 py-2 hover:bg-[#F2FCF7]'>
-                                                                <LuListTodo />
+                                                                <BiTrash />
                                                                 <p>Delete sub-unit</p>
                                                             </div>
                                                         </div>

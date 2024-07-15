@@ -70,6 +70,8 @@ import BarCodeView from './pages/bar-code-view/BarCodeView'
 import AttendanceSummary from './pages/attendance-summary/AttendanceSummary'
 import EditTimeTable from './pages/edit-time-table/EditTimeTable'
 import UpdateOrgs from './pages/update-orgs/UpdateOrgs'
+import GuardianProfile from './pages/guardian-profile/GuardianProfile'
+import EditGuardian from './pages/edit-guardian/EditGuardian'
 
 function App() {
 
@@ -146,6 +148,8 @@ function App() {
             <Route path='/class-schedule-info/:id' element={<BarCodeView baseUrl={baseUrl}/>}/>
             <Route path='/single-semester-result-info/:session/:semester' element={<SingleSemesterResultInfo baseUrl={baseUrl}/>}/>
             <Route path='/update-orgs' element={<UpdateOrgs baseUrl={baseUrl}/>} />
+            <Route path='/guardian-profile/:id' element={<GuardianProfile baseUrl={baseUrl}/>} />
+            <Route path='/edit-guardian/:id' element={<EditGuardian baseUrl={baseUrl}/>} />
             
 
             <Route path='*' element={<div>404</div>} />

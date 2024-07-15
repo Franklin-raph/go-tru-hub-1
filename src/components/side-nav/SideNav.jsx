@@ -42,7 +42,7 @@ const SideNav = () => {
               <p className="">Dashboard</p>
             </div>
           </Link>
-          <Link to='/manage-users' className={ location.pathname === '/manage-users' || location.pathname === '/create-user' || location.pathname.includes('user') || location.pathname.includes('profile-edit') ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
+          <Link to='/manage-users' className={ location.pathname === '/manage-users' || location.pathname === '/create-user' || location.pathname.includes('user') || location.pathname.includes('edit-guardian') || location.pathname.includes('profile-edit') ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
             <div className="flex items-center">
                 <img src="./images/manage-users-active.svg" className="mr-[15.67px]" alt="" />
                 <p className="">Manage users</p>

@@ -204,14 +204,14 @@ const ProfileEdit = ({baseUrl}) => {
                 </div>
                 <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl mb-8" onSubmit={handleSubmit}>
                     <div className="mb-4">
-                    <label className="block text-gray-700">Member full name</label>
-                    <input
-                        type="text"
-                        name="fullName"
-                        value={fullName}
-                        onChange={e => setFullName(e.target.value)}
-                        className="mt-1 p-2 border rounded w-full"
-                    />
+                        <label className="block text-gray-700">Member full name</label>
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={fullName}
+                            onChange={e => setFullName(e.target.value)}
+                            className="mt-1 p-2 border rounded w-full"
+                        />
                     </div>
 
                     <div className='w-full relative mb-4'>

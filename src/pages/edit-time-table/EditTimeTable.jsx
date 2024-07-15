@@ -87,7 +87,7 @@ const EditTimeTable = ({baseUrl}) => {
       const data = await res.json()
       console.log(data);
       console.log(data?.data);
-      setDay(data.data.day)
+    //   setDay(data.data.day)
       setLocations({
         location: {
           lat: data?.data?.location?.lat,
