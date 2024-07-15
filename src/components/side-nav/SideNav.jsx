@@ -8,10 +8,7 @@ import { HiCodeBracketSquare } from "react-icons/hi2";
 import { IoBookSharp } from "react-icons/io5";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 
-
-
-
-const SideNav = () => {
+const SideNav = ({toggleNav, setToggleNav}) => {
 
   const [tradeDropDown, setTradeDropDown] = useState(false)
   const [monitorDropDown, setMonitorDropDown] = useState(false)
@@ -28,11 +25,13 @@ const SideNav = () => {
 //         .catch(error => console.error('Error:', error));
 // }, 180000); // 180000 milliseconds = 3 minutes
 
+// bg-[#19201D] scrollbar w-[22%] h-[100vh] top-0 fixed overflow-y-auto py-5 overflow-x-hidden left-0
 
   return (
-    <div className='bg-[#19201D] scrollbar w-[22%] h-[100vh] top-0 fixed overflow-y-auto py-5 overflow-x-hidden'>
-        <div className='pl-5 pb-5'>
+    <div className={!toggleNav ? `bg-[#19201D] scrollbar lg:w-[22%] w-[100%] h-[100vh] top-0 fixed overflow-y-auto py-5 overflow-x-hidden lg:left-0 left-[100%]` : `bg-[#19201D] scrollbar lg:w-[22%] w-[100%] h-[100vh] top-0 fixed overflow-y-auto py-5 overflow-x-hidden lg:left-0 left-[100%] responsive-nav`}>
+        <div className='px-5 pb-5 flex items-center justify-between'>
             <img src="./images/logo-white.svg" alt="" />
+            <p onClick={() => setToggleNav(false)} className='text-white text-[22px] cursor-pointer lg:hidden block'>&times;</p>
         </div>
         <div className="px-[32px] my-10 text-white">
           <p className="text-[12px] text-[#6F7975] mb-2">MAIN MENU</p>

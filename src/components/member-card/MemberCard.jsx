@@ -30,18 +30,18 @@ const MemberCard = ({currentUser, id}) => {
               <span className="text-gray-600">Unit/Sub-unit</span>
               <span className="font-medium">{currentUser?.piviotUnit} / {currentUser?.user?.subUnit?.name}</span>
             </div>
-            <div className="flex justify-between items-center mt-6">
+            {/* <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Date of Birth</span>
               <span className="font-medium">N/A</span>
-            </div>
+            </div> */}
             <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Role</span>
               <span className="font-medium">{currentUser?.user?.role}</span>
             </div>
-            <div className="flex justify-between items-center mt-6">
+            {/* <div className="flex justify-between items-center mt-6">
               <span className="text-gray-600">Gender</span>
               <span className="font-medium">N/A</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

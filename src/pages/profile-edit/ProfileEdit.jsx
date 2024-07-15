@@ -139,7 +139,7 @@ const ProfileEdit = ({baseUrl}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission
-        console.log({fullName, selectedUnit, selectedSubUnit, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit});
+        console.log({fullName, selectedUnit, selectedSubUnit, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit._id});
         setLoading(true)
         const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
             method:"PUT",
@@ -147,7 +147,7 @@ const ProfileEdit = ({baseUrl}) => {
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`
             },
-            body:JSON.stringify({fullName, selectedUnit, selectedSubUnit, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit})
+            body:JSON.stringify({fullName, subUnit:selectedSubUnit.id, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit._id})
         })
         const data = await res.json()
         if(res) setLoading(false)
@@ -175,12 +175,12 @@ const ProfileEdit = ({baseUrl}) => {
         const data = await res.json()
         setUserProfile(data?.data)
         setFullName(data?.data?.user?.fullName)
-        setSelectedUnit(data?.data?.user?.piviotUnit?.name)
-        setSelectedSubUnit(data?.data?.user?.subUnit?.name)
-        setProfileImage(data?.data?.profileImage)
+        setSelectedUnit(data?.data?.user?.piviotUnit)
+        setSelectedSubUnit(data?.data?.user?.subUnit)
+        setProfileImage(data?.data?.user?.profileImage)
         setRegNum(data?.data?.user?.regNum)
         setGuardians(data?.data?.user?.guardians?._id)
-        console.log(data.data)
+        console.log(data?.data?.user?.profileImage)
     }
 
     useEffect(() => {
@@ -217,7 +217,7 @@ const ProfileEdit = ({baseUrl}) => {
                     <div className='w-full relative mb-4'>
                         <label className='block text-left mb-2'>Unit</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
-                            <input type="text" value={selectedUnit} className='outline-none w-full rounded-[4px]'/>
+                            <input type="text" value={selectedUnit?.name} className='outline-none w-full rounded-[4px]'/>
                             <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === "unit" ? false : 'unit') } />
                         </div>
                         {
@@ -241,7 +241,7 @@ const ProfileEdit = ({baseUrl}) => {
                     <div className='w-full relative mb-4'>
                         <label className='block text-left mb-2'>Sub-unit</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
-                            <input type="text" value={selectedSubUnit} className='outline-none w-full rounded-[4px]'/>
+                            <input type="text" value={selectedSubUnit?.name} className='outline-none w-full rounded-[4px]'/>
                             <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === 'subUnit' ? false : 'subUnit')} />
                         </div>
                         {

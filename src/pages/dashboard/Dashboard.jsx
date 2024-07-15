@@ -14,6 +14,7 @@ const Dashboard = ({ baseUrl }) => {
   const [passHistory, setPassHistory] = useState([]);
   const [allWithdrawals, setAllWithdrawals] = useState([])
   const [allProducts, setAllProducts] = useState([])
+  const [toggleNav, setToggleNav] = useState(false)
 
   useEffect(() => {
     getPassHistory();
@@ -91,9 +92,9 @@ const Dashboard = ({ baseUrl }) => {
   return (
     <div>
       <>
-        <SideNav />
-        <div className="w-[78%] bg-[#F2FCF7] ml-auto">
-          <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
+          <TopNav setToggleNav={setToggleNav} toggleNav={toggleNav}/>
           <div className="px-[30px] py-[1rem]">
             <div className="flex items-center justify-between mb-[1rem]">
               <p className="text-[28px] text-primary-color font-[600]">Dashboard</p>
