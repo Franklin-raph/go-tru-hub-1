@@ -8,6 +8,7 @@ const ManageUsers = ({baseUrl}) => {
   const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate();
   const [allUsers, setAllUsers] = useState([])
+  const [toggleNav, setToggleNav] = useState(false)
 
   useEffect(() => {
     getAllUsers()
@@ -36,9 +37,9 @@ const ManageUsers = ({baseUrl}) => {
 
   return (
     <div>
-      <SideNav />
+      <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
       <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
-        <TopNav />
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="lg:px-[30px] px-[10px] py-[1rem]">
             <div className="flex items-center justify-between mb-[3rem]">
               <p className="text-[28px] text-primary-color font-[600]">Manage Users</p>
