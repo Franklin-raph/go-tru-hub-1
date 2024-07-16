@@ -125,12 +125,12 @@ const Summary = ({baseUrl}) => {
         <div className="w-full lg:w-[78%] ml-auto pb-5">
             <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/units')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Attendance Summary</p>
+                        <p className="text-[20px] lgtext-[28px] text-primary-color font-[600]">Attendance Summary</p>
                     </div>
-                    <div className='relative flex items-center gap-[10px]'>
+                    {/* <div className='relative flex items-center gap-[10px]'>
                         <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
                             <CiFilter className='mr-1'/>
                             <p className='px-5 border-l'>Filter</p>
@@ -154,10 +154,10 @@ const Summary = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                <div className='flex items-end justify-between px-[30px] w-full'>
-                    <div className='grid grid-cols-2 lg:grid-cols-4 items-end gap-5 w-full my-[1rem]'>
+                <div className='flex items-end justify-between px-[10px] lg:px-[30px] w-full'>
+                    <div className='grid md:grid-cols-2 lg:grid-cols-4 items-end gap-5 w-full my-[1rem]'>
                         <div className='relative w-[100%]'>
                             <label className='block text-left mb-2'>Select Unit</label>
                             <div className='flex items-center justify-between border rounded-[6px] py-3 px-5'>
@@ -231,11 +231,11 @@ const Summary = ({baseUrl}) => {
                             }
                         </div>
                         <div className="w-[100%]">
-                            <button onClick={getSummary} className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px] text-[14px]'>Get Summary</button>
+                            <button onClick={getSummary} className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px] text-[14px] w-full'>Get Summary</button>
                         </div>
                     </div>
                 </div>
-                <div class="relative overflow-x-auto mx-5 mt-10 p-8">
+                <div class="relative overflow-x-auto lg:mx-5 mt-10 lg:p-8 p-4">
                         {
                             allAttendanceSummary && allAttendanceSummary.length < 1 &&
                             <p className='text-center p-5 text-[14px]'>No Attendance Summary for the selected unit, subunit and schedule</p>
