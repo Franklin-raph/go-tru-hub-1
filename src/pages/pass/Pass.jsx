@@ -74,32 +74,32 @@ const Pass = ({baseUrl}) => {
                 </div>
                 <div class="relative overflow-x-auto mx-5 mt-10 py-8">
                     <table class="w-full text-sm text-left rtl:text-left">
-                    <thead class="text-[14px] border-b">
-                        <tr>
-                            <th scope="col" class="py-3 th1 font-[700]">S/N</th>
-                            <th scope="col" class="py-3 font-[700]">Member</th>
-                            <th scope="col" class="py-3 font-[700]">Role</th>
-                            <th scope="col" class="py-3 font-[700]">Location</th>
-                            <th scope="col" class="py-3 font-[700]">Time</th>
-                            <th scope="col" class="py-3 font-[700]">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                        <thead class="text-[14px] border-b">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 th1 font-[700]">S/N</th>
+                                <th scope="col" class="px-6 py-3 font-[700]">Member</th>
+                                <th scope="col" class="px-6 py-3 font-[700]">Role</th>
+                                <th scope="col" class="px-6 py-3 font-[700]">Location</th>
+                                <th scope="col" class="px-6 py-3 font-[700]">Time</th>
+                                <th scope="col" class="px-6 py-3 font-[700]">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {
                             passHistory && passHistory?.map((item, index) => {
                                 const formattedTime = new Date(item?.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
                                 return (
                                     <tr className='text-[#19201D]'>
-                                        <td className='py-3'>{index + 1}</td>
-                                        <td className='flex items-center gap-1 py-3'>
+                                        <td className='px-6 py-3'>{index + 1}</td>
+                                        <td className='px-6 flex items-center gap-1 py-3'>
                                             <img src={item?.user?.profileImage?.file} className='w-[30px]' alt="" />
                                             <p>{item?.user?.fullName}</p>
                                         </td>
-                                        <td>{item.user.role}</td>
-                                        <td className='text-[#25751E] underline'>{item?.coordinate[0]}, {item?.coordinate[1]}</td>
-                                        <td>{formattedTime}</td>
-                                        <td>
+                                        <td className='px-6'>{item.user.role}</td>
+                                        <td className='text-[#25751E] underline px-6'>{item?.coordinate[0]}, {item?.coordinate[1]}</td>
+                                        <td className='px-6'>{formattedTime}</td>
+                                        <td className='px-6'>
                                             <p className={item?.actionType === "sign-out" ? 'text-[#255e9a] py-1 px-2 rounded-[3px] bg-[#25589a66] inline':'text-[#418B47] py-1 px-2 rounded-[3px] bg-[#5FB56766] inline'}>{item?.actionType}</p>
                                         </td>
                                     </tr>
@@ -150,9 +150,9 @@ const Pass = ({baseUrl}) => {
                                 <p className='text-[#418B47] py-1 px-2 rounded-[3px] bg-[#5FB56766] inline'>Sign-in</p>
                             </td>
                         </tr> */}
-                    </tbody>
-                </table>
-              </div>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

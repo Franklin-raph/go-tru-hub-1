@@ -21,6 +21,7 @@ const Inventory = ({baseUrl}) => {
     const [name, setName] = useState('')
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
     const { id } = useParams()
 
     useEffect(() => {
@@ -73,15 +74,15 @@ const Inventory = ({baseUrl}) => {
 
   return (
     <div>
-      <SideNav />
-      <div className="w-[78%] ml-auto pb-5 h-[100vh]">
-          <TopNav />
+      <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+      <div className="w-full lg:w-[78%] ml-auto pb-5 h-[100vh]">
+          <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="">
-              <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+              <div className="flex flex-col lg:flex-row gap-5 justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                   <div>
                       <div className="flex items-center gap-2">
                           <img src="./images/arrow-left.svg" alt="" onClick={() => navigate(`/`)} className='cursor-pointer' />
-                          <p className="text-[28px] text-primary-color font-[600]">Inventory</p>
+                          <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Inventory</p>
                       </div>
                       <p className='text-[#4F4F4F]'>Manage stock available in your inventory</p>
                   </div>
