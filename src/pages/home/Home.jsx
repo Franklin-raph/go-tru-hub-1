@@ -5,7 +5,7 @@ import Navbar from '../../components/navbar/Navbar'
 
 const Home = () => {
 
-    const tabArray = ['Gotru Trade', 'Gotru Pass', 'Gotru Monitor']
+    const tabArray = ['Gotru Trade', 'Gotru Pass', 'Gotru Monitor', 'Result Check']
     const [selectedTab, setSelectedTab] = useState('Gotru Trade')
     const navigate = useNavigate()
     const user = localStorage.getItem('user')
@@ -65,6 +65,19 @@ const Home = () => {
                         <div className='g:w-[50%] w-[90%]'>
                             <p className='text-[32px] font-[500] mb-3'>Gotru Pass</p>
                             <p className='text-[#6F7975]'>With this feature, schools/corporate organizations captures resumption you and exit times of students/members of staff in real time, it also sends automatic and instant notifications to parent's/Management's contacts at each capture.</p>
+                            <div className=''>
+                                <button onClick={() => navigate('/register')} className='text-white bg-primary-color rounded-[8px] mt-[2.5rem] px-[35px] py-[16px] text-center'>Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                {
+                    selectedTab === "Result Check" &&
+                    <div className='flex justify-between lg:items-start gap-[2rem] lg:text-left text-center w-[90%] flex-col lg:flex-row items-center mx-auto mt-[5rem]'>
+                        <img src="./images/go-tru-pass.svg" className='max-w-[100%]' alt="" />
+                        <div className='g:w-[50%] w-[90%]'>
+                            <p className='text-[32px] font-[500] mb-3'>Result Check</p>
+                            <p className='text-[#6F7975]'>This is a feature smartly built to seamlessly upload properly secured results to the app users/students.</p>
                             <div className=''>
                                 <button onClick={() => navigate('/register')} className='text-white bg-primary-color rounded-[8px] mt-[2.5rem] px-[35px] py-[16px] text-center'>Get Started</button>
                             </div>
