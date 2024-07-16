@@ -231,49 +231,62 @@ const Subscribe = ({baseUrl}) => {
             aboutFeatureModal &&
             <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setAboutFeatureModal(false)}></div>
-                <div className="gap-3 bg-white w-[65%] h-[500px] overflow-y-scroll fixed top-[50%] left-[50%] py-[20px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+                <div className="gap-3 bg-white w-[90%] lg:w-[75%] h-[500px] overflow-y-scroll fixed top-[50%] left-[50%] py-[20px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
                     <div className="flex items-center justify-between border-b pb-[5px] mb-5">
                         <p className="text-[22px]">Features</p>
                         <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setAboutFeatureModal(false)}/>
                     </div>
                     <div>
-                        <div className='flex items-center gap-9 bg-[#F2F2F2] rounded-[12px] px-9 py-5'>
-                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[1rem] text-center text-white'>
+                        <div className='flex gap-9 bg-[#F2F2F2] rounded-[12px] md:px-9 px-4 py-5 items-start flex-col md:flex-row'>
+                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[3rem] text-center text-white'>
                                 <div className='bg-white inline-flex p-3 rounded-full items-center justify-center'>
                                     <img src="./images/scan.svg" alt="" className='w-[20px]' />
                                 </div>
                                 <p className='font-[600] my-2'>Pass</p>
-                                <p className='font-[600]'>#400/Month</p>
+                                {/* <p className='font-[600]'>#400/Month</p> */}
                             </div>
                             <div>
                                 <p className='text-[#19201D] font-[600]'>Pass</p>
-                                <p className='text-[#4F4F4F] text-[14px] mt-2'>This feature enables organizations to effectively manage their members' sign-in and sign-out activities. With GotruPass, organizations can maintain a comprehensive record of the exact locations where their members sign in, ensuring accurate tracking. Moreover, it provides a vital layer of security by enabling organizations to identify the authorized personnel responsible for signing members in or out. By leveraging GotruPass, organizations can effortlessly track the presence of individuals within their premises, enabling them to maintain precise and up-to-date records of who has successfully signed in and who hasn't at any given moment.</p>
+                                <p className='text-[#4F4F4F] text-[14px] mt-2'>GotruPass streamlines member sign-in/sign-out management, providing accurate location tracking and enhanced security. It identifies authorized personnel, enables real-time presence tracking, and maintains precise records of who's signed in and who hasn't.</p>
                             </div>
                         </div>
-                        <div className='flex items-center gap-9 bg-[#F2F2F2] rounded-[12px] px-9 py-5 my-10'>
-                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[1rem] text-center text-white'>
+                        <div className='flex gap-9 bg-[#F2F2F2] rounded-[12px] md:px-9 px-4 py-5 my-10 items-start flex-col md:flex-row'>
+                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[2.3rem] text-center text-white'>
                                 <div className='bg-white inline-flex p-3 rounded-full items-center justify-center'>
                                     <img src="./images/Tick-Square.svg" alt="" className='w-[20px]' />
                                 </div>
                                 <p className='font-[600] my-2'>Monitor</p>
-                                <p className='font-[600]'>#400/Month</p>
+                                {/* <p className='font-[600]'>#400/Month</p> */}
                             </div>
                             <div>
                                 <p className='text-[#19201D] font-[600]'>Monitor</p>
-                                <p className='text-[#4F4F4F] text-[14px] mt-2'>This feature enables organizations to effectively manage their members' sign-in and sign-out activities. With GotruPass, organizations can maintain a comprehensive record of the exact locations where their members sign in, ensuring accurate tracking. Moreover, it provides a vital layer of security by enabling organizations to identify the authorized personnel responsible for signing members in or out. By leveraging GotruPass, organizations can effortlessly track the presence of individuals within their premises, enabling them to maintain precise and up-to-date records of who has successfully signed in and who hasn't at any given moment.</p>
+                                <p className='text-[#4F4F4F] text-[14px] mt-2'>GotruMonitor enables comprehensive attendance tracking by monitoring the location and time of sign-in and sign-out for students and teachers. Using a unique QR code for each course, GotruMonitor provides an accurate and secure way to track attendance. This feature allows organizations to maintain precise records of who is present or absent, enhancing accountability and security. With GotruMonitor, attendance management is simplified, providing valuable insights to improve student and teacher engagement.</p>
                             </div>
                         </div>
-                        <div className='flex items-center gap-9 bg-[#F2F2F2] rounded-[12px] px-9 py-5'>
-                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[1rem] text-center text-white'>
+                        <div className='flex gap-9 bg-[#F2F2F2] rounded-[12px] md:px-9 px-4 py-5 items-start flex-col md:flex-row'>
+                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[2.7rem] text-center text-white'>
                                 <div className='bg-white inline-flex p-3 rounded-full items-center justify-center'>
                                     <img src="./images/Wallet-dark.svg" alt="" className='w-[20px]' />
                                 </div>
                                 <p className='font-[600] my-2'>Trade</p>
-                                <p className='font-[600]'>#400/Month</p>
+                                {/* <p className='font-[600]'>#400/Month</p> */}
                             </div>
                             <div>
                                 <p className='text-[#19201D] font-[600]'>Trade</p>
-                                <p className='text-[#4F4F4F] text-[14px] mt-2'>This feature enables organizations to effectively manage their members' sign-in and sign-out activities. With GotruPass, organizations can maintain a comprehensive record of the exact locations where their members sign in, ensuring accurate tracking. Moreover, it provides a vital layer of security by enabling organizations to identify the authorized personnel responsible for signing members in or out. By leveraging GotruPass, organizations can effortlessly track the presence of individuals within their premises, enabling them to maintain precise and up-to-date records of who has successfully signed in and who hasn't at any given moment.</p>
+                                <p className='text-[#4F4F4F] text-[14px] mt-2'>GotruTrade enables organizations to conduct sales efficiently with a user-friendly app that allows students to shop effortlessly and pay securely through the app's wallet. Students enjoy a seamless shopping experience, while institutions can manage sales effectively. GotruTrade also facilitates direct deposit of funds into the institution's account, providing instant access to capital to boost trading capacity. This innovative solution streamlines sales management, enhances financial control, and fosters a cashless campus ecosystem.</p>
+                            </div>
+                        </div>
+                        <div className='flex gap-9 bg-[#F2F2F2] rounded-[12px] md:px-9 px-4 py-5 mt-10 items-start flex-col md:flex-row'>
+                            <div className='rounded-[4px] bg-[#119353] py-[2rem] px-[2.5rem] text-center text-white'>
+                                <div className='bg-white inline-flex p-3 rounded-full items-center justify-center'>
+                                    <img src="./images/printrep.svg" alt="" className='w-[20px]' />
+                                </div>
+                                <p className='font-[600] my-2'>Result</p>
+                                {/* <p className='font-[600]'>#400/Month</p> */}
+                            </div>
+                            <div>
+                                <p className='text-[#19201D] font-[600]'>Result</p>
+                                <p className='text-[#4F4F4F] text-[14px] mt-2'>The Result feature enables institutions to easily upload and share student results, allowing students to access and download their results in a convenient and secure manner. With this feature, institutions can streamline result management, while students can access their complete result records in a single downloadable file, providing a clear and comprehensive overview of their academic performance.</p>
                             </div>
                         </div>
                     </div>

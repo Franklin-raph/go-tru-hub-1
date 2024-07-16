@@ -16,26 +16,27 @@ const Notification = () => {
     const [allNotification, setAllNotification] = useState([])
     const [msg, setMsg] = useState('')
     const filterArray = ['All', "Cash sales", "Wallet sales", "Purchases", "Deposits", "Withdrawals"]
+    const [toggleNav, setToggleNav] = useState(false)
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Notification</p>
+                            <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Notification</p>
                         </div>
                     </div>
                     <div className='relative flex items-center gap-[10px]'>
-                        <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
+                        {/* <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
                             <CiFilter className='mr-1'/>
                             <p className='px-5 border-l'>Filter</p>
                             <GoChevronDown />
-                        </div>
+                        </div> */}
                         <div className='absolute top-[40px] z-10'>
                             {
                                     filterDropDown &&
@@ -57,7 +58,7 @@ const Notification = () => {
                     </div>
                 </div>
                 <div class="relative overflow-x-auto mx-5 mt-10">
-                    <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
+                    <div className='bg-[#F7F7F7] px-8 py-6 sm:w-[90%] w-full rounded-[16px]'>
                         <div className='flex items-ceter justify-between'>
                             <div className='flex items-center gap-3 text-[#9A2525]'>
                                 <IoIosNotificationsOutline className='font-[700] bg-[#9A25251A] text-[30px] p-1 rounded-full'/>

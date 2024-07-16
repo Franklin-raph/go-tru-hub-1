@@ -47,7 +47,7 @@ const Wallet = ({baseUrl}) => {
       <div className="w-full lg:w-[78%] ml-auto pb-5">
         <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="">
-          <div className="flex justify-between items-center mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+          <div className="flex justify-between items-center mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
               <div className="flex items-center gap-2">
                   <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
                   <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Wallet</p>
@@ -107,12 +107,12 @@ const Wallet = ({baseUrl}) => {
               <table class="w-full text-sm text-left rtl:text-left">
                   <thead class="text-[14px] border-b">
                       <tr>
-                          <th scope="col" class="py-3 th1 font-[700]">S/N</th>
-                          <th scope="col" class="py-3 font-[700]">Member</th>
-                          <th scope="col" class="py-3 font-[700]">Date and Time</th>
-                          <th scope="col" class="py-3 font-[700]">Request Amt.</th>
-                          <th scope="col" class="py-3 font-[700]">Status</th>
-                          <th scope="col" class="py-3 font-[700]"></th>
+                          <th scope="col" class="px-6 py-3 th1 font-[700]">S/N</th>
+                          <th scope="col" class="px-6 py-3 font-[700]">Member</th>
+                          <th scope="col" class="px-6 py-3 font-[700]">Date and Time</th>
+                          <th scope="col" class="px-6 py-3 font-[700]">Request Amt.</th>
+                          <th scope="col" class="px-6 py-3 font-[700]">Status</th>
+                          <th scope="col" class="px-6 py-3 font-[700]"></th>
                       </tr>
                   </thead>
                   <tbody>
@@ -123,11 +123,11 @@ const Wallet = ({baseUrl}) => {
 
                         return(
                           <tr className='text-[#19201D]'>
-                            <td className='py-3'>{index + 1}</td>
-                            <td>{withdrawal?.user || 'N/A'}</td>
-                            <td><p className="flex items-center gap-3">{formattedDate} <p className="p-[3px] bg-[#828282] rounded-full"></p> {formattedTime}</p></td>
-                            <td className='flex items-center gap-1 py-3'> <TbCurrencyNaira className='text-[20px]'/> {withdrawal.amount}</td>
-                            <td className='pr-5'>
+                            <td className='px-6 py-3'>{index + 1}</td>
+                            <td className='px-6'>{withdrawal?.user || 'N/A'}</td>
+                            <td className='px-6'><p className="flex items-center gap-3">{formattedDate} <p className="p-[3px] bg-[#828282] rounded-full"></p> {formattedTime}</p></td>
+                            <td className='flex items-center gap-1 py-3 px-6'> <TbCurrencyNaira className='text-[20px]'/> {withdrawal.amount}</td>
+                            <td className='pr-5 px-6'>
                               {
                                 withdrawal?.status === "pending" && <div className='text-[#D8A04C] bg-[#D8A04C1A] py-1 rounded text-center capitalize'>{withdrawal.status}</div>
                               }
@@ -138,7 +138,7 @@ const Wallet = ({baseUrl}) => {
                                 withdrawal?.status === "completed" && <div className='text-[#418B47] bg-[#5FB56766] py-1 rounded text-center capitalize'>{withdrawal.status}</div>
                               }
                             </td>
-                            <td>
+                            <td className='px-6'>
                               <IoChevronForwardOutline className='cursor-pointer' onClick={() => navigate(`/withdrawal-info/${withdrawal._id}`)}/>
                             </td>
                           </tr>

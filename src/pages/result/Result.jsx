@@ -148,7 +148,7 @@ const Result = ({baseUrl}) => {
                         {/* <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-session')}>Create Session</button> */}
                     </div>
                 </div>
-                <div className='flex flex-col sm:flex-row items-end gap-5 w-full my-[1rem] px-[10px] lg:px-[30px]'>
+                <div className='grid sm:grid-cols-2 md:grid-cols-4 items-end gap-5 w-full my-[1rem] px-[10px] lg:px-[30px]'>
                     <div className='w-full relative'>
                         <label className='block text-left mb-2'>Select Session</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
