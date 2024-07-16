@@ -26,6 +26,7 @@ const CreateUser = ({baseUrl}) => {
     const [alertType, setAlertType] = useState('')
     const [alertTitle, setAlertTitle] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [toggleNav, setToggleNav] = useState(false)
 
     const adminAccessArray = [
         {
@@ -437,15 +438,15 @@ const CreateUser = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] bg-[#F2FCF7] ml-auto pb-5">
-        <TopNav />
-            <div className="px-[30px] py-[1rem]">
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto pb-5">
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+            <div className="lg:px-[30px] px-[10px] py-[1rem]">
                 <div className="flex items-center justify-between mb-[3rem]">
-                    <p className="text-[28px] text-primary-color font-[600]">Create User</p>
+                    <p className="text-[24px] lg:text-[28px] text-primary-color font-[600]">Create User</p>
                 </div>
                 <div>
-                    <div className='mt-7 flex items-center gap-5 w-full'>
+                    <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                         <div className='w-full'>
                             <label className='block text-left mb-2 text-text-color'>Full Name <span className='text-red-500'>*</span></label>
                             <div className='px-4 py-3 outline-none border w-full rounded-[4px]'>
@@ -513,7 +514,7 @@ const CreateUser = ({baseUrl}) => {
                         </>
                     } */}
 
-                    <div className='mt-7 flex items-center gap-5 w-full'>
+                    <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                         <div className='relative w-full'>
                             <label className='block text-text-color text-left mb-2'>User Type <span className='text-red-500'>*</span></label>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
@@ -619,11 +620,11 @@ const CreateUser = ({baseUrl}) => {
 
                     {
                         userType === 'student' &&
-                        <div className='mt-7 flex items-center gap-5 w-full'>
+                        <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Pivot Unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
-                                    <input type="text" value={piviotUnit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px]'/>
+                                    <input type="text" value={piviotUnit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
                                     <p className='text-[14px]'>{piviotUnitText}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUnitDropDown(!unitDropDown)}/>
                                 </div>
@@ -646,8 +647,8 @@ const CreateUser = ({baseUrl}) => {
                             </div>
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Sub-unit <span className='text-red-500'>*</span></label>
-                                <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
-                                    <input type="text" value={subUnit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent'/>
+                                <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px] relative'>
+                                    <input type="text" value={subUnit} placeholder='Select user type' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
                                     <p className='text-[14px]'>{subUnitText}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setSubUnitDropDown(!subUnitDropDown)}/>
                                 </div>

@@ -22,6 +22,7 @@ const Subscribe = ({baseUrl}) => {
     const navigate = useNavigate()
     const [aboutFeatureModal, setAboutFeatureModal] = useState(false)
     const [confirmSubModal, setConfirmSubModal] = useState(false)
+    const [toggleNav, setToggleNav] = useState(false)
 
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -113,24 +114,24 @@ const Subscribe = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-        <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
-                    <div className="">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] md:px-[30px] py-[1rem] flex-col md:flex-row">
+                    <div className="mb-4">
                         <p className="text-[28px] text-primary-color font-[600]">Subscription</p>
                         <p className='text-[#4F4F4F]'>Select the subscription plan that is perfect for your organization to get the best of Gotruhub.</p>
                         <p className='text-[#25751E] underline font-[500] cursor-pointer' onClick={() => setAboutFeatureModal(!aboutFeatureModal)} >Learn more about our features</p>
                     </div>
-                    <div className='flex items-center gap-5'>
-                        <button className="bg-[#19201D] text-white px-5 py-3 rounded-[8px] text-[14px] w-[140px]" onClick={() => navigate('/token')}>Token</button>
-                        <button className="border-[#646464] text-[#969696] font-[600] border px-5 py-3 rounded-[8px] text-[14px] w-[140px]" onClick={()=> navigate('/sub-summary')}>Cart</button>
+                    <div className='flex items-center gap-3 w-full justify-end'>
+                        <button className="bg-[#19201D] text-white px-5 py-3 rounded-[8px] text-[14px] md:w-[140px] w-full" onClick={() => navigate('/token')}>Token</button>
+                        <button className="border-[#646464] text-[#969696] font-[600] border px-5 py-3 rounded-[8px] text-[14px] md:w-[140px] w-full" onClick={()=> navigate('/sub-summary')}>Cart</button>
                     </div>
                 </div>
-                <div className='px-[30px]'>
+                <div className='px-[10px] md:px-[30px]'>
                     <p className='font-[500] text-[20px] mb-2'>Basic Plans</p>
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
                         {
                             arrayOfFeatures && arrayOfFeatures.map(plan => (
                                 <SubCard plan={plan} setConfirmSubModal={setConfirmSubModal}/>

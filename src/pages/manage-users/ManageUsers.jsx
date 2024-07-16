@@ -37,9 +37,9 @@ const ManageUsers = ({baseUrl}) => {
   return (
     <div>
       <SideNav />
-      <div className="w-[78%] bg-[#F2FCF7] ml-auto">
+      <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
         <TopNav />
-          <div className="px-[30px] py-[1rem]">
+          <div className="lg:px-[30px] px-[10px] py-[1rem]">
             <div className="flex items-center justify-between mb-[3rem]">
               <p className="text-[28px] text-primary-color font-[600]">Manage Users</p>
               <div className="flex items-center gap-3">

@@ -19,6 +19,7 @@ const SendToken = ({baseUrl}) => {
     const [allGuardians, setAllGuardians] = useState([])
     const [selectedGuardians, setSelectedGuardians] = useState([])
     const [planInfo, setPlanInfo] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllGuardians(){
       const res = await fetch(`${baseUrl}/users/get-users/guardian?page=0`,{
@@ -106,9 +107,9 @@ const SendToken = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-        <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">

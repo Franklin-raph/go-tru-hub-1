@@ -95,12 +95,12 @@ const Dashboard = ({ baseUrl }) => {
         <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
           <TopNav setToggleNav={setToggleNav} toggleNav={toggleNav}/>
-          <div className="px-[10px] lg:px-[30px] py-[1rem]">
+          <div className="px-[10px] md:px-[30px] py-[1rem]">
             <div className="flex items-start justify-between mb-[1rem] flex-col md:flex-row">
               <p className="lg:text-[28px] text-[24px] mb-4 text-primary-color font-[600] w-full">Dashboard</p>
               <div className="flex items-center gap-3 w-full justify-end">
-                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full " onClick={() => navigate('/subscribe')}>Subscribe</button>
-                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full " onClick={() => navigate('/create-user')}>Create User</button>
+                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/subscribe')}>Subscribe</button>
+                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create User</button>
               </div>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 bg-white px-5 py-5 rounded-[12px]">
