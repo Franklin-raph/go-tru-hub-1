@@ -84,7 +84,7 @@ const AttendanceSummary = ({baseUrl}) => {
                     <table class="w-full text-sm text-left rtl:text-left">
                     <thead class="text-[14px] border-b">
                         <tr>
-                            <th scope="col" class="py-3 th1 font-[700]">S/N</th>
+                            <th scope="col" class="px-6 py-3 th1 font-[700]">S/N</th>
                             <th scope="col" class="py-3 font-[700]">Sub Unit</th>
                             <th scope="col" class="py-3 font-[700]">Attendance Type</th>
                             <th scope="col" class="py-3 font-[700]">Start Time</th>

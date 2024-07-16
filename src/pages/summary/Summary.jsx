@@ -243,12 +243,12 @@ const Summary = ({baseUrl}) => {
                     <table class="w-full text-sm text-left rtl:text-left">
                     <thead class="text-[14px] border-b">
                         <tr>
-                            <th scope="col" class="py-3 th1 font-[700]">S/N</th>
-                            <th scope="col" class="py-3 font-[700]">Sub Unit</th>
-                            <th scope="col" class="py-3 font-[700]">Attendance Type</th>
-                            <th scope="col" class="py-3 font-[700]">Remark</th>
-                            <th scope="col" class="py-3 font-[700]">Start Time</th>
-                            <th scope="col" class="py-3 font-[700]">End Time</th>
+                            <th scope="col" class="px-6 py-3 th1 font-[700]">S/N</th>
+                            <th scope="col" class="px-6 py-3 font-[700]">Sub Unit</th>
+                            <th scope="col" class="px-6 py-3 font-[700]">Attendance Type</th>
+                            <th scope="col" class="px-6 py-3 font-[700]">Remark</th>
+                            <th scope="col" class="px-6 py-3 font-[700]">Start Time</th>
+                            <th scope="col" class="px-6 py-3 font-[700]">End Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -261,12 +261,12 @@ const Summary = ({baseUrl}) => {
 
                                 return (
                                     <tr className='text-[#19201D]' key={index}>
-                                        <td className='py-3'>{index + 1}</td>
-                                        <td>{item?.classScheduleId?.course?.subUnit?.name}</td>
-                                        <td>{item?.attendanceType}</td>
-                                        <td>{item?.remark}</td>
-                                        <td>{formatTime(item?.classScheduleId?.startTime)}</td>
-                                        <td>{formatTime(item?.classScheduleId?.endTime)}</td>
+                                        <td className='px-6  py-3'>{index + 1}</td>
+                                        <td className='px-6 py-3'>{item?.classScheduleId?.course?.subUnit?.name}</td>
+                                        <td className='px-6 py-3'>{item?.attendanceType}</td>
+                                        <td className='px-6 py-3'>{item?.remark}</td>
+                                        <td className='px-6 py-3'>{formatTime(item?.classScheduleId?.startTime)}</td>
+                                        <td className='px-6 py-3'>{formatTime(item?.classScheduleId?.endTime)}</td>
                                     </tr>
                                 )
                             })

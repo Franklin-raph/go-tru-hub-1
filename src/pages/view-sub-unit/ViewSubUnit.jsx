@@ -31,6 +31,7 @@ const ViewSubUnit = ({baseUrl}) => {
 
     const [editSubUnit, setEditSubUnit] = useState(false)
     const [deleteSubUnit, setDeleteSubUnit] = useState(false)
+    const [toggleNav, setToggleNav] = useState(false)
     
 
     async function getSubUnitInfo(){
@@ -160,14 +161,14 @@ const ViewSubUnit = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-center mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/units')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">About {unitName}</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">About {unitName}</p>
                     </div>
                     <div className='flex items-center gap-5'>
                         {/* <button className='font-[600] text-[#25751E] text-[14px]' onClick={() => navigate(`/co-ordinator/${id}`)} >Coordinator</button> */}
@@ -180,8 +181,8 @@ const ViewSubUnit = ({baseUrl}) => {
                     </div> */}
                 </div>
 
-                <div className="m-[30px] p-4 rounded-lg shadow-md flex flex-col sm:flex-row gap-[3rem]">
-                    <div className="p-4 rounded-lg flex-1 mr-4 w-1/2">
+                <div className="lg:m-[30px] m-[10px] p-4 rounded-lg shadow-md flex flex-col sm:flex-row gap-[3rem]">
+                    <div className="p-4 rounded-lg flex-1 mr-4 w-full sm:w-1/2">
                         <div className="mb-2 flex items-center justify-between">
                             <div>Created</div>
                             <div className="font-bold">January 29, 2024</div>
@@ -203,7 +204,7 @@ const ViewSubUnit = ({baseUrl}) => {
                             <div className="font-bold">2</div>
                         </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row w-1/2">
+                    <div className="flex flex-col sm:flex-row w-full sm:w-1/2">
                         <div className="bg-blue-900 text-white p-4 rounded-lg shadow-md flex-1 mx-2">
                             <div className="flex flex-col items-center">
                                 <div className="text-lg font-bold">Members</div>
@@ -251,7 +252,7 @@ const ViewSubUnit = ({baseUrl}) => {
                             </div>
                         </div> */}
                     </div>
-                    </div>
+                </div>
 
                     {/* <div class="relative overflow-x-auto mx-5 mt-10">
                         <div className='flex items-center justify-between mb-2'>

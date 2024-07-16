@@ -22,6 +22,7 @@ const Assignments = ({baseUrl}) => {
 
     const [name, setName] = useState('')
     const [code, setCode] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllAssignments(){
         const res = await fetch(`${baseUrl}/course`,{
@@ -104,20 +105,20 @@ const Assignments = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Assignments</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Assignments</p>
                     </div>
                     <div className='flex items-center gap-5'>
                         <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-assignment')}>Create assignment</button>
                     </div>
                 </div>
-                <div className='px-[30px]'>
+                <div className='px-[10px] lg:px-[30px]'>
                     {
                         allAssignments.length < 1 &&
                         <div className="flex items-center gap-5 justify-center text-center px-[3rem]">
@@ -176,9 +177,9 @@ const Assignments = ({baseUrl}) => {
             editAssignment &&
             <div>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setEditAssignment(false)}></div>
-                <div className="bg-white w-[450px] fixed top-[50%] left-[50%] pt-[20px] px-[2rem] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
+                <div className="bg-white sm:max-w-[450px] w-[95%] fixed top-[50%] left-[50%] pt-[20px] md:px-[2rem] px-[16px] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
                     <div className="flex items-center justify-between border-b pb-[5px]">
-                        <p className="text-[px]">Edit Unit</p>
+                        <p className="text-[px]">Edit Assignment</p>
                         <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setEditAssignment(false)}/>
                     </div>
                     <div className='mt-5'>
@@ -207,7 +208,7 @@ const Assignments = ({baseUrl}) => {
             deleteAssignment &&
             <div>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setDeleteAssignment(false)}></div>
-                <div className="bg-white w-[450px] fixed top-[50%] left-[50%] pt-[20px] px-[2rem] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
+                <div className="bg-white sm:max-w-[450px] w-[95%] fixed top-[50%] left-[50%] pt-[20px] md:px-[2rem] px-[16px] z-[100] pb-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
                     <div className="flex items-center justify-between border-b pb-[5px]">
                         <p className="text-[px]">Delete Assignment</p>
                         <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setDeleteAssignment(false)}/>

@@ -25,6 +25,7 @@ const CreateSubUnit = ({baseUrl}) => {
     const [staffText, setStaffText] = useState()
     const [staff, setStaff] = useState()
     const [allStaffs, setAllStaffs] = useState([])
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllUnits(){
         const res = await fetch(`${baseUrl}/units`,{
@@ -96,18 +97,18 @@ const CreateSubUnit = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/units')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Create Sub Unit</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Create Sub Unit</p>
                     </div>
                 </div>
-                <div className='px-[30px]'>
-                    <div className='px-[30px] w-[500px] mx-auto'>
+                <div className='px-[10px] lg:px-[30px]'>
+                    <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                         <div className='relative w-full mb-5'>
                             <p className='text-[#19201D]'>Select Pivot Unit</p>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
