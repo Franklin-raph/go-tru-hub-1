@@ -231,7 +231,7 @@ const Subscribe = ({baseUrl}) => {
             aboutFeatureModal &&
             <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setAboutFeatureModal(false)}></div>
-                <div className="gap-3 bg-white w-[90%] lg:w-[75%] h-[500px] overflow-y-scroll fixed top-[50%] left-[50%] py-[20px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+                <div className="gap-3 bg-white w-[95%] lg:w-[75%] h-[600px] overflow-y-scroll fixed top-[50%] left-[50%] py-[20px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
                     <div className="flex items-center justify-between border-b pb-[5px] mb-5">
                         <p className="text-[22px]">Features</p>
                         <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setAboutFeatureModal(false)}/>
