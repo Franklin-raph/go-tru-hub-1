@@ -11,7 +11,7 @@ const About = () => {
           <h1 className='text-[25px] font-[600] mb-4 text-[#19201D]'>About Gotruhub</h1>
           <p className='mb-5 font-[500] text-[18px]'>Manage your schools, employees, team members and collect revenue with just one app</p>
           <p>
-            Gotruhub is a multi tenant digital platform built for diverse functions which include cooperative trading. It enable you manage your mega stores, manage members of staff, help schools/parents keep track of students security and school attendance record. It as well make schools accountable for students in their custody and also provide you with tools that can help you in revenue collection and accountability.
+            Gotruhub is a multi tenant digital platform built for diverse functions which include cooperative trading. It enable you manage your schools, manage members of staff, help schools/parents keep track of students security and school attendance record. It as well make schools accountable for students in their custody and also provide you with tools that can help you in revenue collection and accountability.
             Gotruhub make sales and access to payments easy. It alerts you on the arrival and departure of your minors at schools, ensures that schools take responsibility of students times in their care. It keeps track of staff promptness to duty and as well helps the Government/ corporate organizations keep detailed track of revenue sources and further helps in collecting and keeping records of revenue from such sources.
           </p>
           {/* <div className='flex items-center gap-2 justify-center my-3'>
