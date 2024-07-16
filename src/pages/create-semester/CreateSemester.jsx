@@ -20,6 +20,7 @@ const CreateSemester = ({baseUrl}) => {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [sessionType, setSessionType] = useState('')
+    const [toggleNav, setToggleNav] = useState(false)
     const sessionTypesArray = [
         {
             name: 'HS',
@@ -110,17 +111,17 @@ const CreateSemester = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/calendar')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Create Semester</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Create Semester</p>
                     </div>
                 </div>
-                <div className="flex items-center flex-col justify-center gap-5 px-5 w-[500px] mx-auto">
+                <div className="flex items-center flex-col justify-center gap-5 px-5 max-w-[500px] mx-auto">
                     <div className='text-[#865C1D] flex items-center gap-2'>
                         <FiInfo className='text-[30px]' />
                         <p className='text-[14px]'>Creating a new semester collects new data on members and closes update on the previous semester</p>

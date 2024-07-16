@@ -22,6 +22,7 @@ const Result = ({baseUrl}) => {
     const [unit, setUnit] = useState()
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllSessions(){
         const res = await fetch(`${baseUrl}/session`,{
@@ -134,20 +135,20 @@ const Result = ({baseUrl}) => {
 
   return (
     <div className='h-[100vh]'>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Result</p>
+                        <p className="text-[24px] lg:text-[28px] text-primary-color font-[600]">Result</p>
                     </div>
                     <div className='flex items-center gap-5'>
                         {/* <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-session')}>Create Session</button> */}
                     </div>
                 </div>
-                <div className='flex flex-col sm:flex-row items-end gap-5 w-full my-[1rem] px-[30px]'>
+                <div className='flex flex-col sm:flex-row items-end gap-5 w-full my-[1rem] px-[10px] lg:px-[30px]'>
                     <div className='w-full relative'>
                         <label className='block text-left mb-2'>Select Session</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>

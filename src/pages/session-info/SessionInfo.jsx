@@ -14,6 +14,7 @@ const SessionInfo = ({baseUrl}) => {
   const [msg, setMsg] = useState('')
   const [chosenTerm, setChosenTerm] = useState('')
   const [alertType, setAlertType] = useState()
+  const [toggleNav, setToggleNav] = useState(false)
 
   async function getSessionInfo(){
     const res = await fetch(`${baseUrl}/term/${session}`,{
@@ -43,20 +44,20 @@ const SessionInfo = ({baseUrl}) => {
 
   return (
     <div>
-      <SideNav />
-      <div className="w-[78%] ml-auto pb-5">
-          <TopNav />
+      <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+      <div className="w-full lg:w-[78%] ml-auto pb-5">
+          <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="bg-[#F7F7F7]">
-              <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+              <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                   <div className="flex items-center gap-2">
                       <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/calendar')} className='cursor-pointer' />
-                      <p className="text-[28px] text-primary-color font-[600]">{sessionInfo[0]?.sessionId.name} Session</p>
+                      <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">{sessionInfo[0]?.sessionId.name} Session</p>
                   </div>
                   <div className='flex items-center gap-5'>
                       <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-semester/${sessionInfo[0]?.sessionId?._id}`)}>Create Semester</button>
                   </div>
               </div>
-              <div className='px-[30px]'>
+              <div className='px-[10px] lg:px-[30px]'>
                   <p className='text-[#19201D] text-[18px] font-[600] mb-3'>Session Info</p>
                   {
                       sessionInfo.length < 1 &&

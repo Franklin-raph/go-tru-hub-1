@@ -21,6 +21,7 @@ const Settings = ({baseUrl}) => {
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
+    const [toggleNav, setToggleNav] = useState(false)
 
     const navigate = useNavigate()
 
@@ -65,31 +66,31 @@ const Settings = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Settings</p>
+                            <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Settings</p>
                         </div>
-                        <p className='text-[#4F4F4F]'>Manage your account security, notifications and contact support</p>
+                        <p className='text-[#4F4F4F] text-[14px] lg:text-[16px]'>Manage your account security, notifications and contact support</p>
                     </div>
                 </div>
-                <div className='flex items-start justify-center gap-3 p-8 flex-col'>
-                    <div className="bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]">
+                <div className='flex items-start justify-center gap-3 lg:p-8 p-4 flex-col'>
+                    <div className="bg-[#F7F7F7] lg:px-8 px-4 py-6 w-[100%] rounded-[16px]">
                         <div className='mb-6'>
                             <div className='flex items-center gap-3'>
                                 <img src="./images/shield.svg" alt="" />
-                                <h2 className="text-xl text-[#19201D]">Password management</h2>
+                                <h2 className="lg:text-xl text-[#19201D]">Password management</h2>
                             </div>
                             <p className='text-[#4F4F4F] mt-2'>Reset your password</p>
                         </div>
                         <form onSubmit={updatePassword}>
-                            <div className='flex items-center gap-5'>
-                                <div className="w-full" style={{marginBottom:"30px"}}>
+                            <div className='flex items-center gap-5 flex-col lg:flex-row'>
+                                <div className="w-full lg:mb-[30px]">
                                     <p style={{marginBottom:"5px"}}>Current Password</p>
                                     <div className="border w-full rounded-[4px] flex items-center justify-between px-4 py-3">
                                         <input
@@ -131,7 +132,7 @@ const Settings = ({baseUrl}) => {
                                 </div>
                             </div>
 
-                            <div className='flex items-end gap-5'>
+                            <div className='flex items-end gap-5 flex-col lg:flex-row'>
                                 <div className="w-full" style={{marginBottom:"30px"}}>
                                     <p style={{marginBottom:"5px"}}>Confirm Password</p>
                                     <div className="border w-full rounded-[4px] flex items-center justify-between px-4 py-3">
@@ -169,21 +170,21 @@ const Settings = ({baseUrl}) => {
                             </div>
                         </form>
                     </div>
-                    <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
+                    <div className='bg-[#F7F7F7] px-8 py-6 w-[100%] rounded-[16px]'>
                         <div className='flex items-center gap-3'>
                             <img src="./images/user.svg" alt="" className='w-[15px]' />
                             <p className='text-[#19201D]'>My Account</p>
                         </div>
                         <p className='text-[#9A2525] mt-4 cursor-pointer inline-block' onClick={() => setDeleteOrgsModal(true)}>Delete my organization</p>
                     </div>
-                    <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
+                    <div className='bg-[#F7F7F7] px-8 py-6 w-[100%] rounded-[16px]'>
                         <div className='flex items-center gap-3'>
                             <img src="./images/edit.svg" alt="" className='w-[15px]' />
                             <p className='text-[#19201D]'>My Account</p>
                         </div>
                         <p className='text-[gray] mt-4 cursor-pointer inline-block' onClick={() => navigate('/update-orgs')}>Update my organization</p>
                     </div>
-                    <div className='bg-[#F7F7F7] px-8 py-6 w-[90%] rounded-[16px]'>
+                    <div className='bg-[#F7F7F7] px-8 py-6 w-[100%] rounded-[16px]'>
                         <div className='flex items-center gap-3'>
                             <img src="./images/chat.svg" alt="" className='w-[15px]' />
                             <p className='text-[#19201D]'>Support</p>

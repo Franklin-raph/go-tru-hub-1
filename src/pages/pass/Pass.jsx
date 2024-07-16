@@ -15,6 +15,7 @@ const Pass = ({baseUrl}) => {
     const [msg, setMsg] = useState('')
     const filterArray = ['All', "Cash sales", "Wallet sales", "Purchases", "Deposits", "Withdrawals"]
     const user = JSON.parse(localStorage.getItem('user'))
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getPassHistory(){
         const res = await fetch(`${baseUrl}/pass-history`,{
@@ -33,25 +34,25 @@ const Pass = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Pass</p>
+                            <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Pass</p>
                         </div>
                     </div>
                     <div className='relative flex items-center gap-[10px]'>
-                        <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
+                        {/* <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
                             <CiFilter className='mr-1'/>
                             <p className='px-5 border-l'>Filter</p>
                             <GoChevronDown />
-                        </div>
+                        </div> */}
                         <button className='text-white text-[14px] bg-[#2D3934] w-full rounded-[4px] px-[15px] py-[6px] text-center mx-auto' onClick={() => navigate('/location')}>Location</button>
-                        <div className='absolute top-[40px] z-10'>
+                        {/* <div className='absolute top-[40px] z-10'>
                             {
                                     filterDropDown &&
                                     <div className='border mt-1 rounded-[6px] bg-[#fff] text-[#6F7975]'>
@@ -68,10 +69,10 @@ const Pass = ({baseUrl}) => {
                                     }
                                 </div>
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-                <div class="relative overflow-x-auto mx-5 mt-10 p-8">
+                <div class="relative overflow-x-auto mx-5 mt-10 py-8">
                     <table class="w-full text-sm text-left rtl:text-left">
                     <thead class="text-[14px] border-b">
                         <tr>

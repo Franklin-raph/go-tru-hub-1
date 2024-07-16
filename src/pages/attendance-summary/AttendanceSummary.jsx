@@ -16,6 +16,7 @@ const AttendanceSummary = ({baseUrl}) => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [allAttendanceSummary, setAllAttendanceSummary] = useState([])
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllAttendanceSummary(){
         const res = await fetch(`${baseUrl}/attendance/schedule/${id}`,{
@@ -44,9 +45,9 @@ const AttendanceSummary = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">

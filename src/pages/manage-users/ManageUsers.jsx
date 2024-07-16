@@ -42,7 +42,7 @@ const ManageUsers = ({baseUrl}) => {
         <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="lg:px-[30px] px-[10px] py-[1rem]">
             <div className="flex items-center justify-between mb-[3rem]">
-              <p className="text-[28px] text-primary-color font-[600]">Manage Users</p>
+              <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Manage Users</p>
               <div className="flex items-center gap-3">
                 <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-user')} >Create User</button>
               </div>
@@ -51,7 +51,7 @@ const ManageUsers = ({baseUrl}) => {
 
           <div class="relative overflow-x-auto">
               <table class="w-full text-sm text-left rtl:text-left">
-                  <thead class="text-[14px] border-b">
+                  <thead class="text-[12px] md:text-[14px] border-b">
                       <tr>
                           <th scope="col" class="px-6 py-3 th1 font-[700]">S/N</th>
                           <th scope="col" class="px-6 py-3 font-[700]">Name</th>
@@ -68,14 +68,14 @@ const ManageUsers = ({baseUrl}) => {
                                 <tr style={{borderBottom:"1px solid #dcdcdc"}} key={index}>
                                     <td class="px-6 py-4">{index +1}</td>
                                     <td class="px-6 py-4 flex items-center gap-1">
-                                      <img src={user.profileImage.file} className='w-[16px] h-[16px] rounded-full' alt={`${user.fullName} img`} />
-                                      <p>{user.fullName}</p>
+                                      <img src={user.profileImage.file} className='lg:w-[16px] lg:h-[16px] w-[30px] h-[30px] rounded-full' alt={`${user.fullName} img`} />
+                                      <p className='text-[12px] md:text-[16px]'>{user.fullName}</p>
                                     </td>
-                                    <td class="px-6 py-4">{user.email ? user.email : "N/A"}</td>
-                                    <td class="px-6 py-4 capitalize">{user.role}</td>
-                                    <td class="px-6 py-4">{formatDate(user.createdAt)}</td>
+                                    <td class="px-6 py-4 text-[12px] md:text-[16px]">{user.email ? user.email : "N/A"}</td>
+                                    <td class="px-6 py-4 capitalize text-[12px] md:text-[16px]">{user.role}</td>
+                                    <td class="px-6 py-4 text-[12px] md:text-[16px]">{formatDate(user.createdAt)}</td>
                                     <td>
-                                      <button className='text-white bg-[#2D3934] px-4 py-2 rounded-[4px]' onClick={() => {
+                                      <button className='text-white bg-[#2D3934] px-4 py-2 rounded-[4px] text-[12px] md:text-[16px]' onClick={() => {
                                         if(user.role === "student"){
                                           navigate(`/user/${user._id}`)
                                         }else{

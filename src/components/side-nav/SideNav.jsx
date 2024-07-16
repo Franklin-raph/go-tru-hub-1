@@ -144,7 +144,7 @@ const SideNav = ({toggleNav, setToggleNav}) => {
                 <p className="">Notification</p>
             </div>
           </Link>
-          <Link to='/settings' className={ location.pathname === '/settings' || location.pathname === "/update-orgs" ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
+          <Link to='/settings' className={ location.pathname === '/settings' || location.pathname === "/update-orgs" || location.pathname === "/orgz-profile" ? `flex items-center justify-between py-[10px] text-[#25751E]` :`flex items-center justify-between py-[10px]`}>
             <div className="flex items-center">
               <img src="./images/setting.svg" className='mr-[15.67px]' alt="" />
               <p className="">Account</p>

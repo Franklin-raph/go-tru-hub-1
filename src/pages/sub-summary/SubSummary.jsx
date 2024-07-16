@@ -19,6 +19,7 @@ const SubSummary = ({baseUrl}) => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [subArray, setSubArray] = useState([])
     const [confirmPurchase, setConfirmPurchase] = useState(false)
+    const [toggleNav, setToggleNav] = useState(false)
 
     // function payWithPayStack(){
     //     // console.log(id, amount, duration);
@@ -129,14 +130,14 @@ const SubSummary = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-        <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/subscribe')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Subscription Summary</p>
+                        <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Subscription Summary</p>
                     </div>
                     {/* <button className="bg-[#646464] text-white px-5 py-3 rounded-[8px] text-[14px]" >Send Token</button> */}
                 </div>

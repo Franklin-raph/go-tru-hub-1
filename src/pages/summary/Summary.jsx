@@ -26,6 +26,7 @@ const Summary = ({baseUrl}) => {
     const [unit, setUnit] = useState()
     const [alertType, setAlertType] = useState()
     const [loading, setLoading] = useState(false)
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllSchedule(subUbitId){
         const res = await fetch(`${baseUrl}/schedule/${subUbitId._id}`,{
@@ -120,9 +121,9 @@ const Summary = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
@@ -156,8 +157,8 @@ const Summary = ({baseUrl}) => {
                     </div>
                 </div>
                 <div className='flex items-end justify-between px-[30px] w-full'>
-                    <div className='flex flex-col sm:flex-row items-end gap-5 w-full my-[1rem]'>
-                        <div className='relative w-[25%]'>
+                    <div className='grid grid-cols-2 lg:grid-cols-4 items-end gap-5 w-full my-[1rem]'>
+                        <div className='relative w-[100%]'>
                             <label className='block text-left mb-2'>Select Unit</label>
                             <div className='flex items-center justify-between border rounded-[6px] py-3 px-5'>
                                 <input type="text" value={unit?.name} className='outline-none w-full rounded-[4px] capitalize bg-transparent'/>
@@ -180,7 +181,7 @@ const Summary = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                        <div className='relative w-[25%]'>
+                        <div className='relative w-[100%]'>
                             <label className='block text-left mb-2'>Select Sub-Unit</label>
                             <div className='flex items-center justify-between border rounded-[6px] py-3 px-5'>
                                 <input type="text" value={subunit?.name} className='outline-none rounded-[4px] w-full capitalize bg-transparent'/>
@@ -203,7 +204,7 @@ const Summary = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                        <div className='relative w-[25%]'>
+                        <div className='relative w-[100%]'>
                             <label className='block text-left mb-2'>Select Schedule</label>
                             <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 '>
                                 <input type="text" value={schedule?.code} className='outline-none w-full rounded-[4px] capitalize bg-transparent'/>
@@ -229,7 +230,7 @@ const Summary = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                        <div className="w-[25%]">
+                        <div className="w-[100%]">
                             <button onClick={getSummary} className='bg-[#19201D] text-white px-[20px] py-2 rounded-[6px] text-[14px]'>Get Summary</button>
                         </div>
                     </div>

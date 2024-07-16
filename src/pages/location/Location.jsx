@@ -19,6 +19,7 @@ const Location = ({baseUrl}) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
     const [locations, setLocations] = useState({
         startLocation: {
           lat: "",
@@ -129,20 +130,20 @@ const Location = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/pass')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Location</p>
+                            <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Location</p>
                         </div>
-                        <p className='text-[#4F4F4F]'>Actions performed outside your saved locations would be recorded as suspicious activity</p>
+                        <p className='text-[#4F4F4F] text-[14px]'>Actions performed outside your saved locations would be recorded as suspicious activity</p>
                     </div>
                 </div>
-                <div className='flex items-start justify-center gap-3 p-8'>
+                <div className='flex items-start justify-center gap-3 py-8'>
                    {/* <img src="./images/map.svg" className='w-[65%]' alt="" /> */}
                    
                    <div className='p-4 shadow-lg'>
@@ -151,41 +152,41 @@ const Location = ({baseUrl}) => {
                            
                                 <div className='mb-5'>
                                     <p className='text-[#19201D]'>Start Coordinates</p>
-                                    <div className='flex items-center gap-3'>
-                                    <input
-                                        type="text"
-                                        className='border py-3 px-3 rounded mt-1 w-full'
-                                        placeholder='Latitude'
-                                        value={locations.startLocation.lat}
-                                        onChange={handleStartLatChange}
-                                    />
-                                    <input
-                                        type="text"
-                                        className='border py-3 px-3 rounded mt-1 w-full'
-                                        placeholder='Longitude'
-                                        value={locations.startLocation.long}
-                                        onChange={handleStartLongChange}
-                                    />
+                                    <div className='flex items-center flex-col md:flex-row gap-3'>
+                                        <input
+                                            type="text"
+                                            className='border py-3 px-3 rounded mt-1 w-full'
+                                            placeholder='Latitude'
+                                            value={locations.startLocation.lat}
+                                            onChange={handleStartLatChange}
+                                        />
+                                        <input
+                                            type="text"
+                                            className='border py-3 px-3 rounded mt-1 w-full'
+                                            placeholder='Longitude'
+                                            value={locations.startLocation.long}
+                                            onChange={handleStartLongChange}
+                                        />
                                     </div>
                                     <p className='text-[#865C1D] text-[12px]'>We use a range to ensure location accuracy</p>
                                 </div>
                                 <div className='mb-5'>
                                     <p className='text-[#19201D]'>Stop Coordinates</p>
-                                    <div className='flex items-center gap-3'>
-                                    <input
-                                        type="text"
-                                        className='border py-3 px-3 rounded mt-1 w-full'
-                                        placeholder='Latitude'
-                                        value={locations.endLocation.lat}
-                                        onChange={handleEndLatChange}
-                                    />
-                                    <input
-                                        type="text"
-                                        className='border py-3 px-3 rounded mt-1 w-full'
-                                        placeholder='Longitude'
-                                        value={locations.endLocation.long}
-                                        onChange={handleEndLongChange}
-                                    />
+                                    <div className='flex items-center flex-col md:flex-row gap-3'>
+                                        <input
+                                            type="text"
+                                            className='border py-3 px-3 rounded mt-1 w-full'
+                                            placeholder='Latitude'
+                                            value={locations.endLocation.lat}
+                                            onChange={handleEndLatChange}
+                                        />
+                                        <input
+                                            type="text"
+                                            className='border py-3 px-3 rounded mt-1 w-full'
+                                            placeholder='Longitude'
+                                            value={locations.endLocation.long}
+                                            onChange={handleEndLongChange}
+                                        />
                                     </div>
                                 </div>
                                 {

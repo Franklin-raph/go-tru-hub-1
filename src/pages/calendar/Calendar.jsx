@@ -10,6 +10,7 @@ const Calendar = ({baseUrl}) => {
     const [allSessions, setAllSessions] = useState([])
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllSessions(){
         const res = await fetch(`${baseUrl}/session`,{
@@ -38,20 +39,20 @@ const Calendar = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="bg-[#F7F7F7]">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex flex-row gap-[1rem] justify-between items-center mb-[3rem] bg-[#F2FCF7] lg:px-[30px] px-[10px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Calendar</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Calendar</p>
                     </div>
-                    <div className='flex items-center gap-5'>
-                        <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-session')}>Create Session</button>
+                    <div className='flex items-center gap-5 '>
+                        <button className="bg-[#2D3934] text-white px-3 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-session')}>Create Session</button>
                     </div>
                 </div>
-                <div className='px-[30px]'>
+                <div className='lg:px-[30px] px-[10px]'>
                     <p className='text-[#19201D] text-[18px] font-[600] mb-3'>All Sessions</p>
                     {
                         allSessions.length < 1 &&
