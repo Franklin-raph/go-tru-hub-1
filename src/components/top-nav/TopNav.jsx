@@ -34,7 +34,7 @@ const TopNav = ({toggleNav, setToggleNav}) => {
           <IoIosLogOut fontSize={"20px"}/>
           <p>Logout</p>
         </div>
-        <IoMenuOutline className='text-white text-[30px] cursor-pointer' onClick={() => setToggleNav(!toggleNav)}/>
+        <IoMenuOutline className='text-white text-[30px] cursor-pointer block lg:hidden' onClick={() => setToggleNav(!toggleNav)}/>
       </div>
       {
         logoutModal && <LogoutModal setLogoutModal={setLogoutModal} />

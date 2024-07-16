@@ -95,64 +95,64 @@ const Dashboard = ({ baseUrl }) => {
         <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
           <TopNav setToggleNav={setToggleNav} toggleNav={toggleNav}/>
-          <div className="px-[30px] py-[1rem]">
-            <div className="flex items-center justify-between mb-[1rem]">
-              <p className="text-[28px] text-primary-color font-[600]">Dashboard</p>
-              <div className="flex items-center gap-3">
-                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px]" onClick={() => navigate('/subscribe')}>Subscribe</button>
-                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-user')}>Create User</button>
+          <div className="px-[10px] lg:px-[30px] py-[1rem]">
+            <div className="flex items-start justify-between mb-[1rem] flex-col md:flex-row">
+              <p className="lg:text-[28px] text-[24px] mb-4 text-primary-color font-[600] w-full">Dashboard</p>
+              <div className="flex items-center gap-3 w-full justify-end">
+                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full " onClick={() => navigate('/subscribe')}>Subscribe</button>
+                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full " onClick={() => navigate('/create-user')}>Create User</button>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-5 bg-white px-5 py-5 rounded-[12px]">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 bg-white px-5 py-5 rounded-[12px]">
               <div className="border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Total Students</p>
+                  <p className="text-[#4F4F4F]">Students</p>
                   <div className="bg-[#3EB7B7] p-2 text-white rounded-full">
                     <PiStudentDuotone />
                   </div>
                 </div>
-                <p className="font-[600] text-text-color text-[24px]">{orgzHistory?.totalStudents}</p>
-                <div className="flex items-center mt-2">
+                <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalStudents}</p>
+                {/* <div className="flex items-center mt-2">
                   <img src="./images/arrow-up.svg" alt="" />
                   <p className="text-[#25751E] text-[12px]">+15% this week</p>
-                </div>
+                </div> */}
               </div>
               <div className="border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Total Guardians</p>
+                  <p className="text-[#4F4F4F]">Guardians</p>
                   <img src="./images/members.svg" alt="" />
                 </div>
-                <p className="font-[600] text-text-color text-[24px]">{orgzHistory?.totalGuardian}</p>
-                <div className="flex items-center mt-2">
+                <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalGuardian}</p>
+                {/* <div className="flex items-center mt-2">
                   <img src="./images/arrow-down.svg" alt="" />
                   <p className="text-[#9A2525] text-[12px]">-15% this week</p>
-                </div>
+                </div> */}
               </div>
               <div className="border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Total Staffs</p>
+                  <p className="text-[#4F4F4F]">Staffs</p>
                   <img src="./images/members.svg" alt="" />
                 </div>
-                <p className="font-[600] text-text-color text-[24px]">{orgzHistory?.totalStaffs}</p>
-                <div className="flex items-center mt-2">
+                <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalStaffs}</p>
+                {/* <div className="flex items-center mt-2">
                   <img src="./images/arrow-up.svg" alt="" />
                   <p className="text-[#25751E] text-[12px]">+10% this week</p>
-                </div>
+                </div> */}
               </div>
               <div className="">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Total Stocks</p>
+                  <p className="text-[#4F4F4F]">Stocks</p>
                   <img src="./images/stock.svg" alt="" />
                 </div>
-                <p className="font-[600] text-text-color text-[24px]">{orgzHistory?.totalStocks}</p>
-                <div className="flex items-center mt-2">
+                <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalStocks}</p>
+                {/* <div className="flex items-center mt-2">
                   <img src="./images/arrow-up.svg" alt="" />
                   <p className="text-[#25751E] text-[12px]">+1% this week</p>
-                </div>
+                </div> */}
               </div>
             </div>
-            <div className="flex gap-5">
-              <div className="w-[60%] bg-white rounded-[8px] mt-[1rem] p-5 self-start h-[400px] overflow-y-scroll">
+            <div className="flex gap-5 flex-col md:flex-row">
+              <div className="w-[100%] md:w-[60%] bg-white rounded-[8px] mt-[1rem] p-5 self-start h-[400px] overflow-y-scroll">
                 <p className="text-[#4F4F4F] text-[14px] font-[500]">Recent Activities</p>
                 <p className="text-[#828282] text-[14px] mt-7 mb-1 font-[500]">Today</p>
                 {
@@ -181,7 +181,7 @@ const Dashboard = ({ baseUrl }) => {
                   })
                 }
               </div>
-              <div className="w-[40%] self-start">
+              <div className="w-[100%] md:w-[40%] self-start">
                 <div className="w-full bg-white rounded-[8px] mt-[1rem] p-5 h-[300px] overflow-y-scroll">
                   <div className="flex items-center justify-between text-[#4F4F4F] text-[14px] mb-6 font-[500]">
                     <p>Stock Update</p>
