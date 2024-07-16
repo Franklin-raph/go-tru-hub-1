@@ -20,7 +20,7 @@ const Home = () => {
     <>
         <Navbar />
         <div>
-            <h1 className='mt-[7rem] text-[18px] sm:text-[32px] md:text-[48px] text-primary-color leading-20 text-center font-[500] lg:w-[80%] sm:w-[90%] w-full px-[1rem] mx-auto'>Manage your schools, employees, team members and collect revenue with just one app</h1>
+            <h1 className='mt-[7rem] text-[18px] sm:text-[32px] md:text-[48px] text-primary-color leading-20 text-center font-[500] lg:w-[80%] sm:w-[90%] w-full px-[1rem] mx-auto'>Manage your schools, employees, team members with just one app</h1>
             <p className='mt-[3rem] md:mt-[5rem] w-[85%] md:w-[60%] text-justify leading-[1.6] mx-auto'>
                 Gotruhub is a multi tenant digital platform built for diverse functions which include cooperative trading. It also allow you manage your schools, manage staff members, help schools/parents keep track of students security and school attendance record.
                 <Link to='/about' className='text-secondary-color font-[500]'> Learn More</Link>

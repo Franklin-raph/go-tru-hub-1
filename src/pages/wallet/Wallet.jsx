@@ -15,6 +15,7 @@ const Wallet = ({baseUrl}) => {
   const [allWithdrawals, setAllWithdrawals] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [toggleNav, setToggleNav] = useState(false)
 
   useEffect(() => {
     getAllWithdrawals()
@@ -42,14 +43,14 @@ const Wallet = ({baseUrl}) => {
 
   return (
     <div>
-      <SideNav />
+      <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
       <div className="w-full lg:w-[78%] ml-auto pb-5">
-        <TopNav />
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="">
-          <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+          <div className="flex justify-between items-center mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
               <div className="flex items-center gap-2">
                   <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                  <p className="text-[28px] text-primary-color font-[600]">Wallet</p>
+                  <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Wallet</p>
               </div>
               <div className='flex items-center gap-5'>
                 <button className="border border-[#1D1D1D] px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/bank-account')}>Bank Account</button>

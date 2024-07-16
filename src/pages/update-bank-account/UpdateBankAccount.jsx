@@ -28,6 +28,7 @@ const UpdateBankAccount = ({baseUrl}) => {
     const [primary_contact_email, setPrimaryContactEmail] = useState('')
     const [primary_contact_phone, setPrimaryContactPhone] = useState('')
     const [primary_contact_name, setPrimaryContactName] = useState('')
+    const [toggleNav, setToggleNav] = useState(false)
 
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
@@ -119,15 +120,15 @@ const UpdateBankAccount = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5 h-[100dvh]">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5 h-[100dvh]">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/bank-account')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Bank Account</p>
+                            <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Bank Account</p>
                         </div>
                         <p className='text-[#4F4F4F]'>Enter your preferred bank account for wallet deposits</p>
                     </div>

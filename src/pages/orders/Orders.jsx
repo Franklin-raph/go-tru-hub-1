@@ -15,6 +15,7 @@ const Orders = ({baseUrl}) => {
     const [msg, setMsg] = useState('')
     const filterArray = ['All', "Admin sales", "Admin Purchases"]
     const user = JSON.parse(localStorage.getItem('user'))
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getAllOrders(){
         const res = await fetch(`${baseUrl}/trade/admin/orders`,{
@@ -34,24 +35,23 @@ const Orders = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[1rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/wallet')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Orders</p>
+                            <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Orders</p>
                         </div>
                     </div>
-                    <div className='relative flex items-center gap-[10px]'>
+                    {/* <div className='relative flex items-center gap-[10px]'>
                         <div className='flex items-center bg-white p-2 rounded-[4px] cursor-pointer' onClick={() => setFilterDropdown(!filterDropDown)}>
                             <CiFilter className='mr-1'/>
                             <p className='px-5 border-l'>Filter</p>
                             <GoChevronDown />
                         </div>
-                        {/* <button className='text-white text-[14px] bg-[#2D3934] w-full rounded-[4px] px-[15px] py-[6px] text-center mx-auto'>Assign Pick Up</button> */}
                         <div className='absolute top-[40px] z-10'>
                             {
                                     filterDropDown &&
@@ -70,9 +70,9 @@ const Orders = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                <div class="relative overflow-x-auto mx-5 p-8 flex flex-col gap-3">
+                <div class="relative overflow-x-auto mx-5 p-2 lg:p-8 flex flex-col gap-3">
                     {/* <div>
                         <p>Nwaigwe Zainab Ayomide <span className='text-[#333]'>- Assignee</span> </p>
                     </div> */}

@@ -7,6 +7,7 @@ import { RxDashboard } from "react-icons/rx";
 import { HiCodeBracketSquare } from "react-icons/hi2";
 import { IoBookSharp } from "react-icons/io5";
 import { MdOutlineCalendarMonth } from "react-icons/md";
+import { IoIosLogOut } from 'react-icons/io';
 
 const SideNav = ({toggleNav, setToggleNav}) => {
 
@@ -150,6 +151,14 @@ const SideNav = ({toggleNav, setToggleNav}) => {
               <p className="">Account</p>
             </div>
           </Link>
+          <div className="flex items-center cursor-pointer py-[10px] lg:hidden"  onClick={() => {
+                localStorage.clear()
+                sessionStorage.clear()
+                window.location.href = '/'
+          }} >
+            <IoIosLogOut fontSize={"20px"}/>
+            <p className="ml-[15.67px]">Log-out</p>
+          </div>
         </div>
         <div className="mx-[32px] mt-10">
           <Link

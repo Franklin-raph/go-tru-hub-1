@@ -22,6 +22,7 @@ const WithdrawalInfo = ({baseUrl}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
     const { id } = useParams()
 
     async function getWithdrawalInfo(){
@@ -72,19 +73,19 @@ const WithdrawalInfo = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
-                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
+                <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div>
                         <div className="flex items-center gap-2">
                             <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/wallet')} className='cursor-pointer' />
-                            <p className="text-[28px] text-primary-color font-[600]">Withdrawal request</p>
+                            <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Withdrawal request</p>
                         </div>
                     </div>
                 </div>
-                <div className='flex gap-5 justify-center items-start w-[70%] mx-auto'>
+                <div className='flex flex-col md:flex-row gap-5 justify-center items-start lg:w-[70%] w-[95%] mx-auto'>
                     <div className='w-full'>
                         <div className="cursor-pointer gradient-bg p-4 rounded-[16px] shadow-lg text-white w-full">
                             <div className="flex justify-between items-center">
