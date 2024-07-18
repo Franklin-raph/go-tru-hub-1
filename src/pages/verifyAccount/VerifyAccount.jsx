@@ -98,7 +98,8 @@ const VerifyAccount = ({baseUrl}) => {
                     :
                     <button onClick={verifyAccount} className='text-white bg-primary-color w-full rounded-[4px] mt-[2.5rem] px-[35px] py-[16px] text-center mx-auto'>Proceed</button>
                 }
-                <p className='text-center mt-5' onClick={resendVerificationToken}>Resend verification code</p>
+                <p className='flex items-center justify-center gap-2 text-center mt-5'>Did not get a code? <span className='cursor-pointer text-secondary-color' onClick={resendVerificationToken}>Resend</span> </p>
+                {/* <p >Resend verification code</p> */}
                 </div>
             </div>
         </div>
