@@ -99,15 +99,22 @@ const CreateUser = ({baseUrl}) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [guardianDropDown, setGuardianDropDown] = useState(false)
 
+    const [createUnitModal, setCreateUnitModal] = useState(false)
+
     useEffect(() => {
         if(!user){
             navigate('/login')
             return
         }
-        getAllUnits()
+        
+        console.log(userType);
+        if(userType === "student"){
+            getAllUnits()
+        }
+
         getAllStudents()
         getAllGuardians()
-    },[])
+    },[userType])
 
     const [appPermissions, setAppPermissions] = useState([]);
 
@@ -152,6 +159,10 @@ const CreateUser = ({baseUrl}) => {
         })
         const data = await response.json()
         console.log(data);
+        if(data?.data?.units?.length === 0){
+            setCreateUnitModal("No units found. Please create units first.")
+            return
+        }
         setUnitsArray(data.data.units)
     }
 
@@ -622,7 +633,7 @@ const CreateUser = ({baseUrl}) => {
                         userType === 'student' &&
                         <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                             <div className='relative w-full'>
-                                <label className='block text-text-color text-left mb-2'>Pivot Unit <span className='text-red-500'>*</span></label>
+                                <label className='block text-text-color text-left mb-2'>Unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                     <input type="text" value={piviotUnit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
                                     <p className='text-[14px]'>{piviotUnitText}</p>
@@ -883,6 +894,21 @@ const CreateUser = ({baseUrl}) => {
         }
         {   msg &&
             <AlertModal msg={msg} alertType={alertType} setMsg={setMsg} alertTitle={alertTitle}/>
+        }
+
+        { createUnitModal && 
+          <>
+              <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {
+                setCreateUnitModal('')
+                }}>
+              </div>
+              <div className="flex items-center flex-col text-center justify-center gap-3 bg-white w-[450px] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+                  <img src="./images/failed.svg" alt="" />
+                  <p className='text-text-color font-[500]'>Units not found</p>
+                  <p className='text-[#6F7975] text-[14px]'>{createUnitModal}</p>
+                  <button className='text-white bg-primary-color rounded-[4px] mt-[1.5rem] px-[35px] py-[16px] text-center mx-auto' onClick={() => navigate('/create-unit')} >Proceed</button>
+              </div>
+          </>
         }
     </div>
   )

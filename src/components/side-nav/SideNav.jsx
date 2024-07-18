@@ -178,7 +178,7 @@ const SideNav = ({toggleNav, setToggleNav}) => {
                 <p className="text-[12px] font-[600] text-white" style={{ whiteSpace: "nowrap" }}>
                   {user && user.data.details.email}
                 </p>
-                <p className="text-[#6F7975]">Admin</p>
+                <p className="text-[#6F7975] capitalize">{user && user.data.details.role}</p>
               </div>
             </Link>
         </div>
