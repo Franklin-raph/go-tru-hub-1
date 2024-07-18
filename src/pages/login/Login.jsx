@@ -13,6 +13,8 @@ const Login = ({baseUrl}) => {
   const [msg, setMsg] = useState('')
   const [alertType, setAlertType] = useState()
 
+  const [verificationMsg, setVerificationMsg] = useState('')
+
   const body = {
     email,
     password
@@ -41,8 +43,16 @@ const Login = ({baseUrl}) => {
     if (!resp.ok) {
       setMsg(data.message);
       setAlertType('error')
-      return;
+      // return;
     }
+
+    if(data.message.includes("Account not verified")){
+      setVerificationMsg(data.message)
+      resendVerificationToken()
+      localStorage.setItem('reg-email', JSON.stringify(email))
+      // navigate('/verify-account')
+    }
+
     if(resp.ok) {
       localStorage.setItem("user", JSON.stringify(data));
       // window.location.href = '/#/dashboard'
@@ -53,6 +63,19 @@ const Login = ({baseUrl}) => {
     //   localStorage.setItem("agent", JSON.stringify(data.organization));
     // }
     // localStorage.setItem("token", data.token);
+  }
+
+  async function resendVerificationToken(){
+    // setLoading(true)
+    const res = await fetch(`${baseUrl}/resend-token`,{
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({email})
+      })
+      const data = await res.json()
+      console.log(res, data);
   }
 
 
@@ -88,6 +111,21 @@ const Login = ({baseUrl}) => {
 
         {
           msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
+        }
+
+        { verificationMsg && 
+          <>
+              <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {
+                setVerificationMsg('')
+                }}>
+              </div>
+              <div className="flex items-center flex-col text-center justify-center gap-3 bg-white w-[450px] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+                  <img src="./images/failed.svg" alt="" />
+                  <p className='text-text-color font-[500]'>Account Verification Failed</p>
+                  <p className='text-[#6F7975] text-[14px]'>{verificationMsg}</p>
+                  <button className='text-white bg-primary-color rounded-[4px] mt-[1.5rem] px-[35px] py-[16px] text-center mx-auto' onClick={() => navigate('/verify-account')} >Complete verification</button>
+              </div>
+          </>
         }
 
       </div>

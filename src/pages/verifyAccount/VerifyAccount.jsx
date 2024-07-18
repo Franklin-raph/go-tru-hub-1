@@ -41,6 +41,28 @@ const VerifyAccount = ({baseUrl}) => {
         console.log(res, data);
     }
 
+    async function resendVerificationToken(){
+        setIsLoading(true)
+        const res = await fetch(`${baseUrl}/resend-token`,{
+            method:"POST",
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body: JSON.stringify({email:JSON.parse(localStorage.getItem('reg-email'))})
+        })
+          const data = await res.json()
+          if(res) setIsLoading(false)
+          if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+          }
+          if(!res.ok){
+            setMsg(data.message);
+            setAlertType('error')
+        }
+          console.log(res, data);
+    }
+
   return (
     <>
         <Navbar />
@@ -76,6 +98,7 @@ const VerifyAccount = ({baseUrl}) => {
                     :
                     <button onClick={verifyAccount} className='text-white bg-primary-color w-full rounded-[4px] mt-[2.5rem] px-[35px] py-[16px] text-center mx-auto'>Proceed</button>
                 }
+                <p className='text-center mt-5' onClick={resendVerificationToken}>Resend verification code</p>
                 </div>
             </div>
         </div>
