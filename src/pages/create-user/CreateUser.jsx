@@ -107,14 +107,14 @@ const CreateUser = ({baseUrl}) => {
             return
         }
         
-        console.log(userType);
-        if(userType === "student"){
-            getAllUnits()
-        }
+        // console.log(userType);
+        // if(userType === "student"){
+        // }
+        getAllUnits()
 
         getAllStudents()
         getAllGuardians()
-    },[userType])
+    },[])
 
     const [appPermissions, setAppPermissions] = useState([]);
 
@@ -635,7 +635,7 @@ const CreateUser = ({baseUrl}) => {
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
-                                    <input type="text" value={piviotUnit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
+                                    <input type="text" value={piviotUnit} placeholder='Select Unit e.g Pri 1, JSS1, Year 2' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
                                     <p className='text-[14px]'>{piviotUnitText}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUnitDropDown(!unitDropDown)}/>
                                 </div>
@@ -659,7 +659,7 @@ const CreateUser = ({baseUrl}) => {
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Sub-unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px] relative'>
-                                    <input type="text" value={subUnit} placeholder='Select user type' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
+                                    <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
                                     <p className='text-[14px]'>{subUnitText}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setSubUnitDropDown(!subUnitDropDown)}/>
                                 </div>
@@ -902,7 +902,7 @@ const CreateUser = ({baseUrl}) => {
                 setCreateUnitModal('')
                 }}>
               </div>
-              <div className="flex items-center flex-col text-center justify-center gap-3 bg-white w-[450px] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+              <div className="flex items-center flex-col text-center justify-center gap-3 bg-white md:w-[450px] w-[95%] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
                   <img src="./images/failed.svg" alt="" />
                   <p className='text-text-color font-[500]'>Units not found</p>
                   <p className='text-[#6F7975] text-[14px]'>{createUnitModal}</p>

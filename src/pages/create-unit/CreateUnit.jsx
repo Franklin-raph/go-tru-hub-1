@@ -58,7 +58,7 @@ const CreateUnit = ({baseUrl}) => {
                       <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Create Unit</p>
                   </div>
               </div>
-              <div className='px-[10px] lg:px-[30px] w-[500px] mx-auto'>
+              <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                 <div className='mb-5'>
                     <p className='text-[#19201D]'>Unit</p>
                     <input type="text" onChange={e => setName(e.target.value)} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter unit name' />
