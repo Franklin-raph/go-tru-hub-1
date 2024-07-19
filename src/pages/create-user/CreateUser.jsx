@@ -635,8 +635,8 @@ const CreateUser = ({baseUrl}) => {
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
-                                    <input type="text" value={piviotUnit} placeholder='Select Unit e.g Pri 1, JSS1, Year 2' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
-                                    <p className='text-[14px]'>{piviotUnitText}</p>
+                                    <input type="text" value={piviotUnit} placeholder='Select Unit e.g Pri 1, JSS1, Year 2' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
+                                    <p className='text-[14px]'>{piviotUnitText ? piviotUnitText : <span className='text-gray-500'>Select Unit e.g Pri 1, JSS1, Year 2</span>}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUnitDropDown(!unitDropDown)}/>
                                 </div>
                                 {unitDropDown &&
@@ -659,8 +659,8 @@ const CreateUser = ({baseUrl}) => {
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Sub-unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px] relative'>
-                                    <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-1 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
-                                    <p className='text-[14px]'>{subUnitText}</p>
+                                    <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
+                                    <p className='text-[14px]'>{subUnitText ? subUnitText : <span className='text-gray-500'>Select sub unit e.g Primary 2A, JSS 3C, SS 1B</span> }</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setSubUnitDropDown(!subUnitDropDown)}/>
                                 </div>
                                 {subUnitDropDown &&
