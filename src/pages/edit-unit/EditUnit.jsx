@@ -15,6 +15,7 @@ const EditUnit = ({baseUrl}) => {
     const [name, setName] = useState('')
     const [loading, setLoading] = useState(false)
     const [toggleNav, setToggleNav] = useState(false)
+    const [deleteUnit, setDeleteUnit] = useState(false)
     const { id } = useParams()
 
     useEffect(() => {
@@ -72,6 +73,30 @@ const EditUnit = ({baseUrl}) => {
         }
     }
 
+    async function deleteUnitFn(){
+        setLoading(true)
+        const res = await fetch(`${baseUrl}/units/${id}`,{
+            method:"DELETE",
+            body: JSON.stringify({name}),
+            headers:{
+              'Authorization':`Bearer ${user.data.access_token}`
+          }
+        })
+        if(res) setLoading(false)
+        if(res.ok){
+          setMsg("Unit successfully deleted");
+          setAlertType('success');
+          setDeleteUnit(false);
+          navigate('/units')
+          return;
+        }
+        if(!res.ok){
+          setMsg("An error occured please contact support");
+          setAlertType('error');
+          return;
+        }
+    }
+
   return (
     <div>
       <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
@@ -83,6 +108,7 @@ const EditUnit = ({baseUrl}) => {
                       <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/units')} className='cursor-pointer' />
                       <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Update Unit</p>
                   </div>
+                  <button onClick={() => setDeleteUnit(true)} className='bg-[#19201D] py-2 px-4 rounded-[4px] text-white text-[14px]'>Delete Unit</button>
               </div>
               <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                 <div className='mb-5'>
@@ -101,6 +127,27 @@ const EditUnit = ({baseUrl}) => {
       {
           msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
       }
+      {
+            deleteUnit &&
+            <div style={{position:'fixed', width:'100%', left:'0', top:'0', zIndex:'99', display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', background:"rgba(18, 18, 18, 0.8)" }}>
+                <div className="bg-white" style={{ borderRadius:'10px' }}>
+                    {/* <i className=' ri-close-fill block text-[1.2rem] text-end mt-[1rem] mr-[1rem] cursor-pointer'></i> */}
+                    <div className="flex items-center justify-between mt-[1rem] px-[2rem] mb-[2rem] flex-col text-center py-2">
+                        <img src='./images/caution.svg' className='w-[60px]'/>
+                        <p className='text-gray-500 text-[15px] mb-2 text-center my-6'>Are you sure you want to delete this unit?</p>
+                        {
+                          loading ? 
+                          <BtnLoader bgColor="#191f1c"/>
+                          :
+                          <div className='flex items-center gap-4 mt-5'>
+                              <button className="py-2 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => setDeleteUnit(false)}>No</button>
+                              <button className='bg-[#19201D] py-2 px-4 rounded-[4px] text-white text-[14px]' onClick={deleteUnitFn}>Yes</button>
+                          </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
     </div>
   )
 }

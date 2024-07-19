@@ -100,7 +100,7 @@ const Dashboard = ({ baseUrl }) => {
               <p className="lg:text-[28px] text-[24px] mb-4 text-primary-color font-[600] w-full">Dashboard</p>
               <div className="flex items-center gap-3 w-full justify-end">
                 {/* <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/subscribe')}>Subscribe</button> */}
-                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Unit</button>
+                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Unit</button>
                 <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create User</button>
               </div>
             </div>
