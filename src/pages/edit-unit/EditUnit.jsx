@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideNav from '../../components/side-nav/SideNav'
 import TopNav from '../../components/top-nav/TopNav'
 import { useNavigate, useParams } from 'react-router-dom'
 import Alert from '../../components/alert/Alert'
 import BtnLoader from '../../components/btn-loader/BtnLoader'
 
-const EditUnit = () => {
+const EditUnit = ({baseUrl}) => {
 
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
@@ -17,7 +17,32 @@ const EditUnit = () => {
     const [toggleNav, setToggleNav] = useState(false)
     const { id } = useParams()
 
-    async function createUnit(){
+    useEffect(() => {
+        getUnitInfo()
+    },[])
+
+    async function getUnitInfo(){
+        setLoading(true)
+        const res = await fetch(`${baseUrl}/units/${id}`,{
+            headers:{
+              'Authorization':`Bearer ${user.data.access_token}`
+          }
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) setLoading(false)
+        if(res.ok){
+          setName(data?.data?.unit?.name);
+          return;
+        }
+        if(!res.ok){
+          setMsg(data.message);
+          setAlertType('error');
+          return;
+        }
+    }
+
+    async function updateUnit(){
         if(!name){
           setMsg("Unit name is required!");
           setAlertType('error');
@@ -25,7 +50,7 @@ const EditUnit = () => {
         }
         setLoading(true)
         console.log(JSON.stringify({name}));
-        const res = await fetch(`${baseUrl}/units`,{
+        const res = await fetch(`${baseUrl}/units/${id}`,{
             method:"PUT",
             body: JSON.stringify({name}),
             headers:{
@@ -62,13 +87,13 @@ const EditUnit = () => {
               <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                 <div className='mb-5'>
                     <p className='text-[#19201D]'>Unit</p>
-                    <input type="text" onChange={e => setName(e.target.value)} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter unit name' />
+                    <input type="text" onChange={e => setName(e.target.value)} value={name} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter unit name' />
                 </div>
                 {
                   loading ? 
                   <BtnLoader bgColor="#191f1c"/>
                   :
-                  <button onClick={createUnit} className='text-white bg-primary-color w-full rounded-[4px] mt-[.5rem] px-[35px] py-[16px] text-center mx-auto'>Create Unit</button>
+                  <button onClick={updateUnit} className='text-white bg-primary-color w-full rounded-[4px] mt-[.5rem] px-[35px] py-[16px] text-center mx-auto'>Update Unit</button>
                 }
               </div>
           </div>
