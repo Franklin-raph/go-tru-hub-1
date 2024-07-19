@@ -72,6 +72,7 @@ import EditTimeTable from './pages/edit-time-table/EditTimeTable'
 import UpdateOrgs from './pages/update-orgs/UpdateOrgs'
 import GuardianProfile from './pages/guardian-profile/GuardianProfile'
 import EditGuardian from './pages/edit-guardian/EditGuardian'
+import EditUnit from './pages/edit-unit/EditUnit'
 
 function App() {
 
@@ -150,6 +151,7 @@ function App() {
             <Route path='/update-orgs' element={<UpdateOrgs baseUrl={baseUrl}/>} />
             <Route path='/guardian-profile/:id' element={<GuardianProfile baseUrl={baseUrl}/>} />
             <Route path='/edit-guardian/:id' element={<EditGuardian baseUrl={baseUrl}/>} />
+            <Route path ="/edit-unit/:id" element={<EditUnit baseUrl={baseUrl}/>} />
             
 
             <Route path='*' element={<div>404</div>} />
