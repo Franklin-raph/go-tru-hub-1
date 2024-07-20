@@ -15,6 +15,7 @@ const Dashboard = ({ baseUrl }) => {
   const [allWithdrawals, setAllWithdrawals] = useState([])
   const [allProducts, setAllProducts] = useState([])
   const [toggleNav, setToggleNav] = useState(false)
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     getPassHistory();
@@ -100,8 +101,13 @@ const Dashboard = ({ baseUrl }) => {
               <p className="lg:text-[28px] text-[24px] mb-4 text-primary-color font-[600] w-full">Dashboard</p>
               <div className="flex items-center gap-3 w-full justify-end">
                 {/* <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/subscribe')}>Subscribe</button> */}
-                <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Unit</button>
-                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create User</button>
+                {
+                  orgzHistory?.totalStaffs > 1  ?
+                  <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Units</button>
+                  :
+                  <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => setModal("staff")}>Create Units</button>
+                }
+                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create Users</button>
               </div>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 bg-white px-5 py-5 rounded-[12px]">
@@ -241,6 +247,21 @@ const Dashboard = ({ baseUrl }) => {
       {/* {
         msg && <Alert msg={"Successfully Logged in"} setMsg={setMsg} alertType={'error'} />
       } */}
+
+        { modal === 'staff' && 
+          <>
+              <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {
+                setCreateUnitModal('')
+                }}>
+              </div>
+              <div className="flex items-center flex-col text-center justify-center gap-3 bg-white md:w-[450px] w-[95%] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+                  <img src="./images/failed.svg" alt="" />
+                  <p className='text-text-color font-[500]'>Staff(s) not found</p>
+                  <p className='text-[#6F7975] text-[14px]'>Please create at least a staff before creating a unit this operationn can be done, using the button below and choose staff in the user type drop down</p>
+                  <button className='text-white bg-primary-color rounded-[4px] mt-[1.5rem] px-[35px] py-[16px] text-center mx-auto' onClick={() => navigate('/create-user')} >Proceed</button>
+              </div>
+          </>
+        }
     </div>
   );
 }
