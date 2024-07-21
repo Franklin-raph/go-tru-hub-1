@@ -11,6 +11,7 @@ const SingleUser = ({baseUrl}) => {
     const navigate = useNavigate();
     const { id } = useParams()
     const [currentUser, setCurrentUser] = useState()
+    const [toggleNav, setToggleNav] = useState(false)
 
     async function getUserInfo(){
         const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
@@ -29,9 +30,9 @@ const SingleUser = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="w-full lg:w-[78%] ml-auto pb-5">
-          <TopNav />
+          <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="">
             <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                 <div className="flex items-center gap-2">

@@ -15,8 +15,10 @@ const GuardianProfile = ({baseUrl}) => {
   const [chosenTerm, setChosenTerm] = useState('')
   const [alertType, setAlertType] = useState()
   const { id } = useParams()
+  console.log(id, `${baseUrl}/users/get-user/${id}`);
   const [userProfile, setUserProfile] = useState({})
   const [children, setChildrenProfiles] = useState([])
+  const [toggleNav, setToggleNav] = useState(false)
 
   async function getUserInfo(){
     const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
@@ -25,8 +27,8 @@ const GuardianProfile = ({baseUrl}) => {
         }
     })
     const data = await res.json()
-    setUserProfile(data?.data?.user?.guardians)
-    console.log(data?.data?.user?.guardians);
+    setUserProfile(data?.data?.user)
+    console.log(data);
     // setFullName(data?.data?.user?.fullName)
     // setSelectedUnit(data?.data?.user?.piviotUnit?.name)
     // setSelectedSubUnit(data?.data?.user?.subUnit?.name)
@@ -75,9 +77,9 @@ const GuardianProfile = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
         <div className="w-full lg:w-[78%] ml-auto pb-5">
-            <TopNav />
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
@@ -148,12 +150,12 @@ const GuardianProfile = ({baseUrl}) => {
                     <p className='text-[#19201D] font-[600] mb-3'>Ward Profile Data</p>
                     <div className='grid grid-cols-2 gap-10'>
                         {
-                            children?.map(child => (
+                            userProfile?.children?.map(child => (
 
                                 <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl mb-10 w-full">
                                     <div className="p-8">
                                         <div className="flex items-center justify-center mb-5">
-                                            <img className="h-[120] w-[120px] rounded-full object-cover" src={child?.data?.user?.profileImage?.file} alt="Profile" />
+                                            <img className="h-[120] w-[120px] rounded-full object-cover" src={child?.profileImage?.file} alt="Profile" />
                                         </div>
                                         <div className="text-center">
                                         <div className="flex justify-between">
@@ -167,15 +169,15 @@ const GuardianProfile = ({baseUrl}) => {
                                         <div className="mt-6">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-gray-600">Full name</span>
-                                                <span className="font-medium">{child?.data?.user?.fullName}</span>
+                                                <span className="font-medium">{child?.fullName}</span>
                                             </div>
                                             <div className="flex justify-between items-center mt-6">
                                                 <span className="text-gray-600">Unit/Sub-unit</span>
-                                                <span className="font-medium">{child?.data?.user?.piviotUnit?.name} / {child?.data?.user?.subUnit?.name}</span>
+                                                <span className="font-medium">{child?.piviotUnit?.name} / {child?.subUnit?.name}</span>
                                             </div>
                                             <div className="flex justify-between items-center mt-6">
                                                 <span className="text-gray-600">Role</span>
-                                                <span className="font-medium">{child?.data?.user?.role}</span>
+                                                <span className="font-medium">{child?.role}</span>
                                             </div>
                                         </div>
                                         </div>

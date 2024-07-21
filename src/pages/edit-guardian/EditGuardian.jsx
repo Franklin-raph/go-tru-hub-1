@@ -18,6 +18,7 @@ const EditGuardian = ({baseUrl}) => {
   const [loading, setLoading] = useState(false)
   const [alertTitle, setAlertTitle] = useState('')
   const [fileUploadLoader, setfileUploadLoader] = useState(false)
+  const [toggleNav, setToggleNav] = useState(false)
   
 
   async function getGuardianInfo(){
@@ -64,20 +65,20 @@ const EditGuardian = ({baseUrl}) => {
 
   return (
     <div>
-      <SideNav />
-      <div className="w-[78%] ml-auto pb-5">
-          <TopNav />
+      <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+      <div className="w-full lg:w-[78%] ml-auto pb-5">
+          <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
           <div className="">
               <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                   <div>
                       <div className="flex items-center gap-2">
-                          <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/wallet')} className='cursor-pointer' />
-                          <p className="text-[28px] text-primary-color font-[600]">Edit Guardian's Data</p>
+                          <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/manage-users')} className='cursor-pointer' />
+                          <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Edit Guardian's Data</p>
                       </div>
                       {/* <p className='text-[#4F4F4F]'>Set maximum amount that should be in a user’s wallet</p> */}
                   </div>
               </div>
-              <div className='flex item-center justify-center flex-col w-[40%] mx-auto gap-8'>
+              <div className='flex item-center justify-center flex-col w-[90%] lg:w-[40%] mx-auto gap-8'>
                 <div className="">
                     <label className="block text-gray-700">Guardian's full name</label>
                     <input

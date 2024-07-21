@@ -21,7 +21,7 @@ const GuardianCard = ({id, currentUser}) => {
                 <img src="./images/frame-user.svg" alt="" />
                 <p>Guardian data</p>
             </div>
-            <img src="./images/edit.svg" alt="" className='cursor-pointer' onClick={() => navigate(`/guardian-profile/${id}`)} />
+            <img src="./images/edit.svg" alt="" className='cursor-pointer' onClick={() => navigate(`/guardian-profile/${currentUser?.user?.guardians?._id}`)} />
           </div>
 
           <div className="mt-6">

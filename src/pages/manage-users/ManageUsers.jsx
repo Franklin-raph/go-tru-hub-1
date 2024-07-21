@@ -15,14 +15,14 @@ const ManageUsers = ({baseUrl}) => {
   },[])
 
   async function getAllUsers(){
-    const res = await fetch(`${baseUrl}/users/get-users/student`,{
+    const res = await fetch(`${baseUrl}/users/get-users/role`,{
         headers:{
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data.access_token}`
         }
     })
     const data = await res.json()
-    console.log(data.data.users);
+    console.log(data.data);
     setAllUsers(data.data.users)
   }
 
@@ -73,6 +73,7 @@ const ManageUsers = ({baseUrl}) => {
                                     </td>
                                     <td class="px-6 py-4 text-[12px] md:text-[16px]">{user.email ? user.email : "N/A"}</td>
                                     <td class="px-6 py-4 capitalize text-[12px] md:text-[16px]">{user.role}</td>
+                                      {user._id}
                                     <td class="px-6 py-4 text-[12px] md:text-[16px]">{formatDate(user.createdAt)}</td>
                                     <td>
                                       <button className='text-white bg-[#2D3934] px-4 py-2 rounded-[4px] text-[12px] md:text-[16px]' onClick={() => {
@@ -80,7 +81,7 @@ const ManageUsers = ({baseUrl}) => {
                                           navigate(`/user/${user._id}`)
                                         }else if(user.role === "staff") {
                                           navigate(`/staff/${user._id}`)
-                                        }else{
+                                        }else if(user.role === "guardian") {
                                           navigate(`/guardian-profile/${user._id}`)
                                         }
                                       }}>View</button>  

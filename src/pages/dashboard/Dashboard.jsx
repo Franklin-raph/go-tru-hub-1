@@ -151,7 +151,7 @@ const Dashboard = ({ baseUrl }) => {
               </div>
               <div className="border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Guardians</p>
+                  <p className="text-[#4F4F4F]">Guardian</p>
                   <img src="./images/members.svg" alt="" />
                 </div>
                 <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalGuardian}</p>
@@ -162,7 +162,7 @@ const Dashboard = ({ baseUrl }) => {
               </div>
               <div className="border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-[#4F4F4F]">Staffs</p>
+                  <p className="text-[#4F4F4F]">Staff</p>
                   <img src="./images/members.svg" alt="" />
                 </div>
                 <p className="font-[600] text-text-color lg:text-[24px] text-[20px]">{orgzHistory?.totalStaffs}</p>
