@@ -109,14 +109,14 @@ const CreateUser = ({baseUrl}) => {
         }
         
         // console.log(userType);
-        // if(userType === "student"){
-        // }
-        getAllUnits()
-
+        if(userType === "student"){
+            getAllUnits()
+        }
+        
         getAllStudents()
         getOrgzHistory()
         getAllGuardians()
-    },[])
+    },[userType])
 
     const [appPermissions, setAppPermissions] = useState([]);
 
