@@ -271,6 +271,13 @@ const UnitAssignmentCreate = ({baseUrl}) => {
                                             </div>
                                         ))
                                     }
+                                    {
+                                        allSession?.length === 0 &&
+                                        <div className='flex items-center justify-center pt-10 text-center flex-col gap-7'>
+                                            <p>You have no session created yet, please create one</p>
+                                            <button onClick={() => navigate('/create-session')} className='text-white bg-primary-color w-1/2 rounded-[4px] mt-[.5rem] px-[15px] py-[8px] text-center mx-auto'>Create Session</button>
+                                        </div>
+                                    }
                                 </div>
                             }
                         </div>
@@ -293,6 +300,15 @@ const UnitAssignmentCreate = ({baseUrl}) => {
                                                 <p className='text-[#1D1D1D] capitalize text-[12px]'>{semester.name}</p>
                                             </div>
                                         ))
+                                    }
+
+                                    {
+                                        allSemesters?.length === 0 &&
+                                        <div className='flex items-center justify-center pt-10 text-center flex-col gap-2 text-gray-500 text-[14px]'>
+                                            <p>You have no semester created yet, please create one</p>
+                                            <p>Note: A session should exist before creating a semester</p>
+                                            <button onClick={() => navigate('/create-session')} className='text-white bg-primary-color w-1/2 rounded-[4px] mt-[.5rem] px-[15px] py-[8px] text-center mx-auto'>Create Session</button>
+                                        </div>
                                     }
                                 </div>
                             }
@@ -325,6 +341,14 @@ const UnitAssignmentCreate = ({baseUrl}) => {
                                                 <p className='text-[#1D1D1D] capitalize text-[12px]'>{assignment.name}</p>
                                             </div>
                                         ))
+                                    }
+
+                                    {
+                                        allAssignments?.length === 0 &&
+                                        <div className='flex items-center justify-center pt-10 text-center flex-col gap-2 text-gray-500 text-[14px]'>
+                                            <p>You have no assignment created yet, please create one</p>
+                                            <button onClick={() => navigate('/create-assignment')} className='text-white bg-primary-color w-1/2 rounded-[4px] mt-[.5rem] px-[15px] py-[8px] text-center mx-auto'>Create Assignment</button>
+                                        </div>
                                     }
                                 </div>
                             }

@@ -252,14 +252,14 @@ const SingleUnit = ({baseUrl}) => {
 
                 <div className="lg:m-[30px] m-[10px] p-4 rounded-lg shadow-md flex flex-col sm:flex-row gap-[3rem]">
                     <div className="p-4 rounded-lg flex-1 mr-4 w-full sm:w-1/2">
-                        <div className="mb-2 flex items-center justify-between">
+                        {/* <div className="mb-2 flex items-center justify-between">
                             <div>Created</div>
                             <div className="font-bold">January 29, 2024</div>
                         </div>
                         <div className="mb-2 flex items-center justify-between">
                             <div>Last updated</div>
                             <div className="font-bold">January 29, 2024</div>
-                        </div>
+                        </div> */}
                         <div className="mb-2 flex items-center justify-between">
                             <div>Sub-units</div>
                             <div className="font-bold">{unitSummary?.totalSubUnits}</div>

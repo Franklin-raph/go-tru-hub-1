@@ -32,6 +32,7 @@ const ViewSubUnit = ({baseUrl}) => {
     const [editSubUnit, setEditSubUnit] = useState(false)
     const [deleteSubUnit, setDeleteSubUnit] = useState(false)
     const [toggleNav, setToggleNav] = useState(false)
+    const [subUnitInfo, setSubUnitInfo] = useState()
     
 
     async function getSubUnitInfo(){
@@ -42,13 +43,14 @@ const ViewSubUnit = ({baseUrl}) => {
             }
         })
         const data = await res.json()
-        console.log(data);
+        console.log(data.data.unit);
         if(!res.ok){
             setMsg(data.message);
             setAlertType('error');
             return;
         }
         if(res.ok){
+            setSubUnitInfo(data?.data?.unit)
             setUnitName(data?.data?.unit?.name)
             setAllSubUnits(data.data.units);
             setAlertType('success');
@@ -185,11 +187,11 @@ const ViewSubUnit = ({baseUrl}) => {
                     <div className="p-4 rounded-lg flex-1 mr-4 w-full sm:w-1/2">
                         <div className="mb-2 flex items-center justify-between">
                             <div>Created</div>
-                            <div className="font-bold">January 29, 2024</div>
+                            <div className="font-bold">{new Date(subUnitInfo?.createdAt).toDateString()}</div>
                         </div>
                         <div className="mb-2 flex items-center justify-between">
                             <div>Last updated</div>
-                            <div className="font-bold">January 29, 2024</div>
+                            <div className="font-bold">{new Date(subUnitInfo?.updatedAt).toDateString()}</div>
                         </div>
                         <div className="mb-2 flex items-center justify-between">
                             <div>Assignments</div>

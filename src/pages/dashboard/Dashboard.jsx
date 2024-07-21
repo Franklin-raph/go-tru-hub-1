@@ -127,7 +127,7 @@ const Dashboard = ({ baseUrl }) => {
                 {
                   orgzHistory?.totalStaffs > 0  ?
                   <>
-                    <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Units</button>
+                    <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-units')}>Create Units</button>
                     <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={checkUnit}>Create Users</button>
                   </>
                   :
@@ -291,7 +291,7 @@ const Dashboard = ({ baseUrl }) => {
         { modal === 'units' && 
           <>
               <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {
-                setCreateUnitModal('')
+                setModal('')
                 }}>
               </div>
               <div className="flex items-center flex-col text-center justify-center gap-3 bg-white md:w-[450px] w-[95%] fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>

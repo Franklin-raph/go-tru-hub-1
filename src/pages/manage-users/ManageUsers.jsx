@@ -78,8 +78,10 @@ const ManageUsers = ({baseUrl}) => {
                                       <button className='text-white bg-[#2D3934] px-4 py-2 rounded-[4px] text-[12px] md:text-[16px]' onClick={() => {
                                         if(user.role === "student"){
                                           navigate(`/user/${user._id}`)
-                                        }else{
+                                        }else if(user.role === "staff") {
                                           navigate(`/staff/${user._id}`)
+                                        }else{
+                                          navigate(`/guardian-profile/${user._id}`)
                                         }
                                       }}>View</button>  
                                     </td>

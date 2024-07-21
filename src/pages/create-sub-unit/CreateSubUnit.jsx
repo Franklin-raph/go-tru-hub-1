@@ -49,7 +49,7 @@ const CreateSubUnit = ({baseUrl}) => {
     }
 
     async function getAllStaffs(){
-        const res = await fetch(`${baseUrl}/users/get-users/staffs?page=2`,{
+        const res = await fetch(`${baseUrl}/users/get-users/staffs`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`
@@ -84,7 +84,7 @@ const CreateSubUnit = ({baseUrl}) => {
         const data = await res.json()
         if(res) setLoading(false)
         if(res.ok){
-            setMsg(data.message);
+            setMsg("Sub unit created successfully!");
             setAlertType('success');
             return;
         }
@@ -110,7 +110,7 @@ const CreateSubUnit = ({baseUrl}) => {
                 <div className='px-[10px] lg:px-[30px]'>
                     <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                         <div className='relative w-full mb-5'>
-                            <p className='text-[#19201D]'>Select Pivot Unit</p>
+                            <p className='text-[#19201D]'>Select Unit</p>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                 <input type="text" value={unit} placeholder='Select user type' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent'/>
                                 <p className='text-[14px]'>{unitText}</p>

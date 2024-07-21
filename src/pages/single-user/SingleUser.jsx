@@ -30,7 +30,7 @@ const SingleUser = ({baseUrl}) => {
   return (
     <div>
         <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
           <TopNav />
           <div className="">
             <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">

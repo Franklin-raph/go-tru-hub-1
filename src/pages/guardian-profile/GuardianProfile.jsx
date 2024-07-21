@@ -76,7 +76,7 @@ const GuardianProfile = ({baseUrl}) => {
   return (
     <div>
         <SideNav />
-        <div className="w-[78%] ml-auto pb-5">
+        <div className="w-full lg:w-[78%] ml-auto pb-5">
             <TopNav />
             <div className="">
                 <div className="flex justify-between items-start bg-[#F2FCF7] px-[30px] py-[1rem]">

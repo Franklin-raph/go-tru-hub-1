@@ -51,7 +51,10 @@ const Units = ({baseUrl}) => {
                         <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Units</p>
                     </div>
                     <div className='flex items-center gap-5'>
-                        <button className="border border-[#2D3934] text-[#19201D] font-[600] px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-sub-unit')}>Create Sub-Unit</button>
+                        {
+                            allUnits.length > 0 &&
+                            <button className="border border-[#2D3934] text-[#19201D] font-[600] px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-sub-unit')}>Create Sub-Unit</button>
+                        }
                         <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-unit')}>Create Unit</button>
                     </div>
                 </div>
