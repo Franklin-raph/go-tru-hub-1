@@ -217,7 +217,7 @@ const Dashboard = ({ baseUrl }) => {
                 <div className="w-full bg-white rounded-[8px] mt-[1rem] p-5 h-[300px] overflow-y-scroll">
                   <div className="flex items-center justify-between text-[#4F4F4F] text-[14px] mb-6 font-[500]">
                     <p>Stock Update</p>
-                    <p>10 Products</p>
+                    <p>{allProducts?.length} Products</p>
                   </div>
                   {
                     allProducts && allProducts?.map((item, index) => {

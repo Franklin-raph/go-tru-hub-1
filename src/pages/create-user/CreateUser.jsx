@@ -662,7 +662,7 @@ const CreateUser = ({baseUrl}) => {
                                 <label className='block text-text-color text-left mb-2'>Unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                     <input type="text" value={piviotUnit} placeholder='Select Unit e.g Pri 1, JSS1, Year 2' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent text-[14px] sm:w-[200px]'/>
-                                    <p className='text-[14px]'>{piviotUnitText ? piviotUnitText : <span className='text-gray-500'>Select Unit e.g Pri 1, JSS1, Year 2</span>}</p>
+                                    <p className='md:text-[14px] text-[12px]'>{piviotUnitText ? piviotUnitText : <span className='text-gray-500'>Select Unit e.g Pri 1, JSS1, Year 2</span>}</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUnitDropDown(!unitDropDown)}/>
                                 </div>
                                 {unitDropDown &&
@@ -686,7 +686,7 @@ const CreateUser = ({baseUrl}) => {
                                 <label className='block text-text-color text-left mb-2'>Sub-unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px] relative'>
                                     <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
-                                    <p className='text-[14px]'>{subUnitText ? subUnitText : <span className='text-gray-500'>Select sub unit e.g Primary 2A, JSS 3C, SS 1B</span> }</p>
+                                    <p className='md:text-[14px] text-[12px]'>{subUnitText ? subUnitText : <span className='text-gray-500'>Select sub unit e.g Pri 2A, JSS 3C, SS 1B</span> }</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setSubUnitDropDown(!subUnitDropDown)}/>
                                 </div>
                                 {subUnitDropDown &&
@@ -712,7 +712,7 @@ const CreateUser = ({baseUrl}) => {
                         userType === 'staff' &&
                             <div className="mt-7">
                                 <label className='block text-text-color text-left mb-2'>Allow this admin access to <span className='text-red-500'>*</span></label>
-                                <div className='flex items-center'>
+                                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 items-center'>
                                     {
                                         adminAccessArray.map(access => (
                                             <div className='flex items-center gap-2 w-full rounded-[4px]'>
@@ -741,21 +741,30 @@ const CreateUser = ({baseUrl}) => {
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setGuardianDropDown(!guardianDropDown)}/>
                                 </div>
                                 {guardianDropDown &&
-                                    <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
-                                        {
-                                            allGuardians.map(guard => (
-                                                <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
-                                                    setGuardianDropDown(false)
-                                                    setGuardian(guard)
-                                                    // setPiviotUnitText(unit.name)
-                                                    // setPiviotUnit(unit._id)
-                                                    // getSubUnit(unit._id)
-                                                }}>
-                                                    <p className='text-[#1D1D1D] capitalize text-[12px]'>{guard.fullName}</p>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
+                                    <>
+                                        <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
+                                            {
+                                                allGuardians.map(guard => (
+                                                    <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
+                                                        setGuardianDropDown(false)
+                                                        setGuardian(guard)
+                                                        // setPiviotUnitText(unit.name)
+                                                        // setPiviotUnit(unit._id)
+                                                        // getSubUnit(unit._id)
+                                                    }}>
+                                                        <p className='text-[#1D1D1D] capitalize text-[12px]'>{guard.fullName}</p>
+                                                    </div>
+                                                ))
+                                            }
+                                            <>
+                                                {
+                                                    allGuardians?.length < 1 &&
+                                                    <p className='text-center text-[#98A2B3] text-sm'>No guardians found. Please add guardian by selecting user type to guardian.</p>
+                                                }
+                                            </>
+                                        </div>
+
+                                    </>
                                 }
                             </div>
                     }
