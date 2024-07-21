@@ -33,7 +33,7 @@ const CoOrdinator = ({baseUrl}) => {
     },[])
 
     async function getAllStaffs(){
-        const res = await fetch(`${baseUrl}/users/get-users/staffs?page=2`,{
+        const res = await fetch(`${baseUrl}/users/get-users/staff?role=staff`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`

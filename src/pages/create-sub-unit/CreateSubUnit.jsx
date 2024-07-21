@@ -49,7 +49,7 @@ const CreateSubUnit = ({baseUrl}) => {
     }
 
     async function getAllStaffs(){
-        const res = await fetch(`${baseUrl}/users/get-users/staffs`,{
+        const res = await fetch(`${baseUrl}/users/get-users/staff?role=staff`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`
@@ -134,7 +134,7 @@ const CreateSubUnit = ({baseUrl}) => {
                         </div>
 
                         <div className='mb-5'>
-                            <p className='text-[#19201D]'>Sub-unit name</p>
+                            <p className='text-[#19201D]'>Sub-unit name.</p>
                             <input type="text" onChange={e => setName(e.target.value)} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter Sub-unit name' />
                         </div>
 

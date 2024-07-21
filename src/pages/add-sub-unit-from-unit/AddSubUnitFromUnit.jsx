@@ -47,7 +47,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
     }
 
     async function getAllStaffs(){
-        const res = await fetch(`${baseUrl}/users/get-users/staffs?page=2`,{
+        const res = await fetch(`${baseUrl}/users/get-users/staff?role=staff`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`
@@ -109,7 +109,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
                 <div className=''>
                     <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                         <div className='relative w-full mb-5'>
-                            <p className='text-[#19201D]'>Select Pivot Unit</p>
+                            <p className='text-[#19201D]'>Select Unit</p>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                 <input type="text" value={unitName} placeholder='Select user type' className='outline-none rounded-[4px] bg-transparent'/>
                             </div>

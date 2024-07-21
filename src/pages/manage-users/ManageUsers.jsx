@@ -73,7 +73,6 @@ const ManageUsers = ({baseUrl}) => {
                                     </td>
                                     <td class="px-6 py-4 text-[12px] md:text-[16px]">{user.email ? user.email : "N/A"}</td>
                                     <td class="px-6 py-4 capitalize text-[12px] md:text-[16px]">{user.role}</td>
-                                      {user._id}
                                     <td class="px-6 py-4 text-[12px] md:text-[16px]">{formatDate(user.createdAt)}</td>
                                     <td>
                                       <button className='text-white bg-[#2D3934] px-4 py-2 rounded-[4px] text-[12px] md:text-[16px]' onClick={() => {
