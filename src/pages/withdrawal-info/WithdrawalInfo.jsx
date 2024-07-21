@@ -99,11 +99,14 @@ const WithdrawalInfo = ({baseUrl}) => {
                             <div className="mt-4 mb-[50px]">
                                 <p className="text-lg font-bold">₦100000</p>
                             </div>
-                            <p className='text-[12px]'>Members Full Nmae</p>
+                            <div className="flex justify-between items-center">
+                                <p className='text-[12px]'>{accountName}</p>
+                                <p className='text-[12px]'>{accountNumber}</p>
+                            </div>
                         </div>
-                        <p className='text-[14px] my-5'>User Account</p>
+                        {/* <p className='text-[14px] my-5'>User Account</p>
                         <p className='my-3'>{accountName}</p>
-                        <p>{bankName} ({accountNumber})</p>
+                        <p>{bankName} ({accountNumber})</p> */}
                     </div>
                     <div className='flex item-center justify-center flex-col mx-auto gap-8 w-full'>
                         <div className='w-full'>

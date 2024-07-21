@@ -124,7 +124,7 @@ const Wallet = ({baseUrl}) => {
                         return(
                           <tr className='text-[#19201D]'>
                             <td className='px-6 py-3'>{index + 1}</td>
-                            <td className='px-6'>{withdrawal?.user || 'N/A'}</td>
+                            <td className='px-6'>{withdrawal?.user?.fullName || 'N/A'}</td>
                             <td className='px-6'><p className="flex items-center gap-3">{formattedDate} <p className="p-[3px] bg-[#828282] rounded-full"></p> {formattedTime}</p></td>
                             <td className='flex items-center gap-1 py-3 px-6'> <TbCurrencyNaira className='text-[20px]'/> {withdrawal.amount}</td>
                             <td className='pr-5 px-6'>

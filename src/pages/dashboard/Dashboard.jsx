@@ -107,7 +107,7 @@ const Dashboard = ({ baseUrl }) => {
   function checkUnit(){
     console.log(unitsArray.length);
     if(unitsArray?.length > 0){
-      navigate('/create-unit')
+      navigate('/create-user')
     } else {
       setModal('units')
     }
