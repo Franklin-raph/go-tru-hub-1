@@ -102,12 +102,14 @@ const Dashboard = ({ baseUrl }) => {
               <div className="flex items-center gap-3 w-full justify-end">
                 {/* <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/subscribe')}>Subscribe</button> */}
                 {
-                  orgzHistory?.totalStaffs > 1  ?
-                  <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Units</button>
+                  orgzHistory?.totalStaffs > 0  ?
+                  <>
+                    <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/units')}>Create Units</button>
+                    <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create Users</button>
+                  </>
                   :
-                  <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => setModal("staff")}>Create Units</button>
+                  <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate("/create-user")}>Create Staff</button>
                 }
-                <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-user')}>Create Users</button>
               </div>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 bg-white px-5 py-5 rounded-[12px]">

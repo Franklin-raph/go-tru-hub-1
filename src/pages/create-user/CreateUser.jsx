@@ -21,7 +21,6 @@ const CreateUser = ({baseUrl}) => {
 
     const [userTypeDropDown, setUserTypeDropDown] = useState(false)
     const [fileUploadLoader, setfileUploadLoader] = useState(false)
-    const [userType, setUserType] = useState('')
     const [msg, setMsg] = useState('')
     const [alertType, setAlertType] = useState('')
     const [alertTitle, setAlertTitle] = useState('')
@@ -71,6 +70,11 @@ const CreateUser = ({baseUrl}) => {
 
     const userTypeArray = [
         {
+            label:'staff',
+            info1:'This user carries out specific assignment that can be monitored e.g a teacher',
+            info2:''
+        },
+        {
             label:'student',
             info1:'This user is the direct recipient of the gotruhub tokens e.g a student',
             info2:'*To create this user category, you are required to create units in monitor first which this user can belong to.'
@@ -80,17 +84,13 @@ const CreateUser = ({baseUrl}) => {
             info1:'This user is a guardian/supervisor of a member e.g a parent',
             info2:'*To create this user category, you are required to have created a member to which this user can be linked'
         },
-        {
-            label:'staff',
-            info1:'This user carries out specific assignment that can be monitored e.g a teacher',
-            info2:''
-        },
         // {
         //     label:'admin',
         //     info1:'This user has admin level access to one or more of the features on gotruhub e.g a staff',
         //     info2:''
         // }
     ]
+    const [userType, setUserType] = useState(userTypeArray[0].label)
     const listOfGuardians = [ 'Celestine Ojiakor', 'Baron White', 'Kasiemobe Egu', 'Jane Doe' ]
     const linkToMemberArray = ['Brother', 'Sister', 'Father', 'Mother', 'Uncle', 'Teacher']
     const [allStudent, setAllStudent] = useState([])
@@ -100,6 +100,7 @@ const CreateUser = ({baseUrl}) => {
     const [guardianDropDown, setGuardianDropDown] = useState(false)
 
     const [createUnitModal, setCreateUnitModal] = useState(false)
+    const [orgzHistory, setOrgzHistory] = useState();
 
     useEffect(() => {
         if(!user){
@@ -113,6 +114,7 @@ const CreateUser = ({baseUrl}) => {
         getAllUnits()
 
         getAllStudents()
+        getOrgzHistory()
         getAllGuardians()
     },[])
 
@@ -164,6 +166,17 @@ const CreateUser = ({baseUrl}) => {
             return
         }
         setUnitsArray(data.data.units)
+    }
+
+    async function getOrgzHistory() {
+        const res = await fetch(`${baseUrl}/my-orgnz-summary`, {
+          headers: {
+            'Authorization': `Bearer ${user.data.access_token}`
+          }
+        });
+        const data = await res.json();
+        setOrgzHistory(data.data);
+        console.log(data);
     }
 
     async function getSubUnit(id){
@@ -454,7 +467,15 @@ const CreateUser = ({baseUrl}) => {
         <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="lg:px-[30px] px-[10px] py-[1rem]">
                 <div className="flex items-center justify-between mb-[3rem]">
-                    <p className="text-[24px] lg:text-[28px] text-primary-color font-[600]">Create User</p>
+                    
+                    {
+                        orgzHistory?.totalStaffs > 0  ?
+                        <>
+                            <p className="text-[24px] lg:text-[28px] text-primary-color font-[600]">Create User</p>
+                        </>
+                        :
+                        <p className="text-[24px] lg:text-[28px] text-primary-color font-[600]">Create Staff</p>
+                    }
                 </div>
                 <div>
                     <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
@@ -530,7 +551,12 @@ const CreateUser = ({baseUrl}) => {
                             <label className='block text-text-color text-left mb-2'>User Type <span className='text-red-500'>*</span></label>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                 <input type="text" value={userType} placeholder='Select user type' className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
-                                <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUserTypeDropDown(!userTypeDropDown)}/>
+                                {
+                                    orgzHistory?.totalStaffs > 0  ?
+                                    <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUserTypeDropDown(!userTypeDropDown)}/>
+                                    :
+                                    ""
+                                }
                             </div>
                             {userTypeDropDown &&
                                 <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
