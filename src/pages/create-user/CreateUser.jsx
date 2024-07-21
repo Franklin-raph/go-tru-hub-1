@@ -129,7 +129,7 @@ const CreateUser = ({baseUrl}) => {
     };
 
     async function getAllStudents(){
-        const response = await fetch(`${baseUrl}/users/get-users/student`, {
+        const response = await fetch(`${baseUrl}/users/get-users/student?role=student`, {
             method: 'GET',
             headers: {
                 Authorization:`Bearer ${user.data.access_token}`
@@ -141,7 +141,7 @@ const CreateUser = ({baseUrl}) => {
     }
 
     async function getAllGuardians(){
-        const response = await fetch(`${baseUrl}/users/get-users/guardian`, {
+        const response = await fetch(`${baseUrl}/users/get-users/guardian?role=guardian`, {
             method: 'GET',
             headers: {
                 Authorization:`Bearer ${user.data.access_token}`
@@ -559,7 +559,7 @@ const CreateUser = ({baseUrl}) => {
                                 }
                             </div>
                             {userTypeDropDown &&
-                                <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
+                                <div className='py-5 bg-white border absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
                                     {
                                         userTypeArray.map(type => (
                                             <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
@@ -567,7 +567,7 @@ const CreateUser = ({baseUrl}) => {
                                                 setAsignGuardian(false)
                                                 setUserType(type.label)
                                             }}>
-                                                <p className='text-[#1D1D1D] capitalize text-[12px]'>{type.label}</p>
+                                                <p className='text-[#1D1D1D] capitalize text-[12px] font-[500]'>{type.label}</p>
                                                 <p className='text-[#828282] mt-2 mb-3 text-[12px]'>{type.info1}</p>
                                                 <p className='text-[#865C1D] text-[12px]'>{type.info2}</p>
                                             </div>

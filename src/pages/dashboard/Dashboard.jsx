@@ -127,7 +127,7 @@ const Dashboard = ({ baseUrl }) => {
                 {
                   orgzHistory?.totalStaffs > 0  ?
                   <>
-                    <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-units')}>Create Units</button>
+                    <button className="py-3 px-4 border border-[#1D1D1D] rounded-[8px] text-[14px] lg:w-auto w-full" onClick={() => navigate('/create-unit')}>Create Units</button>
                     <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px] lg:w-auto w-full" onClick={checkUnit}>Create Users</button>
                   </>
                   :
