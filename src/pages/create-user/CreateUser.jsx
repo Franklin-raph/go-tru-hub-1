@@ -685,7 +685,7 @@ const CreateUser = ({baseUrl}) => {
                             <div className='relative w-full'>
                                 <label className='block text-text-color text-left mb-2'>Sub-unit <span className='text-red-500'>*</span></label>
                                 <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px] relative'>
-                                    <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent sm:w-[200px]'/>
+                                    <input type="text" value={subUnit} placeholder='Select sub unit e.g Primary 2A, JSS 3C, SS 1B' className='absolute opacity-0 outline-none rounded-[4px] bg-transparent w-[200px]'/>
                                     <p className='md:text-[14px] text-[12px]'>{subUnitText ? subUnitText : <span className='text-gray-500'>Select sub unit e.g Pri 2A, JSS 3C, SS 1B</span> }</p>
                                     <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setSubUnitDropDown(!subUnitDropDown)}/>
                                 </div>
