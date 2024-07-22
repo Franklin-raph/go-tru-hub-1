@@ -480,7 +480,7 @@ const CreateUser = ({baseUrl}) => {
                 <div>
                     <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                         <div className='relative w-full'>
-                            <label className='block text-text-color text-left mb-2'>User Type <span className='text-red-500'>*</span></label>
+                            <label className='block text-text-color text-left mb-2'>Create staff below or use drop down for others <span className='text-red-500'>*</span></label>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                 <input type="text" value={userType} placeholder='Select user type' className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
                                 {
