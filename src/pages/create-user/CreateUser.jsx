@@ -623,7 +623,7 @@ const CreateUser = ({baseUrl}) => {
                                 <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setLinkToMemberDropDown(!linkToMemberDropDown)}/>
                             </div>
                             {linkToMemberDropDown &&
-                                <div className='py-5 bg-white absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
+                                <div className='py-5 bg-white border absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
                                     {
                                         allStudent.map(member => (
                                             // <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
@@ -649,6 +649,10 @@ const CreateUser = ({baseUrl}) => {
                                                 )} */}
                                             </div>
                                         ))
+                                    }
+                                    {
+                                        allStudent.length < 1 &&
+                                        <div className='py-5 text-center text-[13px] text-[#98A2B3] pt-3'>No students found, please create one, by selecting student in the user type drop down</div>
                                     }
                                 </div>
                             }
@@ -702,6 +706,16 @@ const CreateUser = ({baseUrl}) => {
                                                 </div>
                                             ))
                                         }
+
+                                        {
+                                            subUnitsArray?.length < 1 &&
+                                            <div className='flex text-center items-center flex-col gap-2 text-[13px] text-[#98A2B3] pt-3'>
+                                                <p>No sub unit found. Please create a sub unit first using the button below.</p>
+                                                <p>Note: A unit should exist before creating a sub unit</p>
+                                                <button onClick={() => navigate('/units')} className='text-white bg-primary-color w-1/2 rounded-[4px] mt-[.5rem] px-[15px] py-[8px] text-center mx-auto'>Create sub unit</button>
+                                            </div>
+                                        }
+
                                     </div>
                                 }
                             </div>
@@ -779,7 +793,7 @@ const CreateUser = ({baseUrl}) => {
                             :
                             <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                 <img src="./images/file-upload.svg" alt="" />
-                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                 <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                 <div className='flex items-center gap-[15px] w-full mt-5'>
                                     <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
@@ -808,7 +822,7 @@ const CreateUser = ({baseUrl}) => {
                                     </label>
                                     <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                         <img src="./images/file-upload.svg" alt="" />
-                                        <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                        <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                         <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                         <div className='flex items-center gap-[15px] w-full mt-5'>
                                             <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
@@ -831,7 +845,7 @@ const CreateUser = ({baseUrl}) => {
                                     </label>
                                     <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                         <img src="./images/file-upload.svg" alt="" />
-                                        <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                        <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                         <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                         <div className='flex items-center gap-[15px] w-full mt-5'>
                                             <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
@@ -854,7 +868,7 @@ const CreateUser = ({baseUrl}) => {
                             </label>
                             <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                 <img src="./images/file-upload.svg" alt="" />
-                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                 <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                 <div className='flex items-center gap-[15px] w-full mt-5'>
                                     <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
@@ -871,7 +885,7 @@ const CreateUser = ({baseUrl}) => {
                             </label>
                             <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                 <img src="./images/file-upload.svg" alt="" />
-                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                 <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                 <div className='flex items-center gap-[15px] w-full mt-5'>
                                     <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
@@ -888,7 +902,7 @@ const CreateUser = ({baseUrl}) => {
                             </label>
                             <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
                                 <img src="./images/file-upload.svg" alt="" />
-                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367]'>or drag and drop</span> </p>
+                                <p className='text-text-color font-[600] mt-5'>Click to upload <span className='font-[400] text-[#475367] hidden'>or drag and drop</span> </p>
                                 <p className='text-[#98A2B3]'>PNG, JPG (max. 5mb)</p>
                                 <div className='flex items-center gap-[15px] w-full mt-5'>
                                     <div className='w-[35%] ml-auto h-[2px] bg-[#F0F2F5]'></div>
