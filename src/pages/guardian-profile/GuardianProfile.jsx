@@ -163,7 +163,7 @@ const GuardianProfile = ({baseUrl}) => {
                                                 {/* <img src={child?.data?.user?.profileImage.file} alt="" /> */}
                                                 <p>Ward data</p>
                                             </div>
-                                            <img src="./images/edit.svg" alt="" className='cursor-pointer' onClick={() => navigate(`/profile-edit/${id}`)} />
+                                            <img src="./images/edit.svg" alt="" className='cursor-pointer' onClick={() => navigate(`/profile-edit/${child._id}`)} />
                                         </div>
 
                                         <div className="mt-6">

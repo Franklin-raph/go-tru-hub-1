@@ -82,10 +82,10 @@ const SideNav = ({toggleNav, setToggleNav}) => {
                   <img src="./images/orders.svg"/>
                   <p className={ location.pathname.includes("order") ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Orders</p>
                 </div>
-                <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/transaction-history')}>
+                {/* <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/transaction-history')}>
                   <img src="./images/clock-1.svg"/>
                   <p className={ location.pathname.includes("/transaction-history") ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Transaction History</p>
-                </div>
+                </div> */}
                 <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/inventory')}>
                   <img src="./images/clock-1.svg"/>
                   <p className={ location.pathname.includes("/inventory") ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Inventory</p>

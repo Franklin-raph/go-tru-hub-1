@@ -372,7 +372,7 @@ const CreateUser = ({baseUrl}) => {
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${user.data.access_token}`
                 },
-                body:JSON.stringify({ fullName, profileImage, role:userType, piviotUnit, subUnit, regNum, guardians:guardian._id })
+                body:JSON.stringify({ fullName, profileImage, role:userType, piviotUnit, subUnit, regNum, guardians:guardian?._id })
             })
             const data = await res.json()
             if(res) setIsLoading(false)
@@ -405,12 +405,12 @@ const CreateUser = ({baseUrl}) => {
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${user.data.access_token}`
                 },
-                body:JSON.stringify({ fullName, children, profileImage:guardians, relationImage, role:userType, signature, email, regNum })
+                body:JSON.stringify({ fullName, profileImage:guardians, relationImage, role:userType, signature, email, regNum })
             })
             const data = await res.json()
             if(res) setIsLoading(false)
             if(res.ok) {
-                setMsg("User Created Successfully");
+                setMsg("Guardian Created Successfully");
                 setAlertType('success')
                 setAlertTitle('Success')
               }
@@ -587,7 +587,7 @@ const CreateUser = ({baseUrl}) => {
                         }
                     </div>
 
-                    {
+                    {/* {
                         userType === 'guardian'&&
                         <div className='relative w-full mt-7'>
                             <label className='block text-text-color text-left mb-2'>Member / Child / Children<span className='text-red-500' onClick={() => console.log({children, selectedStudents})}>*</span></label>
@@ -598,11 +598,7 @@ const CreateUser = ({baseUrl}) => {
                                         {
                                             selectedStudents.map(member => (
                                                 <div key={member._id} className="flex items-center gap-2 text-[12px] bg-gray-200 rounded-full px-3">
-                                                    {/* <input
-                                                        type="checkbox"
-                                                        checked={selectedStudents.includes(member._id)}
-                                                        onChange={() => handleStudentSelect(member._id)}
-                                                    /> */}
+                                                    
                                                     <p>{member.fullName}</p>
                                                     <button
                                                         className="text-red-500"
@@ -610,8 +606,6 @@ const CreateUser = ({baseUrl}) => {
                                                     >
                                                         x
                                                     </button>
-                                                    {/* {selectedStudents.includes(member._id) && (
-                                                    )} */}
                                                 </div>
                                             ))
                                         }
@@ -626,11 +620,7 @@ const CreateUser = ({baseUrl}) => {
                                 <div className='py-5 bg-white border absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
                                     {
                                         allStudent.map(member => (
-                                            // <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
-                                            //     setLinkToMemberDropDown(false)
-                                            // }}>
-                                            //     <p className='text-[#828282] mt-2 text-[12px]'>{member.fullName}</p>
-                                            // </div>
+                                            
                                             <div key={member._id} className="flex items-center gap-2">
                                                 <input
                                                     type="checkbox"
@@ -639,14 +629,7 @@ const CreateUser = ({baseUrl}) => {
                                                 />
                                                 <p className='text-[#828282] mt-2 text-[12px]'>{member.fullName}</p>
                                                 <p className='text-[#828282] mt-2 text-[12px]'>({member.regNum})</p>
-                                                {/* {selectedStudents.includes(member._id) && (
-                                                <button
-                                                    className="text-red-500"
-                                                    onClick={() => handleStudentDeselect(member._id)}
-                                                >
-                                                    x
-                                                </button>
-                                                )} */}
+                                                
                                             </div>
                                         ))
                                     }
@@ -657,7 +640,7 @@ const CreateUser = ({baseUrl}) => {
                                 </div>
                             }
                         </div>
-                    }
+                    } */}
 
                     {
                         userType === 'student' &&

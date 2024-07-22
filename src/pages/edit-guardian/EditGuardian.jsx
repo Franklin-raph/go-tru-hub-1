@@ -29,6 +29,8 @@ const EditGuardian = ({baseUrl}) => {
     })
     const data = await res.json()
     setGuardian(data?.data?.user)
+    setFullName(data?.data?.user?.fullName)
+    setEmail(data?.data?.user?.email)
     setProfileImage(data?.data?.user?.profileImage)
     console.log(data?.data?.user);
   }
@@ -59,6 +61,43 @@ const EditGuardian = ({baseUrl}) => {
     }
   }
 
+  async function handleSubmit(e){
+    e.preventDefault()
+    console.log({
+      fullName,
+      email,
+      profileImage:profileImage._id
+    });
+    setLoading(true)
+    const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
+      method:"PUT",
+      headers:{
+          'Content-Type':'application/json',
+          Authorization:`Bearer ${user.data.access_token}`
+      },
+      body:JSON.stringify({
+        fullName,
+        email,
+        profileImage:profileImage._id
+      })
+    })
+    const data = await res.json()
+    console.log(data);
+    setLoading(false)
+    if(res) setfileUploadLoader(false)
+    if(res.ok) {
+      setMsg("Guardian's data updated successfully");
+      setAlertType('success')
+      setAlertTitle('Success')
+      navigate('/manage-users')
+    }
+    if(!res.ok){
+      setMsg("Failed to update guardian's data");
+      setAlertType('error')
+      setAlertTitle('Failed')
+    }
+  }
+
   useEffect(() => {
     getGuardianInfo()
   },[])
@@ -84,7 +123,7 @@ const EditGuardian = ({baseUrl}) => {
                     <input
                         type="text"
                         name="fullName"
-                        value={guardian?.fullName}
+                        value={fullName}
                         onChange={e => setFullName(e.target.value)}
                         className="mt-1 p-2 border rounded w-full"
                     />
@@ -94,7 +133,7 @@ const EditGuardian = ({baseUrl}) => {
                     <input
                         type="text"
                         name="fullName"
-                        value={guardian?.email}
+                        value={email}
                         onChange={e => setEmail(e.target.value)}
                         className="mt-1 p-2 border rounded w-full"
                     />
@@ -138,7 +177,7 @@ const EditGuardian = ({baseUrl}) => {
                       loading ? 
                       <BtnLoader bgColor="#191f1c"/>
                       :
-                      <button type="submit" className="bg-primary-color text-white py-2 px-4 rounded">Save changes</button>
+                      <button type="submit" className="bg-primary-color text-white py-2 px-4 rounded" onClick={handleSubmit}>Save changes</button>
                   }
               </div>
             </div>
