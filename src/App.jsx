@@ -74,6 +74,7 @@ import GuardianProfile from './pages/guardian-profile/GuardianProfile'
 import EditGuardian from './pages/edit-guardian/EditGuardian'
 import EditUnit from './pages/edit-unit/EditUnit'
 import EditStaff from './pages/edit-staff/EditStaff'
+import Norlics from './pages/Norlics'
 
 function App() {
 
@@ -153,6 +154,7 @@ function App() {
             <Route path='/guardian-profile/:id' element={<GuardianProfile baseUrl={baseUrl}/>} />
             <Route path='/edit-guardian/:id' element={<EditGuardian baseUrl={baseUrl}/>} />
             <Route path ="/edit-unit/:id" element={<EditUnit baseUrl={baseUrl}/>} />
+            <Route path ="/norlics" element={<Norlics />} />
             
 
             <Route path='*' element={<div>404</div>} />

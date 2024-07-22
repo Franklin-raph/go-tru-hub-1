@@ -479,6 +479,47 @@ const CreateUser = ({baseUrl}) => {
                 </div>
                 <div>
                     <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
+                        <div className='relative w-full'>
+                            <label className='block text-text-color text-left mb-2'>User Type <span className='text-red-500'>*</span></label>
+                            <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
+                                <input type="text" value={userType} placeholder='Select user type' className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
+                                {
+                                    orgzHistory?.totalStaffs > 0  ?
+                                    <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUserTypeDropDown(!userTypeDropDown)}/>
+                                    :
+                                    ""
+                                }
+                            </div>
+                            {userTypeDropDown &&
+                                <div className='py-5 bg-white border absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
+                                    {
+                                        userTypeArray.map(type => (
+                                            <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
+                                                setUserTypeDropDown(false)
+                                                setAsignGuardian(false)
+                                                setUserType(type.label)
+                                            }}>
+                                                <p className='text-[#1D1D1D] capitalize text-[12px] font-[500]'>{type.label}</p>
+                                                <p className='text-[#828282] mt-2 mb-3 text-[12px]'>{type.info1}</p>
+                                                <p className='text-[#865C1D] text-[12px]'>{type.info2}</p>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
+                        </div>
+                        {
+                            userType === 'student' &&
+                            <div className='w-full'>
+                                <label className='block text-text-color text-left mb-2'>Registeration Number <span className='text-red-500'>*</span></label>
+                                <div className='px-4 py-3 border w-full rounded-[4px]'>
+                                    <input onChange={e => setRegNum(e.target.value)} placeholder='Enter Registeration Number' type="text" className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
                         <div className='w-full'>
                             <label className='block text-left mb-2 text-text-color'>Full Name <span className='text-red-500'>*</span></label>
                             <div className='px-4 py-3 outline-none border w-full rounded-[4px]'>
@@ -545,47 +586,6 @@ const CreateUser = ({baseUrl}) => {
                             }
                         </>
                     } */}
-
-                    <div className='mt-7 flex items-center gap-5 w-full flex-col sm:flex-row'>
-                        <div className='relative w-full'>
-                            <label className='block text-text-color text-left mb-2'>User Type <span className='text-red-500'>*</span></label>
-                            <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
-                                <input type="text" value={userType} placeholder='Select user type' className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
-                                {
-                                    orgzHistory?.totalStaffs > 0  ?
-                                    <IoChevronDownOutline color="d7d7d7" cursor='pointer' onClick={() => setUserTypeDropDown(!userTypeDropDown)}/>
-                                    :
-                                    ""
-                                }
-                            </div>
-                            {userTypeDropDown &&
-                                <div className='py-5 bg-white border absolute overflow-y-scroll h-[220px] px-3 rounded-[12px] mt-2 z-[10] w-full'>
-                                    {
-                                        userTypeArray.map(type => (
-                                            <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
-                                                setUserTypeDropDown(false)
-                                                setAsignGuardian(false)
-                                                setUserType(type.label)
-                                            }}>
-                                                <p className='text-[#1D1D1D] capitalize text-[12px] font-[500]'>{type.label}</p>
-                                                <p className='text-[#828282] mt-2 mb-3 text-[12px]'>{type.info1}</p>
-                                                <p className='text-[#865C1D] text-[12px]'>{type.info2}</p>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            }
-                        </div>
-                        {
-                            userType === 'student' &&
-                            <div className='w-full'>
-                                <label className='block text-text-color text-left mb-2'>Registeration Number <span className='text-red-500'>*</span></label>
-                                <div className='px-4 py-3 border w-full rounded-[4px]'>
-                                    <input onChange={e => setRegNum(e.target.value)} placeholder='Enter Registeration Number' type="text" className='outline-none w-full rounded-[4px] bg-transparent text-[14px]'/>
-                                </div>
-                            </div>
-                        }
-                    </div>
 
                     {/* {
                         userType === 'guardian'&&
