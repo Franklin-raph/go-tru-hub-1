@@ -26,7 +26,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
     const [toggleNav, setToggleNav] = useState(false)
 
     async function getUnitInfo(){
-        const res = await fetch(`${baseUrl}/unit/${id}/subunits`,{
+        const res = await fetch(`${baseUrl}/units/${id}`,{
             method:"GET",
             headers:{
                 'Authorization':`Bearer ${user.data.access_token}`
@@ -40,7 +40,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
             return;
         }
         if(res.ok){
-            setUnitName(data?.data?.units[0]?.unit?.name)
+            setUnitName(data?.data?.unit?.name)
             setAlertType('success');
             return;
         }
@@ -78,7 +78,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
         const data = await res.json()
         if(res) setLoading(false)
         if(res.ok){
-            setMsg(data.message);
+            setMsg("Sub Unit created successfully!");
             setAlertType('success');
             return;
         }
@@ -109,7 +109,7 @@ const AddSubUnitFromUnit = ({baseUrl}) => {
                 <div className=''>
                     <div className='px-[10px] lg:px-[30px] max-w-[500px] mx-auto'>
                         <div className='relative w-full mb-5'>
-                            <p className='text-[#19201D]'>Select Unit</p>
+                            <p className='text-[#19201D]'>Unit</p>
                             <div className='flex items-center justify-between px-4 py-3 border w-full rounded-[4px]'>
                                 <input type="text" value={unitName} placeholder='Select user type' className='outline-none rounded-[4px] bg-transparent'/>
                             </div>

@@ -73,6 +73,7 @@ import UpdateOrgs from './pages/update-orgs/UpdateOrgs'
 import GuardianProfile from './pages/guardian-profile/GuardianProfile'
 import EditGuardian from './pages/edit-guardian/EditGuardian'
 import EditUnit from './pages/edit-unit/EditUnit'
+import EditStaff from './pages/edit-staff/EditStaff'
 
 function App() {
 
@@ -137,7 +138,7 @@ function App() {
             <Route path='/grading' element={<Grading baseUrl={baseUrl}/>} />
             <Route path='/co-ordinator/:id' element={<CoOrdinator baseUrl={baseUrl}/>} />
             <Route path='/view-assignment-summary' element={<UnitAssignmentSummary baseUrl={baseUrl}/>} />
-            <Route path='/staff/:id' element={<StaffInfo baseUrl={baseUrl}/>} />
+            <Route path='/staff/:id' element={<EditStaff baseUrl={baseUrl}/>} />
             <Route path='/add-sub-unit/:id' element={<AddSubUnitFromUnit baseUrl={baseUrl}/>} />
             <Route path='/view-sub-unit/:id' element={<ViewSubUnit baseUrl={baseUrl}/>} />
             <Route path='/inventory' element={<Inventory baseUrl={baseUrl}/>} />

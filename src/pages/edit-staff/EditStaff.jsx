@@ -4,7 +4,7 @@ import SideNav from '../../components/side-nav/SideNav'
 import { useNavigate, useParams } from 'react-router-dom'
 import BtnLoader from '../../components/btn-loader/BtnLoader'
 
-const EditGuardian = ({baseUrl}) => {
+const EditStaff = ({baseUrl}) => {
 
   const navigate = useNavigate()
   const { id } = useParams()
@@ -73,14 +73,14 @@ const EditGuardian = ({baseUrl}) => {
                   <div>
                       <div className="flex items-center gap-2">
                           <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/manage-users')} className='cursor-pointer' />
-                          <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Edit Guardian's Data</p>
+                          <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Edit Staff's Data</p>
                       </div>
                       {/* <p className='text-[#4F4F4F]'>Set maximum amount that should be in a user’s wallet</p> */}
                   </div>
               </div>
               <div className='flex item-center justify-center flex-col w-[90%] lg:w-[40%] mx-auto gap-8'>
                 <div className="">
-                    <label className="block text-gray-700">Guardian's full name</label>
+                    <label className="block text-gray-700">Staff's full name</label>
                     <input
                         type="text"
                         name="fullName"
@@ -100,7 +100,7 @@ const EditGuardian = ({baseUrl}) => {
                     />
                 </div>
                 <div>
-                  <label className='block text-text-color text-left mb-2'>Guardian's image</label>
+                  <label className='block text-text-color text-left mb-2'>Staff's image</label>
                   {
                       profileImage?.file?
                       <div className='relative flex items-center justify-center flex-col rounded-[16px] h-[300px] w-full' style={{ border:'1.5px dashed #D0D5DD' }}>
@@ -160,4 +160,4 @@ const EditGuardian = ({baseUrl}) => {
   )
 }
 
-export default EditGuardian
+export default EditStaff

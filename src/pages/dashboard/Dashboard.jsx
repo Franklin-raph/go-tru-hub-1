@@ -149,7 +149,7 @@ const Dashboard = ({ baseUrl }) => {
                   <p className="text-[#25751E] text-[12px]">+15% this week</p>
                 </div> */}
               </div>
-              <div className="border-r pr-5">
+              <div className="lg:border-r pr-5">
                 <div className="flex items-center justify-between mb-5">
                   <p className="text-[#4F4F4F]">Guardian</p>
                   <img src="./images/members.svg" alt="" />
@@ -212,6 +212,9 @@ const Dashboard = ({ baseUrl }) => {
                     )
                   })
                 }
+                {
+                  passHistory?.length === 0 && <p className="text-[#4F4F4F] text-[14px] text-center mt-20">No activities found.</p>
+                }
               </div>
               <div className="w-[100%] md:w-[40%] self-start">
                 <div className="w-full bg-white rounded-[8px] mt-[1rem] p-5 h-[300px] overflow-y-scroll">
@@ -237,9 +240,12 @@ const Dashboard = ({ baseUrl }) => {
                       )
                     })
                   }
+                  {
+                    allProducts?.length === 0 && <p className="text-[#4F4F4F] text-[14px] text-center mt-20">No products found.</p>
+                  }
                 </div>
                 <div className="w-full bg-white rounded-[8px] mt-[1rem] p-5 h-[300px] overflow-y-scroll">
-                  <p className="text-[#4F4F4F] text-[14px] mb-4">Withdrawal Request</p>
+                  <p className="text-[#4F4F4F] text-[14px] mb-4 font-[500]">Withdrawal Request</p>
                   {
                     allWithdrawals?.map((item, index) => {
                       const formattedDate = new Date(item?.createdAt).toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });
@@ -262,6 +268,9 @@ const Dashboard = ({ baseUrl }) => {
                         </div>
                       )
                     })
+                  }
+                  {
+                    allWithdrawals?.length === 0 && <p className="text-[#4F4F4F] text-[14px] text-center mt-20">No withdrawals found.</p>
                   }
                 </div>
               </div>

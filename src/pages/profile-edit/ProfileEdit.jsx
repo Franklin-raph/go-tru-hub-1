@@ -30,6 +30,7 @@ const ProfileEdit = ({baseUrl}) => {
     const [fileUploadLoader, setfileUploadLoader] = useState(false)
     const [regNum, setRegNum] = useState('')
     const [guardians, setGuardians] = useState([])
+    const [toggleNav, setToggleNav] = useState(false)
 
     useEffect(() => {
         getAllUnits()
@@ -58,6 +59,7 @@ const ProfileEdit = ({baseUrl}) => {
     }
 
     async function getSubUnitInfo(id){
+        console.log(id);
         const res = await fetch(`${baseUrl}/unit/${id}/subunits`,{
             method:"GET",
             headers:{
@@ -139,7 +141,7 @@ const ProfileEdit = ({baseUrl}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission
-        console.log({fullName, selectedUnit, selectedSubUnit, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit._id});
+        console.log({fullName, selectedUnit, selectedSubUnit, role:'student', regNum, guardians, profileImage:profileImage?._id, piviotUnit:selectedUnit?._id});
         setLoading(true)
         const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
             method:"PUT",
@@ -180,7 +182,7 @@ const ProfileEdit = ({baseUrl}) => {
         setProfileImage(data?.data?.user?.profileImage)
         setRegNum(data?.data?.user?.regNum)
         setGuardians(data?.data?.user?.guardians?._id)
-        console.log(data?.data?.user?.profileImage)
+        console.log(data?.data?.user)
     }
 
     useEffect(() => {
@@ -189,14 +191,14 @@ const ProfileEdit = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] bg-[#F2FCF7] ml-auto">
-        <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] bg-[#F2FCF7] ml-auto">
+        <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav} />
             <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem] w-full">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate(`/user/${id}`)} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">Edit Student Profile</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Edit Student Profile</p>
                     </div>
                     <div className='flex items-center gap-5'>
                         {/* <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/wallet-restriction')}>Reset to default</button> */}
@@ -215,7 +217,7 @@ const ProfileEdit = ({baseUrl}) => {
                     </div>
 
                     <div className='w-full relative mb-4'>
-                        <label className='block text-left mb-2'>Unit</label>
+                        <label className='block text-left mb-2'>Unit.</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
                             <input type="text" value={selectedUnit?.name} className='outline-none w-full rounded-[4px]'/>
                             <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === "unit" ? false : 'unit') } />
@@ -227,7 +229,7 @@ const ProfileEdit = ({baseUrl}) => {
                                     allUnits.map(unit => {
                                         return (
                                             <p className='cursor-pointer hover:bg-gray-300 p-2' onClick={() => {
-                                                setSelectedUnit(unit.name)
+                                                setSelectedUnit(unit)
                                                 setDropDown(false)
                                                 getSubUnitInfo(unit._id)
                                             }}>{unit.name}</p>
@@ -239,23 +241,31 @@ const ProfileEdit = ({baseUrl}) => {
                     </div>
 
                     <div className='w-full relative mb-4'>
-                        <label className='block text-left mb-2'>Sub-unit</label>
+                        <label className='block text-left mb-2'>Sub-unit..</label>
                         <div className='flex items-center justify-between border rounded-[6px] py-3 px-5 w-full'>
                             <input type="text" value={selectedSubUnit?.name} className='outline-none w-full rounded-[4px]'/>
                             <IoChevronDownOutline className='cursor-pointer' onClick={() => setDropDown(dropDown === 'subUnit' ? false : 'subUnit')} />
                         </div>
                         {
                             dropDown === "subUnit" &&
-                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[150px] overflow-y-scroll'>
+                            <div className='absolute z-10 top-[80px] border rounded-[5px] bg-white w-full h-[190px] overflow-y-scroll'>
                                 {
-                                    allSubUnits&& allSubUnits?.map(subUnit => {
+                                    allSubUnits && allSubUnits?.map(subUnit => {
                                         return (
                                             <p className='cursor-pointer hover:bg-gray-300 p-2' onClick={() => {
                                                 setDropDown(false)
-                                                setSelectedSubUnit(subUnit.name)
+                                                setSelectedSubUnit(subUnit)
                                             }}>{subUnit.name}</p>
                                         )
                                     })
+                                }
+                                {
+                                    allSubUnits?.length < 1 &&
+                                    <div className='flex text-center items-center flex-col gap-2 text-[13px] text-[#98A2B3] pt-3'>
+                                        <p>No sub unit found. Please select a unit in order to display the sub units under it Or Create a sub unit if none exist using the button below.</p>
+                                        <p>Note: A unit should exist before creating a sub unit</p>
+                                        <button onClick={() => navigate('/units')} className='text-white bg-primary-color w-1/2 rounded-[4px] mt-[.5rem] px-[15px] py-[8px] text-center mx-auto'>Create sub unit</button>
+                                    </div>
                                 }
                             </div>
                         }

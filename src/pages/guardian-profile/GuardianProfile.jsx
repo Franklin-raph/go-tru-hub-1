@@ -84,7 +84,7 @@ const GuardianProfile = ({baseUrl}) => {
                 <div className="flex justify-between items-start bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/manage-users')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">{userProfile?.fullName}</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">{userProfile?.fullName}</p>
                     </div>
                     {/* <div className='flex items-center gap-5'>
                         <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-semester/${sessionInfo[0]?.sessionId?._id}`)}>Create Semester</button>
@@ -101,7 +101,7 @@ const GuardianProfile = ({baseUrl}) => {
                         </div>
                         <img src="./images/edit.svg" alt="" className='cursor-pointer' onClick={() => navigate(`/edit-guardian/${id}`)} />
                     </div>
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center md:gap-5 flex-col md:flex-row mt-5'>
                         <div className="w-full" style={{marginBottom:"30px"}}>
                             <p style={{marginBottom:"5px"}}>Guardian’s full name</p>
                             <div className="border w-full rounded-[4px] flex items-center justify-between px-4 py-3">
@@ -123,7 +123,7 @@ const GuardianProfile = ({baseUrl}) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center md:gap-5 flex-col md:flex-row'>
                         <div className="w-full" style={{marginBottom:"30px"}}>
                             <p style={{marginBottom:"5px"}}>Role</p>
                             <div className="border w-full rounded-[4px] flex items-center justify-between px-4 py-3">
@@ -148,11 +148,11 @@ const GuardianProfile = ({baseUrl}) => {
                 </div>
                 <div className='w-[90%] mx-auto mt-12'>
                     <p className='text-[#19201D] font-[600] mb-3'>Ward Profile Data</p>
-                    <div className='grid grid-cols-2 gap-10'>
+                    <div className='grid md:grid-cols-2 gap-10'>
                         {
                             userProfile?.children?.map(child => (
 
-                                <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl mb-10 w-full">
+                                <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl mb-10 w-full">
                                     <div className="p-8">
                                         <div className="flex items-center justify-center mb-5">
                                             <img className="h-[120] w-[120px] rounded-full object-cover" src={child?.profileImage?.file} alt="Profile" />
