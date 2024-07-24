@@ -189,7 +189,7 @@ const Assignments = ({baseUrl}) => {
                         </div>
                     </div>
                     <div className='mt-5'>
-                        <p>Assignment Code</p>
+                        <p>Assignment / Course Code</p>
                         <div className='px-4 py-3 outline-none border w-full rounded-[4px]'>
                             <input type="text" value={code} onChange={e => setCode(e.target.value)} className='outline-none w-full rounded-[4px]'/>
                         </div>

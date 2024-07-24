@@ -66,7 +66,7 @@ const CreateAssignment = ({baseUrl}) => {
                   </div>
                   <div className='mb-5'>
                       <p className='text-[#19201D]'>Assignment Code</p>
-                      <input type="text" onChange={e => setCourseCode(e.target.value)} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter assignment code' />
+                      <input type="text" onChange={e => setCourseCode(e.target.value)} className='border py-3 px-3 rounded mt-1 w-full outline-none' placeholder='Enter assignment / course code' />
                   </div>
                   {
                       loading ? 

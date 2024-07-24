@@ -75,7 +75,7 @@ const BarCodeView = ({baseUrl}) => {
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.course?.course?.name}</p>
                         </div>
                         <div className="flex items-center justify-between w-full px-[3rem]">
-                            <p className="text-[#19201D] font-[500]">Assignment Code:</p>
+                            <p className="text-[#19201D] font-[500]">Assignment / Course Code:</p>
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.course?.course?.courseCode}</p>
                         </div>
                         <div className="flex items-center justify-between w-full px-[3rem]">
