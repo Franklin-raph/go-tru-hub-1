@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import SideNav from '../../components/side-nav/SideNav';
 import TopNav from '../../components/top-nav/TopNav';
+import { BiChevronDown } from 'react-icons/bi';
 
 const ManageUsers = ({baseUrl}) => {
 
@@ -34,6 +35,27 @@ const ManageUsers = ({baseUrl}) => {
     return `${day}/${month}/${year}`;
   };
 
+  const userType = ["All", "student", "guardian", "staff"]
+  const [selectedUserType, setSelectedUserType] = useState(userType[0])
+  const [dropDown, setDropDown] = useState(false)
+
+  async function fetchSelecteduser(userType){
+    console.log(userType);
+    setSelectedUserType(userType)
+    setDropDown(false)
+    if(userType === "All") return getAllUsers()
+    // ${baseUrl}/users/get-users/student?role=student
+    const res = await fetch(`${baseUrl}/users/get-users/${userType}?role=${userType}`,{
+      headers:{
+          'Content-Type':'application/json',
+          Authorization:`Bearer ${user.data.access_token}`
+      }
+    })
+    const data = await res.json()
+    setAllUsers(data.data.users)
+    console.log(res, data.data.users);
+  }
+
 
   return (
     <div>
@@ -45,6 +67,33 @@ const ManageUsers = ({baseUrl}) => {
               <p className="text-[22px] lg:text-[28px] text-primary-color font-[600]">Manage Users</p>
               <div className="flex items-center gap-3">
                 <button className="bg-[#2D3934] text-white px-4 py-3 rounded-[8px] text-[14px]" onClick={() => navigate('/create-user')} >Create User</button>
+              </div>
+            </div>
+          </div>
+
+          <div className='flex items-center justify-between lg:px-[30px] px-[10px] mb-10'>
+            {/* <input type="text" name="" id="" /> */}
+            <div className='flex items-center gap-2'>
+              <p>Select User Type:</p>
+              <div className='cursor-pointer border rounded-[4px] p-[6px] relative w-[130px]'>
+                <div className='flex items-center justify-between' onClick={() => setDropDown(!dropDown)}>
+                  <p className='capitalize'>{selectedUserType}</p>
+                  <BiChevronDown />
+                </div>
+                {
+                  dropDown &&
+                  <div className='rounded-[4px] border absolute left-0 top-[45px] bg-white z-[10] w-[130px]'>
+                    {
+                      userType.map((type, index) => {
+                        return (
+                          <p className='text-[14px] p-2 hover:bg-gray-100 capitalize' onClick={() => { 
+                            fetchSelecteduser(type)
+                          }}>{type}</p>
+                        )
+                      })
+                    }
+                  </div>
+                }
               </div>
             </div>
           </div>

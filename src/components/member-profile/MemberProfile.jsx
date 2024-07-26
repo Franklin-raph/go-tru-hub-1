@@ -3,6 +3,8 @@ import GuardianCard from '../guardian-card/GuardianCard'
 import MemberCard from '../member-card/MemberCard'
 import WalletCard from '../wallet-card/WalletCard'
 
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+
 import { Doughnut, Bar } from 'react-chartjs-2'
 
 import Chart from "chart.js/auto";
@@ -47,6 +49,23 @@ const MemberProfile = ({currentUser, id}) => {
         ],
       };
 
+      const graphDdata = [
+        { name: 'Group A', value: 400, color: '#FFBB28' },
+        { name: 'Group B', value: 300, color: '#FF8042' },
+        { name: 'Group C', value: 300, color: '#00C49F' },
+        { name: 'Group D', value: 200, color: '#0088FE' },
+      ];
+
+      const SummaryBar = ({ label, percentage, color }) => (
+        <div className="flex items-center mb-2 w-full">
+          {/* <div className={`w-6 h-6 rounded-full ${color} mr-2`}></div> */}
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className={`h-2 rounded-full ${color}`} style={{ width: `${percentage}%` }}></div>
+          </div>
+          <span className="ml-2 text-[13px]">{percentage}%</span>
+        </div>
+      );
+
 
 
     // console.log();
@@ -70,7 +89,7 @@ const MemberProfile = ({currentUser, id}) => {
                 </div>
             </div>
         </div>
-        {/* <div className='w-[50%]'>
+        <div className='w-[50%]'>
             <div className='shadow-md rounded-[6px] p-[20px] w-full'>
                 <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Wallet</p>
                 <div className='w-full'>
@@ -86,13 +105,30 @@ const MemberProfile = ({currentUser, id}) => {
             <div className='w-[100%] shadow-md rounded-[6px] p-[20px] mt-10'>
                 <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Assignment Strength</p>
                 <div className='w-full'>
-                    <Doughnut data={data} />
+                    {/* <Doughnut data={data} /> */}
+                    <PieChart width={220} height={220}>
+                        <Pie
+                        data={graphDdata}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={90}
+                        outerRadius={110}
+                        fill="#8884d8"
+                        paddingAngle={5}
+                        dataKey="value"
+                        >
+                        {graphDdata.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                        </Pie>
+                        <Tooltip />
+                    </PieChart>
                 </div>
             </div>
 
             <div className='w-[100%] shadow-md rounded-[6px] p-[20px] mt-10'>
                 <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Gotrupass summary</p>
-                <div className='w-full'>
+                {/* <div className='w-full'>
                     <div className='w-full'>
                         <div className='flex items-center justify-between mb-3 w-full'>
                             <p className='text-[#1D1D1D] font-[500]'>Sign-in</p>
@@ -133,9 +169,64 @@ const MemberProfile = ({currentUser, id}) => {
                             }}
                         />
                     </div>
+                </div> */}
+                <div className="flex w-full gap-5">
+                    <div className='w-full'>
+                        <div className='flex items-center justify-between mb-4'>
+                            <h3 className="text-lg font-medium">Sign-in</h3>
+                            <p className="text-sm">26 days</p>
+                        </div>
+                        <SummaryBar label="Member" percentage={35} color="bg-[#2E8B57]" />
+                        <SummaryBar label="Guardian" percentage={35} color="bg-[#FF6F61]" />
+                        <SummaryBar label="Relation" percentage={20} color="bg-[#FFDB58]" />
+                        <SummaryBar label="Signature" percentage={10} color="bg-[#967BB6]" />
+                    </div>
+                    <div className='w-full border-l pl-5'>
+                        <div className='flex items-center justify-between mb-4'>
+                            <h3 className="text-lg font-medium">Sign-out</h3>
+                            <p className="text-sm">26 days</p>
+                        </div>
+                        <SummaryBar label="Member" percentage={35} color="bg-[#2E8B57]" />
+                        <SummaryBar label="Guardian" percentage={35} color="bg-[#FF6F61]" />
+                        <SummaryBar label="Relation" percentage={20} color="bg-[#FFDB58]" />
+                        <SummaryBar label="Signature" percentage={10} color="bg-[#967BB6]" />
+                    </div>
+                </div>
+                <div className="mt-4 flex justify-between text-[13px]">
+                    <div className="flex items-center">
+                        <div className="w-6 h-6 rounded-[5px] bg-[#2E8B57] mr-2"></div>
+                        <span>Member</span>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="w-6 h-6 rounded-[5px] bg-[#FF6F61] mr-2"></div>
+                        <span>Guardian</span>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="w-6 h-6 rounded-[5px] bg-[#FFDB58] mr-2"></div>
+                        <span>Relation</span>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="w-6 h-6 rounded-[5px] bg-[#967BB6] mr-2"></div>
+                        <span>Signature</span>
+                    </div>
                 </div>
             </div>
-        </div> */}
+            <div className='w-[100%] shadow-md rounded-[6px] p-[20px] mt-10'>
+                <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Gotrupass summary</p>
+                <div className='flex items-center justify-between'>
+                    <p>Bank Name</p>
+                    <p>{currentUser?.user?.guardians?.bankName ? currentUser?.user?.guardians?.bankName : "N/A"}</p>
+                </div>
+                <div className='flex items-center justify-between my-5'>
+                    <p>Account Name</p>
+                    <p>{currentUser?.user?.guardians?.bankName ? currentUser?.user?.guardians?.accountName : "N/A"}</p>
+                </div>
+                <div className='flex items-center justify-between'>
+                    <p>Account Number</p>
+                    <p>{currentUser?.user?.guardians?.bankName ? currentUser?.user?.guardians?.accountNum : "N/A"}</p>
+                </div>
+            </div>
+        </div>
     </div>
   )
 }

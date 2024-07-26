@@ -62,7 +62,7 @@ const SessionInfo = ({baseUrl}) => {
                   {
                       sessionInfo.length < 1 &&
                       <div className="flex items-center gap-5 justify-center text-center px-[3rem]">
-                          <p>Create new sessions before updating members' units to ensure session data is accurately collated using units and their members.</p>
+                          <p>There is no information about this session at the moment. you can use the button above to create a semester </p>
                       </div>
                   }
                   {

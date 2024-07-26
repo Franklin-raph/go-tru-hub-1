@@ -186,7 +186,7 @@ const Inventory = ({baseUrl}) => {
         modal &&
           <>
             <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {setModal('')}}></div>
-            <div className="flex items-center flex-col text-center justify-center gap-3 bg-white w-[500px] fixed top-[50%] left-[50%] py-[30px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+            <div className="flex items-center flex-col text-center justify-center gap-3 bg-white sm:w-[500px] w-[95%] fixed top-[50%] left-[50%] py-[30px] px-[2rem] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
                 <div className="flex items-center justify-between border-b pb-[5px] w-full mb-7">
                     <p className="text-[18px] text-[#19201D]">Create category</p>
                     <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setModal(false)}/>

@@ -57,7 +57,7 @@ const CreateSession = ({baseUrl}) => {
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[10px] lg:px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
-                        <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/units')} className='cursor-pointer' />
+                        <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/calendar')} className='cursor-pointer' />
                         <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">Create Session</p>
                     </div>
                 </div>
