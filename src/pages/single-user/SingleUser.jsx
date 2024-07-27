@@ -12,6 +12,7 @@ const SingleUser = ({baseUrl}) => {
     const { id } = useParams()
     const [currentUser, setCurrentUser] = useState()
     const [toggleNav, setToggleNav] = useState(false)
+    const [passSummary, setPassSummary] = useState()
 
     async function getUserInfo(){
         const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
@@ -24,7 +25,19 @@ const SingleUser = ({baseUrl}) => {
         console.log(data.data.user)
     }
 
+    async function getUserPassSummary(){
+        const res = await fetch(`${baseUrl}/pass-summary?userId=${id}`,{
+            headers:{
+                Authorization:`Bearer ${user.data.access_token}`
+            }
+        })
+        const data = await res.json()
+        setPassSummary(data.data)
+        console.log(data)
+    }
+
     useEffect(() => {
+        getUserPassSummary()
         getUserInfo()
     },[])
 
@@ -43,7 +56,7 @@ const SingleUser = ({baseUrl}) => {
             </div>
             {
                 currentUser &&
-                <MemberProfile currentUser={currentUser} id={id}/>
+                <MemberProfile currentUser={currentUser} passSummary={passSummary} id={id}/>
             }
           </div>
         </div>
