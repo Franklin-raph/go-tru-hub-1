@@ -27,7 +27,7 @@ const SingleUser = ({baseUrl}) => {
     }
 
     async function getUserPassSummary(){
-        const res = await fetch(`${baseUrl}/pass-summary?userId=662e3418cb09e06e8de6e4f4`,{
+        const res = await fetch(`${baseUrl}/pass-summary?userId=${id}`,{
             headers:{
                 Authorization:`Bearer ${user.data.access_token}`
             }
@@ -38,7 +38,7 @@ const SingleUser = ({baseUrl}) => {
     }
 
     async function getWalletSummary(){
-        const res = await fetch(`${baseUrl}/wallet-summary/662e3418cb09e06e8de6e4f4`,{
+        const res = await fetch(`${baseUrl}/wallet-summary/${id}`,{
             headers:{
                 Authorization:`Bearer ${user.data.access_token}`
             }
