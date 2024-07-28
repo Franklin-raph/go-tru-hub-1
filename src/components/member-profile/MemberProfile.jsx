@@ -21,7 +21,7 @@ const SummaryBar = ({ label, percentage, color }) => (
     </div>
 );
 
-const MemberProfile = ({currentUser, id, passSummary}) => {
+const MemberProfile = ({currentUser, id, passSummary, walletSummary}) => {
 
     Chart.register(CategoryScale);
 
@@ -129,11 +129,11 @@ const MemberProfile = ({currentUser, id, passSummary}) => {
                 <p className='text-[#1D1D1D] text-[18px] font-[600] mb-5'>Wallet</p>
                 <div className='w-full'>
                     <Slider {...settings}>
-                        <WalletCard title="Wallet balalance" amount="250,000,500" />
-                        <WalletCard title="Total deposit" amount="150,000,500" />
-                        <WalletCard title="Total purchases" amount="200,000,500" />
-                        <WalletCard title="In-app" amount="180,000,500" />
-                        <WalletCard title="In-store" amount="90,000,500" />
+                        <WalletCard title="Wallet Balance" amount={walletSummary?.balance} />
+                        <WalletCard title="Total Credits" amount={walletSummary?.totalCredits} />
+                        <WalletCard title="Total Withdrawals" amount={walletSummary?.totalWithdrawals} />
+                        <WalletCard title="Total Debits" amount={walletSummary?.totalDebits} />
+                        <WalletCard title="Total Transactions" amount={walletSummary?.totalTransactions} />
                     </Slider>
                 </div>
             </div>

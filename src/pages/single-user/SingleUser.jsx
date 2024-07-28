@@ -13,6 +13,7 @@ const SingleUser = ({baseUrl}) => {
     const [currentUser, setCurrentUser] = useState()
     const [toggleNav, setToggleNav] = useState(false)
     const [passSummary, setPassSummary] = useState()
+    const [walletSummary, setWalletSummary] = useState()
 
     async function getUserInfo(){
         const res = await fetch(`${baseUrl}/users/get-user/${id}`,{
@@ -36,8 +37,20 @@ const SingleUser = ({baseUrl}) => {
         console.log(data)
     }
 
+    async function getWalletSummary(){
+        const res = await fetch(`${baseUrl}/wallet-summary/662e3418cb09e06e8de6e4f4`,{
+            headers:{
+                Authorization:`Bearer ${user.data.access_token}`
+            }
+        })
+        const data = await res.json()
+        setWalletSummary(data.data)
+        console.log(data)
+    }
+
     useEffect(() => {
         getUserPassSummary()
+        getWalletSummary()
         getUserInfo()
     },[])
 
@@ -56,7 +69,7 @@ const SingleUser = ({baseUrl}) => {
             </div>
             {
                 currentUser &&
-                <MemberProfile currentUser={currentUser} passSummary={passSummary} id={id}/>
+                <MemberProfile currentUser={currentUser} walletSummary={walletSummary} passSummary={passSummary} id={id}/>
             }
           </div>
         </div>

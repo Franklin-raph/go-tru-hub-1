@@ -108,7 +108,9 @@ const AttendanceSummary = ({baseUrl}) => {
                                     <td>{item?.attendanceType}</td>
                                     <td>{formatTime(item?.classScheduleId?.startTime)}</td>
                                     <td>{formatTime(item?.classScheduleId?.endTime)}</td>
-                                    <td className={item?.remark.toLowerCase() === "early" ? `text-green-500`: `text-red-500`} >{item?.location.lat}, {item?.location.long}</td>
+                                    <td className={item?.isValid === true ? `text-green-500 cursor-pointer`: `text-red-500 cursor-pointer`} onClick={() => {
+                                        window.open(`https://www.google.com/maps/search/?api=1&query=${item?.location.lat},${item?.location.long}`, '_blank')
+                                    }} >{item?.location.lat}, {item?.location.long}</td>
                                     <td>{item?.remark}</td>
                                 </tr>
                             )
