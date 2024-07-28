@@ -32,7 +32,7 @@ const CreateSemester = ({baseUrl}) => {
         },
         {
             name: 'OT',
-            value: 'Otttt'
+            value: 'Other'
         }
 
     ]

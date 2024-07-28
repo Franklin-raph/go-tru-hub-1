@@ -21,6 +21,7 @@ const AddSchedule = ({baseUrl}) => {
     const [coordinators, setCoordinators] = useState([])
     const { id } = useParams()
     const [allAssignments, setAllAssignments] = useState([])
+    const [toggleNav, setToggleNav] = useState(false)
     const [locations, setLocations] = useState({
         location: {
           lat: "",
@@ -77,7 +78,7 @@ const AddSchedule = ({baseUrl}) => {
       const days = ["monday", "tuesday", "wednesday", "thursday", "friday"]
 
       async function getAllStaffs(){
-        const res = await fetch(`${baseUrl}/users/get-users/staffs`,{
+        const res = await fetch(`${baseUrl}/users/get-users/staff?role=staff`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`
@@ -96,7 +97,7 @@ const AddSchedule = ({baseUrl}) => {
             }
         })
         const data = await res.json()
-        console.log(data.data);
+        console.log(res,data.data);
         if(!res.ok){
             setMsg(data.message);
             setAlertType('error');
@@ -124,6 +125,7 @@ const AddSchedule = ({baseUrl}) => {
     };
 
     useEffect(() => {
+        // alert("HElo")
     getAllStaffs()
     getAllCourses()
     },[])
@@ -185,9 +187,9 @@ const AddSchedule = ({baseUrl}) => {
 
   return (
     <div>
-        <SideNav />
-        <div className="w-[78%] ml-auto pb-5 h-[100dvh]">
-            <TopNav />
+        <SideNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
+        <div className="w-full lg:w-[78%] ml-auto pb-5 h-[100dvh]">
+            <TopNav toggleNav={toggleNav} setToggleNav={setToggleNav}/>
             <div className="">
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div>

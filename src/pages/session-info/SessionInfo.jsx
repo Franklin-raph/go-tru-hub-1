@@ -9,6 +9,8 @@ const SessionInfo = ({baseUrl}) => {
 
   const navigate = useNavigate()
   const { session } = useParams()
+
+  console.log(session);
   const user = JSON.parse(localStorage.getItem('user'))
   const [sessionInfo, setSessionInfo] = useState([])
   const [msg, setMsg] = useState('')
@@ -54,7 +56,7 @@ const SessionInfo = ({baseUrl}) => {
                       <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">{sessionInfo[0]?.sessionId.name} Session</p>
                   </div>
                   <div className='flex items-center gap-5'>
-                      <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-semester/${sessionInfo[0]?.sessionId?._id}`)}>Create Semester</button>
+                      <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-semester/${session}`)}>Create Semester</button>
                   </div>
               </div>
               <div className='px-[10px] lg:px-[30px]'>

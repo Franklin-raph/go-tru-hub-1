@@ -29,7 +29,7 @@ const Inventory = ({baseUrl}) => {
     },[])
 
     async function getAllProducts(){
-        const res = await fetch(`${baseUrl}/trade/products`,{
+        const res = await fetch(`${baseUrl}/trade/products?page=1`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${user.data.access_token}`

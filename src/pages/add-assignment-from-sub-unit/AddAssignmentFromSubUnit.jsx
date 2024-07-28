@@ -122,8 +122,8 @@ const AddAssignmentFromSubUnit = ({baseUrl}) => {
         getAllSession()
     },[])
 
-    async function getAllSemesters(){
-        console.log(selectedSession._id);
+    async function getAllSemesters(session){
+        console.log(session);
         const res = await fetch(`${baseUrl}/term/${selectedSession._id}`,{
             method:"GET",
             headers:{
@@ -249,7 +249,7 @@ const AddAssignmentFromSubUnit = ({baseUrl}) => {
                                             <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
                                                 setDropDown(false)
                                                 setSelectedSession(session)
-                                                getAllSemesters()
+                                                getAllSemesters(session)
                                             }}>
                                                 <p className='text-[#1D1D1D] capitalize text-[12px]'>{session.name}</p>
                                             </div>

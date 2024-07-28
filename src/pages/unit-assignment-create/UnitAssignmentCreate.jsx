@@ -121,9 +121,9 @@ const UnitAssignmentCreate = ({baseUrl}) => {
         getAllSession()
     },[])
 
-    async function getAllSemesters(){
-        console.log(selectedSession._id);
-        const res = await fetch(`${baseUrl}/term/${selectedSession._id}`,{
+    async function getAllSemesters(session){
+        console.log({selectedSession, session});
+        const res = await fetch(`${baseUrl}/term/${session._id}`,{
             method:"GET",
             headers:{
                 'Authorization':`Bearer ${user.data.access_token}`
@@ -265,7 +265,7 @@ const UnitAssignmentCreate = ({baseUrl}) => {
                                             <div className='px-3 border-b pb-3 cursor-pointer mb-3' onClick={() => {
                                                 setDropDown(false)
                                                 setSelectedSession(session)
-                                                getAllSemesters()
+                                                getAllSemesters(session)
                                             }}>
                                                 <p className='text-[#1D1D1D] capitalize text-[12px]'>{session.name}</p>
                                             </div>

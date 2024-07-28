@@ -25,7 +25,7 @@ const NewProduct = ({baseUrl}) => {
     
     const [productCoverImage, setProductCoverImage] = useState('')
     const [price, setPrice] = useState()
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState(' ')
     const [productName, setProductName] = useState('')
     const [quantity, setQuantity] = useState()
     const [minimumQuantity, setMinimumQuantity] = useState()

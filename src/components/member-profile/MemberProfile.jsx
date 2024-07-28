@@ -79,7 +79,7 @@ const MemberProfile = ({currentUser, id, passSummary}) => {
         <SummaryBar
           key={index}
           label={item.authorizationType}
-          percentage={item.percentage}
+          percentage={item.percentage.toFixed(2)}
           color={getColor(item.authorizationType)}
         />
       ));
@@ -211,7 +211,7 @@ const MemberProfile = ({currentUser, id, passSummary}) => {
                             <h3 className="text-lg font-medium">Sign-in</h3>
                             {/* <p className="text-sm">26 days</p> */}
                         </div>
-                        {signInData.length ? signInData : "No data available"}
+                        {signInData?.length ? signInData : "No data available"}
                         {/* <SummaryBar label="Member" percentage={35} color="bg-[#2E8B57]" />
                         <SummaryBar label="Guardian" percentage={35} color="bg-[#FF6F61]" />
                         <SummaryBar label="Relation" percentage={20} color="bg-[#FFDB58]" />
@@ -222,7 +222,7 @@ const MemberProfile = ({currentUser, id, passSummary}) => {
                             <h3 className="text-lg font-medium">Sign-out</h3>
                             {/* <p className="text-sm">26 days</p> */}
                         </div>
-                        {signOutData.length ? signOutData : "No data available"}
+                        {signOutData?.length ? signOutData : "No data available"}
                         {/* <SummaryBar label="Member" percentage={35} color="bg-[#2E8B57]" />
                         <SummaryBar label="Guardian" percentage={35} color="bg-[#FF6F61]" />
                         <SummaryBar label="Relation" percentage={20} color="bg-[#FFDB58]" />
