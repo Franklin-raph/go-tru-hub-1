@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideNav from '../../components/side-nav/SideNav'
 import TopNav from '../../components/top-nav/TopNav'
 import { CiFilter } from "react-icons/ci";
@@ -8,7 +8,7 @@ import { SlOptionsVertical } from 'react-icons/sl';
 import { IoIosNotificationsOutline } from "react-icons/io";
 
 
-const Notification = () => {
+const Notification = ({baseUrl}) => {
 
     const navigate = useNavigate()
     const [filterDropDown, setFilterDropdown] = useState(false)
@@ -17,6 +17,22 @@ const Notification = () => {
     const [msg, setMsg] = useState('')
     const filterArray = ['All', "Cash sales", "Wallet sales", "Purchases", "Deposits", "Withdrawals"]
     const [toggleNav, setToggleNav] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    async function getAllNotification(){
+        const res = await fetch(`${baseUrl}/notification/${user.data._id}`,{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${user.data.access_token}`
+            }
+        })
+        const data = await res.json()
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getAllNotification()
+    }, [])
 
   return (
     <div>

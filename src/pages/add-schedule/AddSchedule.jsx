@@ -23,68 +23,74 @@ const AddSchedule = ({baseUrl}) => {
     const [allAssignments, setAllAssignments] = useState([])
     const [toggleNav, setToggleNav] = useState(false)
 
-    const [positionLat, setPositionLat] = useState()
-    const [positionLng, setPositionLng] = useState()
+    const [startPosition, setStartPosition] = useState()
+    const [positionEnd, setPositionEnd] = useState()
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log("hhloe");
-            console.log(position.coords.latitude, position.coords.longitude);
-            setPositionLng(position.coords.longitude);
-            setPositionLat(position.coords.latitude);
-        })
-    },[])
+    const [latStart, setLatStart] = useState()
+    const [lngStart, setLngStart] = useState()
+
+    const [latEnd, setLatEnd] = useState()
+    const [lngEnd, setLngEnd] = useState()
+
+    // useEffect(() => {
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //         console.log("hhloe");
+    //         console.log(position.coords.latitude, position.coords.longitude);
+    //         setPositionLng(position.coords.longitude);
+    //         setPositionLat(position.coords.latitude);
+    //     })
+    // },[])
 
     const [locations, setLocations] = useState({
         location: {
-          lat: "",
-          long: ""
+          lat: latStart,
+          long: lngStart
         },
         endLocation: {
-          lat: "",
-          long: ""
+          lat: latEnd,
+          long: lngEnd
         }
-      });
+    });
 
-      const handleStartLatChange = (e) => {
-        setLocations({
-          ...locations,
-          location: {
-            ...locations.location,
-            lat: e.target.value
-          }
-        });
-      };
+    //   const handleStartLatChange = (e) => {
+    //     setLocations({
+    //       ...locations,
+    //       location: {
+    //         ...locations.location,
+    //         lat: e.target.value
+    //       }
+    //     });
+    //   };
 
-      const handleStartLongChange = (e) => {
-        setLocations({
-          ...locations,
-          location: {
-            ...locations.location,
-            long: e.target.value
-          }
-        });
-      };
+    //   const handleStartLongChange = (e) => {
+    //     setLocations({
+    //       ...locations,
+    //       location: {
+    //         ...locations.location,
+    //         long: e.target.value
+    //       }
+    //     });
+    //   };
     
-      const handleEndLatChange = (e) => {
-        setLocations({
-          ...locations,
-          endLocation: {
-            ...locations.endLocation,
-            lat: e.target.value
-          }
-        });
-      };
+    //   const handleEndLatChange = (e) => {
+    //     setLocations({
+    //       ...locations,
+    //       endLocation: {
+    //         ...locations.endLocation,
+    //         lat: e.target.value
+    //       }
+    //     });
+    //   };
     
-      const handleEndLongChange = (e) => {
-        setLocations({
-          ...locations,
-          endLocation: {
-            ...locations.endLocation,
-            long: e.target.value
-          }
-        });
-      };
+    //   const handleEndLongChange = (e) => {
+    //     setLocations({
+    //       ...locations,
+    //       endLocation: {
+    //         ...locations.endLocation,
+    //         long: e.target.value
+    //       }
+    //     });
+    //   };
 
       const [allStaffs, setAllStaffs] = useState()
       const user = JSON.parse(localStorage.getItem('user'))
@@ -123,10 +129,6 @@ const AddSchedule = ({baseUrl}) => {
         }
     }
 
-    // const [selectedIds, setSelectedIds] = useState([]);
-
-    // const [coordinators, setCoordinators] = useState([]);
-
     const handleCheckboxChange = (id, name) => {
         setCoordinators((prevCoordinators) => {
           if (prevCoordinators.some(coordinator => coordinator.id === id)) {
@@ -144,6 +146,8 @@ const AddSchedule = ({baseUrl}) => {
     },[])
 
     async function createSchedule(){
+
+        console.log(startPosition.coords.latitude, startPosition.coords.longitude);
     const ids = [];
     for (let i = 0; i < coordinators.length; i++) {
         ids.push(coordinators[i].id);
@@ -155,8 +159,8 @@ const AddSchedule = ({baseUrl}) => {
         startTime: parseInt(startTime?.replace(":", "")),
         endTime:  parseInt(endTime?.replace(":", "")),
         coordinators:ids,
-        location: locations.location,
-        endlocation: locations.endLocation
+        location: {lat:startPosition.coords.latitude, long: startPosition.coords.longitude},
+        endlocation: {lat:positionEnd.coords.latitude, long:positionEnd.coords.longitude}
     });
     if(!course ||!day ||!startTime ||!endTime){
         setMsg("Please fill in the fields!");
@@ -176,8 +180,8 @@ const AddSchedule = ({baseUrl}) => {
                 startTime: parseInt(startTime.replace(":", "")),
                 endTime:  parseInt(endTime.replace(":", "")),
                 coordinators:ids,
-                location: locations.location,
-                endlocation: locations.endLocation
+                location: {lat:startPosition.coords.latitude.toString(), long: startPosition.coords.longitude.toString()},
+                endlocation: {lat:positionEnd.coords.latitude.toString(), long:positionEnd.coords.longitude.toString()}
             })
         })
         const data = await res.json()
@@ -196,6 +200,19 @@ const AddSchedule = ({baseUrl}) => {
         }
     }
 
+    }
+
+    function getStartLocation(){
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position)
+            setStartPosition(position)
+        })
+    }
+
+    function getEndLocation(){
+        navigator.geolocation.getCurrentPosition((position) => {
+            setPositionEnd(position)
+        })
     }
 
   return (
@@ -217,8 +234,8 @@ const AddSchedule = ({baseUrl}) => {
                         </div> */}
                         {/* {position} */}
                 </div>
-                <p>Lat: {positionLat}</p>
-                <p>Lng: {positionLng}</p>
+                {/* <p>Lat: {positionLat}</p>
+                <p>Lng: {positionLng}</p> */}
                 <div className='flex item-center justify-center flex-col w-[90%] mx-auto'>
                     <div className='flex flex-col sm:flex-row items-center gap-5 w-full my-[1rem]'>
                         <div className='w-full relative'>
@@ -340,40 +357,47 @@ const AddSchedule = ({baseUrl}) => {
                     </div>
                     <label className='block text-left mb-2'>Assignment location</label>
                     <div className='mb-5'>
-                        <p className='text-[#19201D]'>Start Coordinates</p>
+                        <div className='flex items-center justify-between'>
+                            <p className='text-[#19201D]'>Start Coordinates</p>
+                            <button onClick={getStartLocation}>Get start</button>
+                        </div>
                         <div className='flex items-center gap-3'>
                         <input
                             type="text"
                             className='border py-3 px-3 rounded mt-1 w-full'
                             placeholder='Latitude'
-                            value={locations.location.lat}
-                            onChange={handleStartLatChange}
+                            value={startPosition?.coords?.latitude}
+                            // onChange={handleStartLatChange}
                         />
                         <input
                             type="text"
                             className='border py-3 px-3 rounded mt-1 w-full'
                             placeholder='Longitude'
-                            value={locations.location.long}
-                            onChange={handleStartLongChange}
+                            value={startPosition?.coords?.longitude}
+                            // onChange={handleStartLongChange}
                         />
                         </div>
                     </div>
                     <div className='mb-5'>
-                        <p className='text-[#19201D]'>Stop Coordinates</p>
+                        
+                        <div className='flex items-center justify-between'>
+                            <p className='text-[#19201D]'>Stop Coordinates</p>
+                            <button onClick={getEndLocation}>Get End</button>
+                        </div>
                         <div className='flex items-center gap-3'>
                         <input
                             type="text"
                             className='border py-3 px-3 rounded mt-1 w-full'
                             placeholder='Latitude'
-                            value={locations.endLocation.lat}
-                            onChange={handleEndLatChange}
+                            value={positionEnd?.coords?.latitude}
+                            // onChange={handleEndLatChange}
                         />
                         <input
                             type="text"
                             className='border py-3 px-3 rounded mt-1 w-full'
                             placeholder='Longitude'
-                            value={locations.endLocation.long}
-                            onChange={handleEndLongChange}
+                            value={positionEnd?.coords?.longitude}
+                            // onChange={handleEndLongChange}
                         />
                         </div>
                     </div>
