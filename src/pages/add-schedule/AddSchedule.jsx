@@ -30,8 +30,8 @@ const AddSchedule = ({baseUrl}) => {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log("hhloe");
             console.log(position.coords.latitude, position.coords.longitude);
-            setPositionLng(position.coords.latitude);
-            setPositionLat(position.coords.longitude);
+            setPositionLng(position.coords.longitude);
+            setPositionLat(position.coords.latitude);
         })
     },[])
 
