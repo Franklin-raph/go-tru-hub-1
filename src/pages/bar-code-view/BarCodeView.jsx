@@ -58,7 +58,7 @@ const BarCodeView = ({baseUrl}) => {
                 <div className="flex justify-between items-start mb-[3rem] bg-[#F2FCF7] px-[30px] py-[1rem]">
                     <div className="flex items-center gap-2">
                         <img src="./images/arrow-left.svg" alt="" onClick={() => navigate('/')} className='cursor-pointer' />
-                        <p className="text-[28px] text-primary-color font-[600]">BarCode</p>
+                        <p className="text-[20px] lg:text-[28px] text-primary-color font-[600]">BarCode</p>
                     </div>
                     {/* <div className='flex items-center gap-5'>
                         <button className="bg-[#2D3934] text-white px-5 py-3 rounded-[8px] text-[14px]" onClick={() => navigate(`/create-semester/${sessionInfo[0]?.sessionId?._id}`)}>Create Semester</button>
@@ -66,31 +66,31 @@ const BarCodeView = ({baseUrl}) => {
                 </div>
                 {
                     classScheduleInfo &&
-                    <div className="flex flex-col gap-5 justify-center items-center bg-white w-[500px] mx-auto rounded-lg pb-7">
+                    <div className="flex flex-col gap-5 justify-center items-center bg-white lg:w-[500px] w-[95%] mx-auto rounded-lg pb-7">
                         <div className="flex items-center">
                             <img src={classScheduleInfo.qrcode} alt="" className="w-[200px] h-[200px]" />
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">Assignment Name:</p>
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.course?.course?.name}</p>
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">Assignment / Course Code:</p>
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.course?.course?.courseCode}</p>
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">Day:</p>
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.day}</p>
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">Start Time:</p>
                             <p className="text-[#19201D] font-[500]">{formatTime(classScheduleInfo?.startTime)}</p>
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">End Time:</p>
                             <p className="text-[#19201D] font-[500]">{formatTime(classScheduleInfo?.endTime)}</p>
                         </div>
-                        <div className="flex items-center justify-between w-full px-[3rem]">
+                        <div className="flex items-center justify-between w-full lg:px-[3rem] px-[1rem]">
                             <p className="text-[#19201D] font-[500]">Assignee:</p>
                             <p className="text-[#19201D] font-[500]">{classScheduleInfo?.coordinators?.length}</p>
                         </div>
