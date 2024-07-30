@@ -98,12 +98,12 @@ const StudentId = ({ baseUrl }) => {
           </div>
 
           <div className='flex items-center justify-center text-center flex-col gap-2'>
-            <div className="w-[2.125in] h-[3.375in] bg-white rounded-lg shadow-md flex flex-col items-center mx-auto p-4">
+            <div className="w-[2.125in] h-[3.375in] bg-white rounded-lg shadow-md flex flex-col mx-auto p-4">
               <div className="w-full flex justify-center items-center mb-4 text-center">
                 {/* <span className="text-lg font-bold">{companyName}</span> */}
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-[120px] h-[120px] rounded overflow-hidden text-[10px] mb-4 border-2">
+              <div className="flex flex-col">
+                <div className="w-[120px] h-[120px] mx-auto rounded overflow-hidden text-[10px] mb-4 border-2">
                   {
                     userId &&
                     <img
@@ -113,11 +113,10 @@ const StudentId = ({ baseUrl }) => {
                     />
                   }
                 </div>
-                <div className="text-center mt-6">
-                  <p className="text-sm text-gray-600 font-semibold capitalize my-3">
-                    Motto:.................................
+                <div className="mt-3 text-left">
+                  <p className="text-sm text-gray-600 font-semibold capitalize my-3 text-left">
+                    Motto:
                   </p>
-                  <p className="text-sm text-gray-600 font-semibold capitalize">................................................</p>
                 </div>
               </div>
             </div>
