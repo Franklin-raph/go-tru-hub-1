@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IoChevronDownOutline } from 'react-icons/io5'
+import { IoChevronDownOutline, IoIdCardOutline } from 'react-icons/io5'
 import { LuScanLine } from "react-icons/lu";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { PiFileArrowUpThin } from "react-icons/pi";
@@ -107,6 +107,10 @@ const SideNav = ({toggleNav, setToggleNav}) => {
                 <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/summary')}>
                   <RxDashboard />
                   <p className={ location.pathname.includes("/summary") ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Summary</p>
+                </div>
+                <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/recover-id')}>
+                  <IoIdCardOutline />
+                  <p className={ location.pathname.includes("/summary") ? `flex items-center justify-between text-[#25751E]` : `flex items-center justify-between`}>Lost Id</p>
                 </div>
                 <div className='flex items-center gap-2 my-4 cursor-pointer' onClick={() => navigate('/units')} >
                   <img src="./images/orders.svg"/>

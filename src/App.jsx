@@ -76,6 +76,7 @@ import EditUnit from './pages/edit-unit/EditUnit'
 import EditStaff from './pages/edit-staff/EditStaff'
 import Norlics from './pages/Norlics'
 import LostId from './pages/lost-id/LostId'
+import StudentId from './pages/student-id/StudentId'
 
 function App() {
 
@@ -156,7 +157,8 @@ function App() {
             <Route path='/edit-guardian/:id' element={<EditGuardian baseUrl={baseUrl}/>} />
             <Route path ="/edit-unit/:id" element={<EditUnit baseUrl={baseUrl}/>} />
             <Route path ="/norlics" element={<Norlics />} />
-            <Route path ="/recover-id" element={<LostId />} />
+            <Route path ="/recover-id" element={<LostId baseUrl={baseUrl}/>} />
+            <Route path ="/student-id/:id" element={<StudentId baseUrl={baseUrl}/>} />
             
 
             <Route path='*' element={<div>404</div>} />
